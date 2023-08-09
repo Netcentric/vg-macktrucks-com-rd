@@ -133,6 +133,34 @@
     margin-bottom: 12px;
   }
 
+  .v2-footer .v2-footer-main-content{
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr; 
+    gap: 0 0; 
+    /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
+    grid-template-areas: 
+      "v2-logo"
+      "v2-content"
+      "v2-form"
+      "v2-social"; 
+      height: 70vh;
+  }
+  
+
+  .v2-social { grid-area: v2-social; }
+  .v2-content { grid-area: v2-content; }
+
+  .v2-form { 
+    grid-area: v2-form;
+    height: 15vh;
+  }
+
+  .v2-logo { 
+    grid-area: v2-logo; 
+    height: 15vh;
+  }
+
   @media (min-width: 495px) {
     .v2-footer .footer-form-and-social-section {
       width: 255px;
@@ -144,17 +172,9 @@
       padding-top: 96px;
     }
   
-    .v2-footer .footer-content {
+    .v2-footer .v2-footer-content {
       display: flex;
       flex-flow: row wrap;
-    }
-  
-    .v2-footer .footer-main-content {
-      display: flex;
-      justify-content: space-between;
-      flex-direction: row;
-      align-items: flex-start;
-      width: 100%;
     }
   
     .v2-footer .v2-footer-links-section {
@@ -204,6 +224,19 @@
     hr {
       margin-top: 66px;
       margin-bottom: 22px;
+    }
+
+    /* stylelint-disable-next-line no-duplicate-selectors */
+    .v2-footer .v2-footer-main-content{
+      display: grid; 
+      grid-template-columns: 1fr 1fr 1fr; 
+      grid-template-rows: 1fr 1fr; 
+      gap: 0 0; 
+      /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
+      grid-template-areas: 
+      "v2-logo v2-content v2-form"
+      "v2-social v2-content v2-form";
+      height: 30vh;
     }
   }
   

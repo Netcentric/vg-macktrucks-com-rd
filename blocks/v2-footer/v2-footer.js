@@ -72,20 +72,20 @@ export default async function decorate(block) {
   formSection?.classList.add('footer-form-section');
 
   const footerTemplate = `
-    <div class="footer-content">
-      <div class="footer-main-content">
-        <div class="footer-logo-section">
+    <div class="v2-footer-content">
+      <div class="v2-footer-main-content">
+        <div class="v2-footer-logo-section v2-logo">
           ${logoLink?.outerHTML}
         </div>
-        <div class="footer-social-section">
+        <div class="v2-footer-social-section v2-social">
           ${socialMediaSection?.outerHTML}
         </div>
-        <div class="v2-footer-links-section">
+        <div class="v2-footer-links-section v2-content">
           ${firstLinks?.outerHTML}
           ${secondLinks?.outerHTML}
           ${thirdLinks?.outerHTML}
         </div>
-        <div class="v2-footer-form-section">
+        <div class="v2-footer-form-section v2-form">
             <div class="form v2-footer-form-header">
               ${fourthHeader?.outerHTML}
             </div>
