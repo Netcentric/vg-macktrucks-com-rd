@@ -87,9 +87,11 @@
   
   .v2-footer .v2-footer-bottom-section-content {
     display: flex;
-    align-items: end;
+    align-items: start;
     font-size: 12px;
-    justify-content: space-between;
+    width: 91%;
+    flex-wrap: wrap;
+    gap: 8px;
   }
   
   .v2-footer .v2-footer-bottom-section li {
@@ -241,6 +243,13 @@
 
     .v2-social { 
       margin-top: -80px;
+    }
+
+    .v2-footer .v2-footer-bottom-section-content {
+      display: flex;
+      align-items: end;
+      font-size: 12px;
+      justify-content: space-between;
     }
   }
   
