@@ -41,11 +41,11 @@ export default async function decorate(block) {
         social !== 'youtube' ? PLACEHOLDERS.social : PLACEHOLDERS.channel}`;
 
       icon.classList.remove('icon', iconClass);
-      icon.classList.add('fa', iconName, 'v2-footer-social-media');
+      icon.classList.add('icon', iconClass, 'v2-footer-social-media');
     }
   });
 
-  const socialMediaSection = footer.querySelector('.fa-twitter, .fa-facebook, .fa-twitter, .fa-linkedin, .fa-instagram, .fa-youtube')?.closest('ul');
+  const socialMediaSection = footer.querySelector('.icon-twitter, .icon-facebook, .icon-twitter, .icon-linkedin, .icon-instagram, .icon-youtube')?.closest('ul');
   socialMediaSection?.classList.add('v2-footer-social-media-section');
 
   const fourthHeader = [...footer.querySelectorAll('h3')].at(-1);
@@ -66,7 +66,7 @@ export default async function decorate(block) {
   }
 
   const bottomLinksList = [...footer.querySelectorAll('ul')].at(-1);
-  bottomLinksList?.classList.add('v2-footer-bottom-section');
+  bottomLinksList?.classList.add('v2-footer-bottom-section-content');
 
   const formSection = footer.querySelector('.eloqua-form');
   formSection?.classList.add('footer-form-section');
@@ -94,8 +94,7 @@ export default async function decorate(block) {
             </div>
           </div>
       </div>
-      <hr />
-      <div class="footer-bottom-section">
+      <div class="v2-footer-bottom-section">
         ${bottomLinksList?.outerHTML}
       </div>
     </div>
@@ -139,7 +138,7 @@ export default async function decorate(block) {
         // and display it sticked to the right side of email input
         if (submitButton && emailInput) {
           const parent = emailInput.parentElement;
-          submitButton.value = '→';
+          submitButton.value = '';
           emailAndSubmitContainer.append(emailInput, submitButton);
           parent.append(emailAndSubmitContainer);
 
