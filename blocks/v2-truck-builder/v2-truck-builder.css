@@ -1,0 +1,183 @@
+main .section.v2-truck-builder-container {
+  background-color: var(--c-secondary-silver);
+  padding: 0;
+}
+
+.v2-truck-builder .truck-builder-section {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+.truck-builder-section picture img {
+  z-index: -1;
+}
+
+.truck-builder-section .color-select-section,
+.truck-builder-section .body-select-section {
+  position: absolute;
+  z-index: 1;
+}
+
+.truck-builder-section .color-select-section {
+  bottom: -3%;
+  right: 11%;
+}
+
+.truck-builder-section .body-select-section {
+  top: 15%;
+  left: 7%;
+}
+
+.truck-builder-section .color-select-section::before,
+.truck-builder-section .body-select-section::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  content: '+';
+  color: var(--c-primary-white);
+  background-color: var(--c-accent-red);
+  font-size: 14px;
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+  left: calc(50% - 7px);
+  z-index: -1;
+  padding-top: 2px;
+}
+
+.truck-builder-section .color-select-section::before {
+  top: -175%;
+}
+
+.truck-builder-section .body-select-section::before {
+  bottom: -20%;
+}
+
+.truck-builder-section .color-select-section::after,
+.truck-builder-section .body-select-section::after {
+  position: absolute;
+  content: '';
+  background-color: var(--c-accent-red);
+  width: 1px;
+  left: calc(50% - 0.5px);
+  z-index: -1;
+}
+
+.truck-builder-section .color-select-section::after {
+  height: 94px;
+  top: -153%;
+}
+
+.truck-builder-section .body-select-section::after {
+  height: 138px;
+  bottom: -10%;
+}
+
+.truck-builder-section .color-select-section fieldset.color-fieldset,
+.truck-builder-section .body-select-section fieldset.body-fieldset {
+  /* TODO check: this color has no variable */
+  background-color: #f9f9f7;
+  border: none;
+  border-top: 2px solid var(--c-accent-red);
+  font-family: var(--ff-accents);
+  font-size: 10px;
+  line-height: 110%;
+  display: flex;
+  flex-flow: column;
+  padding: 8px 10px 10px;
+}
+
+.truck-builder-section .color-select-section legend.color-legend,
+.truck-builder-section .body-select-section legend.body-legend{
+  float: left;
+  padding: 0 0 16px;
+}
+
+.truck-builder-section .color-select-section .color-set {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  column-gap: 5px;
+}
+
+.truck-builder-section .color-select-section button.color-btn {
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  margin: unset;
+  padding: unset;
+}
+
+.truck-builder-section .color-select-section button.color-btn::after {
+  content: '';
+  background-color: red;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  top: 10%;
+  left: 0%;
+  z-index: 1;
+}
+
+.truck-builder-section .color-select-section span.color-name {
+  display: none;
+}
+
+.truck-builder-section .body-select-section .body-option {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  padding: 0 0 9px;
+}
+
+.truck-builder-section .body-select-section .body-option input.body-input {
+  width: 10px;
+  height: 10px;
+  margin: 0 4px 0 0;
+  border: 4px solid var(--c-primary-black);
+}
+
+.truck-builder-section .body-select-section .body-option input[type='radio'] {
+    accent-color: var(--c-primary-black);
+}
+
+.cta-section {
+  width: 100%;
+  padding: 40px 16px;
+}
+
+.cta-section h3.cta-title {
+  font-family: var(--ff-headline-medium);
+  font-size: var(--headline-1-font-size);
+  line-height: var(--headline-1-line-height);
+  margin: 0 0 12px;
+}
+
+.cta-section p.cta-subtitle {
+  font-family: var(--ff-body);
+  font-size: var(--body-1-font-size);
+  line-height: 150%;
+  margin: 0 0 32px;
+}
+
+.cta-section button.cta-button {
+  height: 48px;
+  background-color: var(--c-primary-gold);
+  font-family: var(--ff-body);
+  font-size: var(--button-font-size);
+  line-height: var(--button-line-height);
+  border: none;
+  border-radius: 2px;
+  padding: 2px 20px 0;
+  margin: unset;
+}
+
+.cta-section button.cta-button:hover {
+  background-color: var(--button-secondary-gold-hover);
+}

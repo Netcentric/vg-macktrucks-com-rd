@@ -86,6 +86,10 @@
     {
       "Key": "channel aria label",
       "Text": "channel"
+    },
+    {
+      "Key": "truck builder text",
+      "Text": "Select Body[/]Select Exterior Color"
     }
   ],
   ":type": "sheet"
