@@ -14,6 +14,7 @@ const PLACEHOLDERS = {
 
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
+  const blockName = block.getAttribute('data-block-name');
   block.textContent = '';
 
   const footerPath = cfg.footer || '/drafts/avinash/footer';
@@ -51,6 +52,10 @@ export default async function decorate(block) {
   const fourthHeader = [...footer.querySelectorAll('h3')].at(-1);
   const [firstLinks, secondLinks, thirdLinks] = [...footer.querySelectorAll('h3 ~ ul')];
 
+
+  const headings = footer.querySelectorAll('h1, h2, h3, h4, h5, h6');
+  [...headings].forEach((heading) => heading.classList.add(`${blockName}__title`));
+
   // secondLinks?.classList.add('footer-links-col-2');
 
   // // creating the  logo link
@@ -69,7 +74,7 @@ export default async function decorate(block) {
   bottomLinksList?.classList.add('v2-footer-bottom-section-content');
 
   const formSection = footer.querySelector('.eloqua-form');
-  formSection?.classList.add('footer-form-section');
+  formSection?.classList.add('v2-footer-form-section');
 
   const footerTemplate = `
     <div class="v2-footer-content">

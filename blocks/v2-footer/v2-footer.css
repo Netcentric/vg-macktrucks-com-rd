@@ -51,15 +51,11 @@
   }
 
   
-  .v2-footer h1,
-  .v2-footer h2,
-  .v2footer h3 {
+  .v2-footer .v2-footer__title {
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 5px;
-    border-bottom: 2px solid;
     line-height: 22px;
-    margin-top: 0;
   }
   
   .v2-footer ul li a,
@@ -72,16 +68,12 @@
     text-decoration: none;
   }
   
-  .v2-footer h1 ~ ul,
-  .v2-footer h2 ~ ul,
-  .v2-footer h3 ~ ul {
+  .v2-footer .v2-footer__title ~ ul {
     display: flex;
     flex-flow: row wrap;
   }
   
-  .v2-footer h1 ~ ul li,
-  .v2-footer h2 ~ ul li,
-  .v2-footer h3 ~ ul li {
+  .v2-footer .v2-footer__title ul li {
     width: 50%;
   }
   
@@ -123,7 +115,7 @@
     min-width: 50%;
   }
   
-  .v2-footer .v2-footer-form-header h3{
+  .v2-footer .v2-footer-form-header .v2-footer__title {
     font-family: var(--ff-body);
     font-size: 12px;
     font-style: normal;
@@ -134,7 +126,7 @@
     margin-bottom: 12px;
   }
 
-  .v2-footer .v2-footer-main-content{
+  .v2-footer .v2-footer-main-content {
     display: grid; 
     grid-template-columns: 1fr; 
     grid-template-rows: 1fr 1fr 1fr 1fr; 
@@ -148,7 +140,6 @@
       height: 70vh;
   }
   
-
   .v2-social { 
     grid-area: v2-social;
     margin-top: 0px;
@@ -166,12 +157,11 @@
     height: 15vh;
   }
 
-  @media (min-width: 495px) {
-    .v2-footer .footer-form-and-social-section {
-      width: 255px;
-    }
+  .v2-footer .v2-footer-links-section ul li {
+    margin-bottom: 14px;
   }
-  
+
+  /* desktop   */
   @media (min-width: 1200px) {
     .v2-footer {
       padding-top: 96px;
@@ -261,12 +251,16 @@
   .v2-footer .elq-form .item-padding {
     padding: 0;
   }
+
+  .v2-footer .eloqua-form{
+    max-width: 1200px;
+  }
   
   .v2-footer .eloqua-form .elq-form input[type="text"] {
     background-color: var(--c-primary-white);
     padding: 15px 10px;
     border: none;
-    width: 200px;
+    max-width: 320px;
     font-family: var(--ff-body);
     font-size: 13px;
     line-height: 16px;
@@ -328,7 +322,7 @@
   .v2-footer .eloqua-form .elq-form .email-and-submit-container input[type="submit"] {
     height: 48px !important;
     width: 48px !important;
-    background-image: url(../../icons/arrow.svg);
+    background: var(--c-primary-gold) url(../../icons/form-submit-arrow.svg) no-repeat center;
   }
 
   .v2-footer .checkbox-span {
