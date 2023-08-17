@@ -52,7 +52,6 @@ export default async function decorate(block) {
   const fourthHeader = [...footer.querySelectorAll('h3')].at(-1);
   const [firstLinks, secondLinks, thirdLinks] = [...footer.querySelectorAll('h3 ~ ul')];
 
-
   const headings = footer.querySelectorAll('h1, h2, h3, h4, h5, h6');
   [...headings].forEach((heading) => heading.classList.add(`${blockName}__title`));
 
