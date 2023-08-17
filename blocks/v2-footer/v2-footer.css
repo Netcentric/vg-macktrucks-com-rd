@@ -72,6 +72,10 @@
     display: flex;
     flex-flow: row wrap;
   }
+
+  .v2-footer .v2-footer-bottom-section li {
+    padding: 10px 0;
+  }
   
   .v2-footer .v2-footer__title ul li {
     width: 50%;
@@ -84,10 +88,6 @@
     width: 91%;
     flex-wrap: wrap;
     gap: 20px;
-  }
-  
-  .v2-footer .v2-footer-bottom-section li {
-    padding: 10px 0;
   }
   
   .v2-footer .v2-footer-bottom-section li a:hover {
@@ -142,7 +142,7 @@
   
   .v2-social { 
     grid-area: v2-social;
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   .v2-content { grid-area: v2-content; }
@@ -322,7 +322,7 @@
   .v2-footer .eloqua-form .elq-form .email-and-submit-container input[type="submit"] {
     height: 48px !important;
     width: 48px !important;
-    background: var(--c-primary-gold) url(../../icons/form-submit-arrow.svg) no-repeat center;
+    background: var(--c-primary-gold) url("../../icons/form-submit-arrow.svg") no-repeat center;
   }
 
   .v2-footer .checkbox-span {
