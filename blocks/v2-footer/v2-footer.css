@@ -324,6 +324,14 @@
     width: 48px !important;
     background: var(--c-primary-gold) url("../../icons/form-submit-arrow.svg") no-repeat center;
   }
+  
+  .v2-footer .eloqua-form .elq-form .email-and-submit-container input[type="submit"]:hover {
+    background-color: var(--button-secondary-gold-hover);
+  }
+
+  .v2-footer .eloqua-form .elq-form .email-and-submit-container input[type="submit"]:active {
+    background-color: var(--button-secondary-gold-pressed);
+  }
 
   .v2-footer .checkbox-span {
     position: relative;
