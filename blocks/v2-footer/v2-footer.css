@@ -83,7 +83,7 @@
     font-size: 12px;
     width: 91%;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 20px;
   }
   
   .v2-footer .v2-footer-bottom-section li {
@@ -137,7 +137,7 @@
       "v2-content"
       "v2-form"
       "v2-social"; 
-      height: 70vh;
+      height: 72vh;
   }
   
   .v2-social { 
