@@ -82,15 +82,15 @@ export function decorateButtons(element) {
       const twoup = link.parentElement.parentElement;
       if (!link.querySelector('img') && up.childNodes.length === 1) {
         if (up.tagName === 'P' || up.tagName === 'DIV') {
-          link.className = 'button primary'; // default
+          link.className = 'button button--primary'; // default
           up.className = 'button-container';
         }
         if (up.tagName === 'STRONG' && twoup.childNodes.length === 1 && twoup.tagName === 'P') {
-          link.className = 'button primary';
+          link.className = 'button button--primary';
           twoup.className = 'button-container';
         }
         if (up.tagName === 'EM' && twoup.childNodes.length === 1 && twoup.tagName === 'P') {
-          link.className = 'button secondary';
+          link.className = 'button button--secondary';
           twoup.className = 'button-container';
         }
         if (up.tagName === 'STRONG' && twoup.childNodes.length === 1 && twoup.tagName === 'LI') {
@@ -629,4 +629,13 @@ allLinks.forEach((link) => {
 /* REDESING CLASS CHECK */
 if (getMetadata('style') === 'redesign-v2') {
   document.querySelector('html').classList.add('redesign-v2');
+}
+
+export function variantsClassesToBEM(blockClasses, expectedVariantsNames, blockName) {
+  expectedVariantsNames.forEach((variant) => {
+    if (blockClasses.contains(variant)) {
+      blockClasses.remove(variant);
+      blockClasses.add(`${blockName}__${variant}`);
+    }
+  });
 }
