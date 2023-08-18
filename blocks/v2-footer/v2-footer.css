@@ -4,8 +4,13 @@
   
   .v2-footer {
     color: var(--c-secondary-silver);
-    padding: 60px 32px 10px;
+    padding: 0 0 10px;
     font-size: 13px;
+    max-width: 100%;
+  }
+
+  .v2-footer .v2-footer-content{
+    padding: 60px 32px 10px;
     margin: auto;
     max-width: 1376px;
   }
@@ -64,7 +69,7 @@
   }
   
   .v2-footer ul li a:hover {
-    color: var(--c-secondary-white);
+    color: var(--c-secondary-silver);
     text-decoration: none;
   }
   
@@ -109,6 +114,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    grid-area: v2-content;
   }
 
   .v2-footer .v2-footer-links-section ul {
@@ -140,36 +146,126 @@
       height: 72vh;
   }
   
-  .v2-social { 
+  .v2-footer-social-section { 
     grid-area: v2-social;
     margin-top: 0;
   }
 
-  .v2-content { grid-area: v2-content; }
-
-  .v2-form { 
+  .v2-footer-form-section { 
     grid-area: v2-form;
     height: 15vh;
   }
 
-  .v2-logo { 
+  .v2-footer-logo-section { 
     grid-area: v2-logo; 
-    height: 15vh;
   }
 
   .v2-footer .v2-footer-links-section ul li {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
+  }
+
+  /* Prefooter */
+  .v2-footer .v2-pre-footer-content {
+    background-color: var(--c-primary-gold);
+  }
+
+  .v2-footer .v2-pre-footer-content ul {
+    display: flex;
+    width: 100%;
+    padding: 32px 16px;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    flex-direction: column;
+  }
+
+  .v2-footer .v2-pre-footer-content ul li {
+    font-family: var(--ff-body);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 33.6px */
+    letter-spacing: 0.48px;
+    color:var(--c-primary-black);
+    position: relative;
+    width: 100%;
+    border-bottom: solid black 1px;
+    padding: 24px 0;
+  }
+
+  .v2-footer .v2-pre-footer-content ul li:last-child {
+    border-bottom: none;
+  }
+
+  .v2-footer .v2-pre-footer .v2-pre-footer-content ul li a {
+    color: var(--c-primary-black);
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .v2-footer .v2-pre-footer .v2-pre-footer-content ul li a::before { 
+    content: "";
+    background: url("../../icons/arrow-right.svg");
+    background-size: contain;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    right: 5%;
+    margin: 0 auto;
+  }
+
+  .v2-footer .v2-pre-footer-list-wrapper {
+    display: flex;
+    width: 100%;
+    padding: 24px;
+    justify-content: flex-start;
+    align-items: baseline;
+    background-color: var(--c-secondary-graphite);
+  }
+
+  .v2-footer .v2-pre-footer-list-wrapper h3 {
+    color: var(--primary-white-ffffff, #FFF);
+    font-family: var(--ff-body);
+    font-size: 12px;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 1.92px;
+    text-transform: uppercase;
+  }
+
+  .v2-footer .v2-pre-footer-list-wrapper ul{
+    width: 100%;
+    gap: 10px;
+    flex-flow: column;
+  }
+
+  .v2-pre-footer-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .v2-pre-footer-list-item {
+    transition: 300ms max-height ease;
+    will-change: max-height;
+    overflow: hidden;
+    max-height: 0;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .v2-footer .v2-pre-footer-list-item a {
+    display: flex;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
   }
 
   /* desktop   */
   @media (min-width: 1200px) {
-    .v2-footer {
-      padding-top: 96px;
-    }
-  
     .v2-footer .v2-footer-content {
       display: flex;
       flex-flow: row wrap;
+      padding-top: 96px;
     }
   
     .v2-footer .v2-footer-links-section {
@@ -183,10 +279,6 @@
     .v2-footer .v2-footer-links-section ul {
       min-width: 0;
       width:160px;
-    }
-
-    .v2-footer .v2-footer-links-section ul li{
-      margin-bottom: 14px;
     }
   
     .v2-footer .v2-footer-links-col {
@@ -231,15 +323,80 @@
       height: 15vh;
     }
 
-    .v2-social { 
+    /* .v2-social { 
       margin-top: -80px;
-    }
+    } */
 
     .v2-footer .v2-footer-bottom-section-content {
       display: flex;
       align-items: end;
       font-size: 12px;
       justify-content: space-between;
+    }
+
+    /* pre footer */
+    .v2-footer .v2-pre-footer-content ul {
+      padding: 32px 200px;
+      flex-direction: row;
+      display: flex;
+      margin: 0;
+    }
+
+    .v2-footer .v2-pre-footer .v2-pre-footer-content ul li a::after { 
+      top: 2px;
+      right: -30px;
+    }
+
+    .v2-footer .v2-pre-footer-list-wrapper {
+      padding: 24px 200px;
+    }
+
+    .v2-footer .v2-pre-footer-content ul li {
+      width: 33.33%;
+      text-align: center;
+      position: relative;
+      padding: 28px 0 24px;
+      border-bottom: none;
+    }
+
+    .v2-footer .v2-pre-footer-content ul li::after {
+      content: '';
+      width: 1px;
+      height: 64px;
+      background: black;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    .v2-footer .v2-pre-footer-content ul li:last-child::after {
+      display: none;
+    }  
+
+    .v2-footer .v2-pre-footer .v2-pre-footer-content ul li a::before { 
+      right: 20%;
+      top: 3px;
+    }
+
+    .v2-pre-footer-list{
+      flex-direction: row;
+    }
+
+    .v2-pre-footer-list-item {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 20px;
+      max-height: 100%;
+      overflow: auto;
+    }
+
+    .v2-footer .v2-pre-footer-list-wrapper ul{
+      width: 80%;
+      justify-content: space-around;
+      flex-flow: row wrap;
     }
   }
   
@@ -322,7 +479,7 @@
   .v2-footer .eloqua-form .elq-form .email-and-submit-container input[type="submit"] {
     height: 48px !important;
     width: 48px !important;
-    background: var(--c-primary-gold) url("../../icons/form-submit-arrow.svg") no-repeat center;
+    background: var(--c-primary-gold) url("../../icons/arrow-right.svg") no-repeat center;
   }
   
   .v2-footer .eloqua-form .elq-form .email-and-submit-container input[type="submit"]:hover {
@@ -390,7 +547,6 @@
   }
   
   /* eloqua footer form styles - END */
-  
   
   .block.v2-footer .scroll-to-top {
     display: none;

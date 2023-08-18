@@ -49,8 +49,11 @@ export default async function decorate(block) {
   const socialMediaSection = footer.querySelector('.icon-twitter, .icon-facebook, .icon-twitter, .icon-linkedin, .icon-instagram, .icon-youtube')?.closest('ul');
   socialMediaSection?.classList.add('v2-footer-social-media-section');
 
+  const firstHeader = [...footer.querySelectorAll('h3')].at(1);
+
   const fourthHeader = [...footer.querySelectorAll('h3')].at(-1);
-  const [firstLinks, secondLinks, thirdLinks] = [...footer.querySelectorAll('h3 ~ ul')];
+  const [firstLinks, secondLinks, thirdLinks, fourthLinks, fifthLinks] = [...footer.querySelectorAll('h3 ~ ul')];
+  secondLinks.classList.add('v2-pre-footer-list-item');
 
   const headings = footer.querySelectorAll('h1, h2, h3, h4, h5, h6');
   [...headings].forEach((heading) => heading.classList.add(`${blockName}__title`));
@@ -76,20 +79,31 @@ export default async function decorate(block) {
   formSection?.classList.add('v2-footer-form-section');
 
   const footerTemplate = `
+    <div class="v2-pre-footer">
+      <div class="v2-pre-footer-content">
+        ${firstLinks.outerHTML}
+      </div>
+      <div class="v2-pre-footer-list-wrapper">
+          <div class="v2-pre-footer-list">
+            ${firstHeader?.outerHTML}
+            ${secondLinks?.outerHTML}
+          </div>
+      </div>
+    </div>
     <div class="v2-footer-content">
       <div class="v2-footer-main-content">
-        <div class="v2-footer-logo-section v2-logo">
+        <div class="v2-footer-logo-section">
           ${logoLink?.outerHTML}
         </div>
-        <div class="v2-footer-social-section v2-social">
+        <div class="v2-footer-social-section">
           ${socialMediaSection?.outerHTML}
         </div>
-        <div class="v2-footer-links-section v2-content">
-          ${firstLinks?.outerHTML}
-          ${secondLinks?.outerHTML}
+        <div class="v2-footer-links-section">
           ${thirdLinks?.outerHTML}
+          ${fourthLinks?.outerHTML}
+          ${fifthLinks?.outerHTML}
         </div>
-        <div class="v2-footer-form-section v2-form">
+        <div class="v2-footer-form-section">
             <div class="form v2-footer-form-header">
               ${fourthHeader?.outerHTML}
             </div>
@@ -107,6 +121,8 @@ export default async function decorate(block) {
   const fragment = document.createRange().createContextualFragment(footerTemplate);
   block.appendChild(fragment);
   // block.append(footer);
+
+  block.querySelectorAll('.v2-pre-footer-list-wrapper')[0].addEventListener('click', (e) => toggleExpand(e.target));
 
   // // make links to open in another browser tab/window
   const socialLinks = block.querySelectorAll('.v2-footer-social-media-section a');
@@ -174,6 +190,31 @@ export default async function decorate(block) {
       }
     }
   };
+
+  function findList(ele) {
+    if (ele.classList.contains('v2-pre-footer-list')) {
+      return ele;
+    }
+    return findList(ele.parentElement);
+  }
+
+  function toggleExpand(targetH3) {
+    const clickedColumn = findList(targetH3);
+    const isExpanded = clickedColumn.classList.contains('expand');
+    const wrapper = targetH3.closest('.v2-pre-footer-list-wrapper');
+    const columns = wrapper.querySelectorAll('.v2-pre-footer-list');
+
+    columns.forEach((column) => {
+      const content = column.querySelector('.v2-pre-footer-list-item');
+      if (column === clickedColumn && !isExpanded) {
+        column.classList.add('expand');
+        content.style.maxHeight = `${content.scrollHeight}px`;
+      } else {
+        column.classList.remove('expand');
+        content.style.maxHeight = null;
+      }
+    });
+  }
 
   function displayScrollToTop(buttonEl) {
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
