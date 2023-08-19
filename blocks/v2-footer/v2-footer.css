@@ -238,11 +238,12 @@
 
   .v2-pre-footer-list .icon-dropdown-caret {
     margin-left: auto;
-    transition: transform 0.5s cubic-bezier(0.45, 0, 0.125, 1);
+    transition: transform 0.5s;
+    transform: rotate(90deg);
   }
   
   .v2-pre-footer-list.expand .icon-dropdown-caret {
-    transform: rotate(-180deg);
+    transform: rotate(-90deg);
   }
 
   .v2-footer .v2-pre-footer-list-wrapper ul{
