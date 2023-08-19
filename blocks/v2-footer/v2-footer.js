@@ -55,6 +55,16 @@ export default async function decorate(block) {
   const [firstLinks, secondLinks, thirdLinks, fourthLinks, fifthLinks] = [...footer.querySelectorAll('h3 ~ ul')];
   secondLinks.classList.add('v2-pre-footer-list-item');
 
+  firstLinks.querySelectorAll('ul li').forEach((element) => {
+    const spanEle = createElement('span');
+    element.append(spanEle);
+    spanEle?.classList.add('icon', 'icon-arrow-right');
+  });
+
+  const spanEleDropdwon = createElement('span');
+  spanEleDropdwon.classList.add('icon', 'icon-dropdown-caret');
+  firstHeader.append(spanEleDropdwon);
+
   const headings = footer.querySelectorAll('h1, h2, h3, h4, h5, h6');
   [...headings].forEach((heading) => heading.classList.add(`${blockName}__title`));
 
