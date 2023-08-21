@@ -818,6 +818,11 @@ main .section.responsive-title h1 {
   font-size: 16px;
 }
 
+.redesign-v2 .section.grey-background {
+  background-color: var(--c-secondary-silver);
+  color: var(--c-primary-black);
+}
+
 /* ICONS STYLES - default on white background */
 .redesign-v2 svg path[fill] {
   fill: var(--color-icon);

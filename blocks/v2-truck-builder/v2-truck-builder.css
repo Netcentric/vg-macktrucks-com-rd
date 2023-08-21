@@ -1,20 +1,18 @@
-main .section.v2-truck-builder-container {
-  background-color: var(--c-secondary-silver);
-  padding: 0;
-}
-
 .v2-truck-builder .truck-builder-section {
   position: relative;
   display: flex;
   flex-flow: column;
-  justify-content: flex-end;
-  width: 400px;
-  height: 400px;
+  height: auto;
   margin: 0 auto;
+  max-width: 100%;
+  width: 343px;
+  justify-content: center;
 }
 
 .truck-builder-section picture img {
   z-index: -1;
+  width: 100%;
+  height: auto;
 }
 
 .truck-builder-section .color-select-section,
@@ -24,13 +22,15 @@ main .section.v2-truck-builder-container {
 }
 
 .truck-builder-section .color-select-section {
-  bottom: -3%;
-  right: 11%;
+  bottom: 45%;
+  right: 28%;
+  transform: translate(50%, calc(275% - 7px));
 }
 
 .truck-builder-section .body-select-section {
-  top: 15%;
-  left: 7%;
+  top: 34%;
+  left: 19%;
+  transform: translate(-50%, calc(-120% + 7px));
 }
 
 .truck-builder-section .color-select-section::before,
@@ -94,7 +94,7 @@ main .section.v2-truck-builder-container {
 }
 
 .truck-builder-section .color-select-section legend.color-legend,
-.truck-builder-section .body-select-section legend.body-legend{
+.truck-builder-section .body-select-section legend.body-legend {
   float: left;
   padding: 0 0 16px;
 }
@@ -144,7 +144,7 @@ main .section.v2-truck-builder-container {
 }
 
 .truck-builder-section .body-select-section .body-option input[type='radio'] {
-    accent-color: var(--c-primary-black);
+  accent-color: var(--c-primary-black);
 }
 
 .cta-section {
@@ -180,4 +180,34 @@ main .section.v2-truck-builder-container {
 
 .cta-section button.cta-button:hover {
   background-color: var(--button-secondary-gold-hover);
+}
+
+@media (min-width: 1200px) {
+  .v2-truck-builder {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    max-width: 1040px;
+    margin: auto;
+  }
+
+  .truck-builder-section-wrapper,
+  .cta-section {
+    width: calc((100% - 16px) / 2);
+  }
+
+  .v2-truck-builder .truck-builder-section {
+    width: 512px;
+  }
+
+  .cta-section {
+    padding: 0 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cta-button {
+    width: max-content;
+  }
 }

@@ -8,6 +8,7 @@ export default async function decorate(block) {
   const [title, subtitle, ctaText, bodyOptions, colors] = Object.values(blockConfig);
   const imageNodes = block.querySelectorAll('picture');
   const [bodyLabel, colorLabel] = placeholderTexts.split('[/]');
+  const truckBuilderSectionWrapper = createElement('div', 'truck-builder-section-wrapper');
   const truckBuilderSection = createElement('div', 'truck-builder-section');
 
   if (imageNodes.length === 1) truckBuilderSection.appendChild(imageNodes[0]);
@@ -59,7 +60,8 @@ export default async function decorate(block) {
   ctaSection.append(ctaTitle, ctaSubtitle, ctaButton);
 
   truckBuilderSection.append(bodySelectSection, colorSelectSection);
+  truckBuilderSectionWrapper.append(truckBuilderSection);
 
   block.textContent = '';
-  block.append(truckBuilderSection, ctaSection);
+  block.append(truckBuilderSectionWrapper, ctaSection);
 }
