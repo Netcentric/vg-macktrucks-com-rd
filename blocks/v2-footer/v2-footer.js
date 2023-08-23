@@ -1,11 +1,5 @@
 import { readBlockConfig, decorateIcons, loadBlocks } from '../../scripts/lib-franklin.js';
-import { createElement, getTextLabel } from '../../scripts/scripts.js';
-
-const PLACEHOLDERS = {
-  visit: getTextLabel('visit aria label'),
-  social: getTextLabel('social aria label'),
-  channel: getTextLabel('channel aria label'),
-};
+import { createElement } from '../../scripts/scripts.js';
 
 /**
  * loads and decorates the footer
