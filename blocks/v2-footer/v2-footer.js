@@ -29,23 +29,6 @@ export default async function decorate(block) {
   eloquaFormEl?.classList.add('block');
   eloquaFormEl?.setAttribute('data-block-name', 'eloqua-form');
 
-  // transforming icons into font-awesome
-  footer.querySelectorAll('span.icon').forEach((icon) => {
-    const iconClass = icon.getAttribute('class').split(' ').find((el) => el.startsWith('icon-'));
-
-    if (iconClass) {
-      const iconName = iconClass.split('icon-')[1];
-      const link = icon.closest('a');
-      const social = iconName.replace('fa-', '');
-
-      link.ariaLabel = `${PLACEHOLDERS.visit.replace('$0', social)} ${
-        social !== 'youtube' ? PLACEHOLDERS.social : PLACEHOLDERS.channel}`;
-
-      icon.classList.remove('icon', iconClass);
-      icon.classList.add('icon', iconClass, 'v2-footer-social-media');
-    }
-  });
-
   const socialMediaSection = footer.querySelector('.icon-twitter, .icon-facebook, .icon-twitter, .icon-linkedin, .icon-instagram, .icon-youtube')?.closest('ul');
   socialMediaSection?.classList.add('v2-footer-social-media-section');
 
@@ -54,16 +37,6 @@ export default async function decorate(block) {
   const fourthHeader = [...footer.querySelectorAll('h3')].at(-1);
   const [firstLinks, secondLinks, thirdLinks, fourthLinks, fifthLinks] = [...footer.querySelectorAll('h3 ~ ul')];
   secondLinks.classList.add('v2-pre-footer-list-item');
-
-  firstLinks.querySelectorAll('ul li').forEach((element) => {
-    const spanEle = createElement('span');
-    element.append(spanEle);
-    spanEle?.classList.add('icon', 'icon-arrow-right');
-  });
-
-  const spanEleDropdwon = createElement('span');
-  spanEleDropdwon.classList.add('icon', 'icon-dropdown-caret');
-  firstHeader.append(spanEleDropdwon);
 
   const headings = footer.querySelectorAll('h1, h2, h3, h4, h5, h6');
   [...headings].forEach((heading) => heading.classList.add(`${blockName}__title`));
