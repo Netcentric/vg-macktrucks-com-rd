@@ -5,6 +5,7 @@
   width: 100%;
   justify-content: center;
   align-items: flex-start;
+  color: var(--c-primary-black);
 }
 
 .v2-columns__column--with-image,

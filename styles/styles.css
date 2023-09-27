@@ -496,7 +496,7 @@ main img {
 }
 
 @media (min-width: 900px) {
-  .section > div {
+  html:not(.redesign-v2) .section > div {
     max-width: 1200px;
     margin: auto;
   }
@@ -777,6 +777,9 @@ main .section.responsive-title h1 {
   --v2-space-small: 16px;
   --color-icon: var(--c-primary-black);
   --color-icon-accent: var(--c-primary-gold);
+  --section-max-width: 1800px;
+  --section-padding: 40px 0;
+  --section-div-padding: 24px var(--v2-space-small);
 
   font-size: 16px;
 
@@ -1001,16 +1004,95 @@ main .section.responsive-title h1 {
   border-color: #D9D9D9;
 }
 
+/* Section Background colors */
+.section--black-background,
+.section--gray-background {
+  --card-background: var(--c-primary-white);
+  --card-text: var(--c-primary-black);
+}
+
+.section--black-background {
+  --text-color: var(--c-primary-white);
+
+  color: var(--text-color);
+  background-color: var(--c-secondary-graphite);
+}
+
+.section--gray-background {
+  --text-color: var(--c-primary-black);
+
+  color: var(--text-color);
+  background-color: var(--c-secondary-silver);
+  position: relative;
+}
+
+.section--background-with-dots::after {
+  background-image: url('../../media/dots.svg');
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 58%;
+  position: absolute;
+  right: 0;
+  width: 40%;
+  z-index: 1;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.section--background-with-dots > div {
+  position: relative;
+  z-index: 2;
+}
+
+.section--with-background {
+  --section-padding: 0;
+  --text-color: var(--c-primary-white);
+
+  aspect-ratio: 2 / 1;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--section-max-width);
+  position: relative;
+}
+
+.section--with-background .default-content-wrapper {
+  background-color: var(--c-secondary-graphite);
+}
+
+.section--with-background > picture:first-of-type img {
+  /* width: var(--wrapper-width); */
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* End section Background colors */
+
 /* stylelint-disable-next-line no-descending-specificity */
 .redesign-v2 .section {
-  padding: 40px 0;
+  padding: var(--section-padding);
   scroll-margin-top: calc(var(--nav-height) + var(--inpage-navigation-height));
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 .redesign-v2 .section > div {
-  padding: 0 var(--v2-space-small);
-  margin: 0 auto;
+  padding: var(--section-div-padding);
+  max-width: var(--wrapper-width);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.redesign-v2 .section > div.default-content-wrapper > *:first-child {
+  margin-top: 0;
+}
+
+.redesign-v2 .section > div.default-content-wrapper > *:last-child {
+  margin-bottom: 0;
 }
 
 .redesign-v2 .section > .full-width {
@@ -1060,18 +1142,19 @@ main .section.responsive-title h1 {
 }
 
 @media (min-width: 1040px) {
-  .redesign-v2 .section {
-    padding: 80px 0;
-  }
-
-  .redesign-v2 .section > div {
-    margin: 0 auto;
-    max-width: var(--wrapper-width);
-    padding: 0;
-  }
-
   .redesign-v2 .with-marker::before {
     width: 65px;
+  }
+}
+
+@media (min-width: 744px) {
+  .section--background-with-dots::after {
+    height: 50%;
+    width: 60%;
+  }
+
+  .section--with-background .default-content-wrapper {
+    background-color: transparent;
   }
 }
 
@@ -1083,6 +1166,28 @@ main .section.responsive-title h1 {
     --headline-2-font-size: 2rem; /* 32px */
     --headline-3-font-size: 2rem; /* 32px */
     --testimonial-font-size: 1.5rem; /* 24px */
+    --section-div-padding: 24px 0;
+    --wrapper-width: 1170px;
+    --section-padding: 56px 0;
+  }
+
+  .section--with-background {
+    --section-padding: 56px 0;
+
+    justify-content: flex-end;
+  }
+
+  .section--with-background > picture:first-of-type img {
+    display: block;
+    height: 100%;
+    left: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    width: var(--wrapper-width);
+    z-index: -1;
   }
 }
 
