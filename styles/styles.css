@@ -1185,7 +1185,6 @@ main .section.responsive-title h1 {
     top: 0;
     transform: translateX(-50%);
     width: 100%;
-    width: var(--wrapper-width);
     z-index: -1;
   }
 }
