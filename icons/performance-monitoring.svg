@@ -1,7 +1,7 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M6.3716 19.0079H1V26.9997H6.3716V19.0079Z" stroke="var(--color-icon, #000)" stroke-width="0.594596" stroke-miterlimit="10"/>
-  <path d="M14.0093 16.8933H8.6377V27.0001H14.0093V16.8933Z" stroke="var(--color-icon, #000)" stroke-width="0.594596" stroke-miterlimit="10"/>
-  <path d="M21.7866 11.4844H16.415V27H21.7866V11.4844Z" stroke="var(--color-icon, #000)" stroke-width="0.594596" stroke-miterlimit="10"/>
-  <path d="M29.8452 9.15332H24.4736V26.9999H29.8452V9.15332Z" stroke="var(--color-icon-accent, #B3976B)" stroke-width="0.594596" stroke-miterlimit="10"/>
-  <path d="M23.876 5H30.4393" stroke="var(--color-icon-accent, #B3976B)" stroke-width="0.594596" stroke-miterlimit="10"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <path d="M6 23.98V29.98H2V23.98H6ZM7 22.98H1V30.98H7V22.98Z" fill="var(--color-icon, #000)"/>
+  <path d="M14 17.98V29.98H10V17.98H14ZM15 16.98H9V30.98H15V16.98Z" fill="var(--color-icon, #000)"/>
+  <path d="M22 11.98V29.98H18V11.98H22ZM23 10.98H17V30.98H23V10.98Z" fill="var(--color-icon, #000)"/>
+  <path d="M30 7.97998V29.98H26V7.97998H30ZM31 6.97998H25V30.98H31V6.97998Z" fill="var(--color-icon-accent, #B3976B)"/>
+  <path d="M25 4H31" stroke="var(--color-icon-accent, #B3976B)" stroke-miterlimit="10"/>
 </svg>

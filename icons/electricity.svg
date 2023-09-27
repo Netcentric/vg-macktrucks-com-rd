@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <path d="M9.47 6H6V25H9.47V6Z" stroke="var(--color-icon, #000)"/>
+  <path d="M0.5 16H6" stroke="var(--color-icon, #000)"/>
+  <path d="M25.9998 6H22.5098V25H25.9998V6Z" stroke="var(--color-icon, #000)"/>
+  <path d="M31.5 16H26" stroke="var(--color-icon, #000)"/>
+  <path d="M11 16H13L14.5 11L17.5 21L19 16H21" stroke="var(--color-icon-accent, #B3976B)"/>
+</svg>
