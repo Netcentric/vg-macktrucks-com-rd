@@ -1023,7 +1023,11 @@ main .section.responsive-title h1 {
 
   color: var(--text-color);
   background-color: var(--c-secondary-silver);
+}
+
+.section--background-with-dots {
   position: relative;
+  z-index: 1;
 }
 
 .section--background-with-dots::after {
