@@ -1090,6 +1090,19 @@ main .section.responsive-title h1 {
   width: 100%;
 }
 
+/* Remove padding top of consecutive sections with background image or colors */
+.redesign-v2 .section:first-child,
+.section:not(.section--black-background, .section--gray-background, .v2-hero-container, .section--with-background) + .section:not(.section--black-background, .section--gray-background, .section--with-background) {
+  padding-top: 0;
+}
+
+/* Prevent padding in blocks that contain multiple sections */
+/* stylelint-disable-next-line no-descending-specificity */
+.section:has(+ .v2-truck-lineup-container, + .v2-tabbed-carousel-wrapper) {
+  padding-bottom: 0;
+}
+
+/* Prevent margins for first and last element of a text */
 .redesign-v2 .section > div.default-content-wrapper > *:first-child {
   margin-top: 0;
 }
@@ -1097,6 +1110,8 @@ main .section.responsive-title h1 {
 .redesign-v2 .section > div.default-content-wrapper > *:last-child {
   margin-bottom: 0;
 }
+
+/* END Prevent margins for first and last element of a text */
 
 .redesign-v2 .section > .full-width {
   padding: 0;
