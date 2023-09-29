@@ -777,7 +777,7 @@ main .section.responsive-title h1 {
   --v2-space-small: 16px;
   --color-icon: var(--c-primary-black);
   --color-icon-accent: var(--c-primary-gold);
-  --section-max-width: 1800px;
+  --section-max-width: 1920px;
   --section-padding: 40px 0;
   --section-div-padding: 24px var(--v2-space-small);
 
