@@ -189,3 +189,14 @@ export function debounce(func, timeout = 200) {
     timer = setTimeout(() => { func.apply(this, args); }, timeout);
   };
 }
+
+/*
+  The generateId function should be used only
+  for generating the id for UI elements
+*/
+let idValue = 0;
+
+export const generateId = (prefix = 'id') => {
+  idValue += 1;
+  return `${prefix}-${idValue}`;
+};
