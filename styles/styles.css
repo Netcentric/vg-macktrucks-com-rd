@@ -1185,7 +1185,6 @@ main .section.responsive-title h1 {
     --headline-3-font-size: 2rem; /* 32px */
     --testimonial-font-size: 1.5rem; /* 24px */
     --section-div-padding: 24px 0;
-    --wrapper-width: 1170px;
     --section-padding: 56px 0;
   }
 
