@@ -839,7 +839,7 @@ main .section.responsive-title h1 {
   /* GT America, Extended Roman, 24px, 120%, -2% / 18px, 120%, -2% */
   --testimonial-font-size: 1.125rem; /* 18px */
   --testimonial-line-height: 120%;
-  --testimonial-letter-spacing: -2%;
+  --testimonial-letter-spacing: -.0225rem;
 
   /* Motions */
   --duration-small: 160ms;
@@ -1184,6 +1184,7 @@ main .section.responsive-title h1 {
     --headline-2-font-size: 2rem; /* 32px */
     --headline-3-font-size: 2rem; /* 32px */
     --testimonial-font-size: 1.5rem; /* 24px */
+    --testimonial-letter-spacing: -.03rem;
     --section-div-padding: 24px 0;
     --section-padding: 56px 0;
   }

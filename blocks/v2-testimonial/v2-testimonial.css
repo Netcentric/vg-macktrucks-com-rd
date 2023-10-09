@@ -21,6 +21,7 @@
 
 .v2-testimonial__blockquote-column strong {
   font-family: var(--ff-body-bold);
+  font-weight: normal;
 }
 
 .v2-testimonial__heading {
@@ -32,9 +33,17 @@
 
 .v2-testimonial__blockquote {
   font: var(--testimonial-font-size)/var(--testimonial-line-height) var(--ff-testimonial);
-  letter-spacing: -0.36px;
+  letter-spacing: var(--testimonial-letter-spacing);
   margin: 40px 0;
   text-indent: 0;
+}
+
+@supports not (hanging-punctuation: first) {
+  .v2-testimonial__blockquote p::before {
+    display: inline-block;
+    width: 0.75rem;
+    margin-left: -0.75rem;
+  }
 }
 
 .v2-testimonial__image {
@@ -66,6 +75,11 @@
 .v2-testimonial__author svg {
   width: 32px;
   height: 32px;
+}
+
+.v2-testimonial__author strong {
+  font-family: var(--ff-body-bold);
+  font-weight: normal;
 }
 
 .v2-testimonial__video-link-wrapper {
