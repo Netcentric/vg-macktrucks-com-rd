@@ -1,35 +1,8 @@
 <svg width="100px" height="100px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <pattern height="100" id="dots-square-grid-03" patternContentUnits="userSpaceOnUse" patternUnits="userSpaceOnUse" width="100">
-      <g>
-        <circle cx="0" cy="1.5" r="1.5" fill="#B3976B"/>
-        <circle cx="25" cy="1.5" r="1.5" fill="#B3976B"/>
-        <circle cx="50" cy="1.5" r="1.5" fill="#B3976B"/>
-        <circle cx="75" cy="1.5" r="1.5" fill="#B3976B"/>
-        <circle cx="100" cy="1.5" r="1.5" fill="#B3976B"/>
-      </g>
-      <g>
-        <circle cx="0" cy="25" r="1.5" fill="#B3976B"/>
-        <circle cx="25" cy="25" r="1.5" fill="#B3976B"/>
-        <circle cx="50" cy="25" r="1.5" fill="#B3976B"/>
-        <circle cx="75" cy="25" r="1.5" fill="#B3976B"/>
-        <circle cx="100" cy="25" r="1.5" fill="#B3976B"/>
-      </g>
-      <g>
-        <circle cx="0" cy="50" r="1.5" fill="#B3976B"/>
-        <circle cx="25" cy="50" r="1.5" fill="#B3976B"/>
-        <circle cx="50" cy="50" r="1.5" fill="#B3976B"/>
-        <circle cx="75" cy="50" r="1.5" fill="#B3976B"/>
-        <circle cx="100" cy="50" r="1.5" fill="#B3976B"/>
-      </g>
-      <g>
-        <circle cx="0" cy="75" r="1.5" fill="#B3976B"/>
-        <circle cx="25" cy="75" r="1.5" fill="#B3976B"/>
-        <circle cx="50" cy="75" r="1.5" fill="#B3976B"/>
-        <circle cx="75" cy="75" r="1.5" fill="#B3976B"/>
-        <circle cx="100" cy="75" r="1.5" fill="#B3976B"/>
-      </g>
+    <pattern viewBox="0 0 24 24" height="25" width="25" id="dots-square-grid" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#B3976B"/>
     </pattern>
   </defs>
-  <rect fill="url(#dots-square-grid-03)" height="100%" width="100%" x="0" y="0"/>
+  <rect fill="url(#dots-square-grid)" height="100%" width="100%" x="0" y="0"/>
 </svg>
