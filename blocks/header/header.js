@@ -151,30 +151,39 @@ const optimiseImage = (picture) => {
 
 const transformMenuData = (data) => {
   // for each tab
-  data.forEach((item) => {
-    const titles = item.querySelectorAll('.menu > div > div > a');
-    // unwrapping the titles
+  data.forEach((menuData) => {
+    const titles = menuData.querySelectorAll('.menu > div > div:first-child > a');
+    // unwrapping the titles (.menu > div > div > a => .menu > a)
     titles.forEach((title) => title.parentElement.parentElement.replaceWith(title));
 
     // changing divs to lists
-    const menusContentList = [...item.querySelectorAll('.menu')];
+    const menusContentList = [...menuData.querySelectorAll('.menu')];
 
     // for each menu tab sub items
-    menusContentList.forEach((menuSubItem) => {
-      const subItem = menuSubItem.querySelectorAll(':scope > div > div');
-      const listEl = createElement('ul');
+    menusContentList.forEach((menuItem) => {
+      // for tracks menu only
+      if (menuItem.classList.contains('trucks')) {
+        // changing the structure to list
+        const item = menuItem.querySelectorAll(':scope > div > div');
+        const listEl = createElement('ul');
 
-      // for each menu tab sub item's item
-      subItem.forEach((mItem) => {
-        const listItemEl = createElement('li');
-        mItem.parentElement.remove();
-        listItemEl.append(...mItem.children);
-        listEl.append(listItemEl);
-      });
+        item.forEach((mItem) => {
+          const listItemEl = createElement('li');
+          mItem.parentElement.remove();
+          listItemEl.append(...mItem.children);
+          listEl.append(listItemEl);
+        });
 
-      menuSubItem.append(listEl);
+        menuItem.append(listEl);
+      } else {
+        // for other manu types,
+        // unwrapp the list:
+        // .menu > div > div > ul => .menu > ul
+        const listEl = menuItem.querySelector('ul');
+        menuItem.children[1].replaceWith(listEl);
+      }
     });
-    [...item.querySelectorAll('picture')].forEach(optimiseImage);
+    [...menuData.querySelectorAll('picture')].forEach(optimiseImage);
   });
 
   const results = document.createRange().createContextualFragment(`
