@@ -149,6 +149,7 @@ const optimiseImage = (picture) => {
   picture.replaceWith(newPicture);
 };
 
+/* transformMenuData unify HTML that comes from word doc */
 const transformMenuData = (data) => {
   // for each tab
   data.forEach((menuData) => {
@@ -183,6 +184,7 @@ const transformMenuData = (data) => {
         menuItem.children[1].replaceWith(listEl);
       }
     });
+
     [...menuData.querySelectorAll('picture')].forEach(optimiseImage);
   });
 
