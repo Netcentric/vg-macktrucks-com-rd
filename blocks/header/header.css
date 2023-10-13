@@ -3,7 +3,7 @@
   justify-content: center;
 
   --menu-animation: right 450ms ease-in-out;
-  --actions-links-height-mobile: 102px;
+  --actions-links-height-mobile: 80px;
   --color-icon: var(--c-primary-black);
 }
 
@@ -64,10 +64,6 @@
   padding: 12px 0;
 }
 
-.header__back-link .header__link {
-  padding: 20px 0;
-}
-
 .header--hamburger-open .header__link:hover,
 .header--hamburger-open .header__link:focus,
 .header--hamburger-open .header__link:active {
@@ -98,6 +94,7 @@
   height: 24px;
   font-size: 24px;
   align-items: center;
+  margin: 0;
 }
 
 .header__close-menu:focus,
@@ -251,19 +248,17 @@
 }
 
 .header .header__menu-content,
-.header .header__category-items,
-.header .header__back-link {
+.header .header__category-items {
   margin: 0;
   list-style: none;
   padding: 0;
 }
 
-.header .header__category-items,
-.header .header__back-link {
+.header .header__category-items {
   margin: 0;
 }
 
-.header__back-link button {
+.header__back-button {
   margin: 0;
   padding: 20px 0;
   background: white;
@@ -278,7 +273,12 @@
   border: 0;
 }
 
-.header__back-link button::before {
+.header__back-button:focus,
+.header__back-button:active {
+  background-color: transparent;
+}
+
+.header__back-button::before {
   content: '';
   background-image: url("/icons/dropdown-caret.svg");
   width: 24px;
@@ -507,11 +507,6 @@
     .header__category-item {
     width: 145px;
     min-width: 145px;
-  }
-
-  .header__back-link {
-    display: none;
-    margin: 0;
   }
 
   .header__category-subtitle,

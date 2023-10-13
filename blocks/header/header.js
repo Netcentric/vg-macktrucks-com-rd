@@ -7,6 +7,18 @@ const blockClass = 'header';
 
 const desktopMQ = window.matchMedia('(min-width: 1200px)');
 
+const createBackButton = (text) => {
+  const backButton = document.createRange().createContextualFragment(`
+    <button
+      class="${blockClass}__back-button"
+    >
+      ${text}
+    </button>
+  `);
+
+  return backButton.children[0];
+};
+
 const createLogo = (logoWrapper) => {
   const logoImage = logoWrapper.querySelector('span.icon');
 
@@ -215,6 +227,8 @@ const buildMenuContent = (menuData, navEl) => {
       document.body.classList[isExpanded ? 'add' : 'remove']('disable-scroll');
     };
 
+    accordionContentWrapper.append(createBackButton(navLink.textContent));
+
     categories.forEach((cat) => {
       const title = cat.querySelector(':scope > a');
       const list = cat.querySelector(':scope > ul');
@@ -235,9 +249,10 @@ const buildMenuContent = (menuData, navEl) => {
       } else {
         menuContent = document.createRange().createContextualFragment(`
         <div class="${blockClass}__menu-content">
-          ${title?.outerHTML}
+          ${title.outerHTML}
           <div class="${blockClass}__category-content ${blockClass}__accordion-container">
             <div class="${blockClass}__accordion-content-wrapper">
+              ${createBackButton(title.textContent).outerHTML}
               ${list.outerHTML}
             </div>
           </div>
@@ -252,7 +267,7 @@ const buildMenuContent = (menuData, navEl) => {
     navLink?.addEventListener('click', onAccordionItemClick);
   });
 
-  [...navEl.querySelectorAll(`.${blockClass}__back-link button`)].forEach((backButton) => {
+  [...navEl.querySelectorAll(`.${blockClass}__back-button`)].forEach((backButton) => {
     backButton.addEventListener('click', (event) => {
       const closestOpenMenu = event.target.closest('.header__menu-open');
 
@@ -369,7 +384,7 @@ export default async function decorate(block) {
 
   // hiding nav when clicking outside the menu
   document.addEventListener('click', (event) => {
-    const isTargetOutsideMenu = !event.target.closest(`.${blockClass}__main-nav`);
+    const isTargetOutsideMenu = !event.target.closest(`.${blockClass}__main-nav`) && !event.target.closest('.header__actions');
     const openMenu = block.querySelector(`.${blockClass}__main-nav-item.${blockClass}__menu-open`);
 
     if (isTargetOutsideMenu && openMenu) {
