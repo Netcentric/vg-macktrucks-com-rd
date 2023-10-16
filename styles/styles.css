@@ -1032,10 +1032,11 @@ main .section.responsive-title h1 {
 
 .section--background-with-dots::after {
   background-image: url('../../media/dots.svg');
+  background-position: top right 10px;
   bottom: 0;
   content: '';
   display: block;
-  height: 58%;
+  height: 60%;
   position: absolute;
   right: 0;
   width: 40%;
@@ -1168,8 +1169,9 @@ main .section.responsive-title h1 {
 
 @media (min-width: 744px) {
   .section--background-with-dots::after {
-    height: 50%;
-    width: 60%;
+    height: 75%;
+    width: 55%;
+    background-position: top right;
   }
 
   .section--with-background .default-content-wrapper {
