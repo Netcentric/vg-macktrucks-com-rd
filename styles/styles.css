@@ -1092,6 +1092,7 @@ main .section.responsive-title h1 {
 
 /* Remove padding top of consecutive sections with background image or colors */
 .redesign-v2 .section:first-child,
+.redesign-v2 .v2-testimonial-container,
 .section:not(.section--black-background, .section--gray-background, .v2-hero-container, .section--with-background) + .section:not(.section--black-background, .section--gray-background, .section--with-background) {
   padding-top: 0;
 }
@@ -1193,6 +1194,22 @@ main .section.responsive-title h1 {
     --section-padding: 56px 0;
 
     justify-content: flex-end;
+  }
+
+  .redesign-v2 .v2-testimonial-container {
+    padding: var(--section-div-padding);
+  }
+
+  .redesign-v2 div.section--gray-background-overlap {
+    position: relative;
+  }
+
+  .section--gray-background-overlap::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 155px;
+    background: var(--c-secondary-silver);
   }
 
   .section--with-background > picture:first-of-type img {
