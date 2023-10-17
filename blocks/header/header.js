@@ -6,6 +6,10 @@ import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-frankli
 const blockClass = 'header';
 
 const desktopMQ = window.matchMedia('(min-width: 1200px)');
+const tabsVarinats = {
+  TAB_WITH_CARDS: 'tabs-with-cards',
+  TAB: 'tabs',
+};
 
 const createBackButton = (text) => {
   const backButton = document.createRange().createContextualFragment(`
@@ -34,15 +38,18 @@ const createMainLinks = (mainLinksWrapper) => {
   list.classList.add(`${blockClass}__main-nav`);
   list.querySelectorAll('li').forEach((listItem) => {
     const accordionContainer = document.createRange().createContextualFragment(`
-    <div class="${blockClass}__accordion-container ${blockClass}__main-link-wrapper">
-      <div class="${blockClass}__accordion-content-wrapper">
+      <div class="${blockClass}__accordion-container ${blockClass}__main-link-wrapper">
+        <div class="${blockClass}__accordion-content-wrapper">
+        </div>
+        <div class="desktop-wrapper"></div>
       </div>
-      <div class="desktop-wrapper"></div>
-    </div>
     `);
 
     listItem.classList.add(`${blockClass}__main-nav-item`);
     listItem.append(accordionContainer);
+
+    const mainNavLink = listItem.querySelector('a');
+    mainNavLink.setAttribute('id', generateId('main-nav'));
   });
   list.querySelectorAll('li > a').forEach((link) => {
     link.classList.add(`${blockClass}__main-nav-link`, `${blockClass}__link`, `${blockClass}__link-accordion`);
@@ -130,6 +137,19 @@ const rebuildCategoryItem = (item) => {
     if (el.tagName === 'P' && el.querySelectorAll(':scope > picture, :scope > a').length === 1) {
       el.replaceWith(el.children[0]);
     }
+
+    // second list of links should be rendered as buttons
+    if (item.querySelector(':scope > ul:nth-of-type(2)') === el) {
+      el.classList.add(`${blockClass}__category-item-buttons`);
+
+      [...el.querySelectorAll('a')].forEach((button, index) => {
+        if (!index) {
+          button.classList.add('button', 'button--primary');
+        } else {
+          button.classList.add('button', 'button--secondary');
+        }
+      });
+    }
   });
 
   const firstLink = item.querySelector(':scope > a:first-of-type');
@@ -142,8 +162,8 @@ const rebuildCategoryItem = (item) => {
 const optimiseImage = (picture) => {
   const img = picture.querySelector('img');
   const newPicture = createOptimizedPicture(img.src, img.alt, false, [
-    { media: '(min-width: 1200px) and (min-resolution: 2x)', width: '320' },
-    { media: '(min-width: 1200px)', width: '180' },
+    { media: '(min-width: 1200px) and (min-resolution: 2x)', width: '568' },
+    { media: '(min-width: 1200px)', width: '284' },
   ]);
 
   picture.replaceWith(newPicture);
@@ -163,7 +183,7 @@ const transformMenuData = (data) => {
     // for each menu tab sub items
     menusContentList.forEach((menuItem) => {
       // for tracks menu only
-      if (menuItem.classList.contains('trucks')) {
+      if (menuItem.classList.contains(tabsVarinats.TAB_WITH_CARDS)) {
         // changing the structure to list
         const item = menuItem.querySelectorAll(':scope > div > div');
         const listEl = createElement('ul');
@@ -197,10 +217,52 @@ const transformMenuData = (data) => {
   return results.children[0];
 };
 
-const buildMenuContent = (menuData, navEl) => {
-  // menuData.querySelectorAll('picture').forEach(optimiseImage);
-  // const menus = [...menuData.querySelectorAll('.menu')];
+const onAccordionItemClick = (el) => {
+  const elClassList = el.target.classList;
+  const isMainLink = elClassList.contains(`${blockClass}__main-nav-link`);
+  const isTabLink = elClassList.contains(`${blockClass}__tab-link`);
 
+  if (desktopMQ.matches && (!isMainLink && !isTabLink)) {
+    return;
+  }
+
+  el.preventDefault();
+
+  const menuEl = el.target.parentElement;
+  menuEl.classList.toggle(`${blockClass}__menu-open`);
+  const isExpanded = menuEl.classList.contains(`${blockClass}__menu-open`);
+  el.target.setAttribute('aria-expanded', isExpanded);
+
+  if (isMainLink) {
+    // closing other open menus - on desktop
+    if (desktopMQ.matches && menuEl.classList.contains(`${blockClass}__main-nav-item`)) {
+      const openMenus = document.querySelectorAll(`.${blockClass}__menu-open`);
+
+      [...openMenus].filter((menu) => menu !== menuEl).forEach((menu) => {
+        menu.classList.remove(`${blockClass}__menu-open`);
+        menu.querySelector(':scope > a').setAttribute('aria-expanded', false);
+      });
+    }
+
+    // disabling scroll when menu is open
+    document.body.classList[isExpanded ? 'add' : 'remove']('disable-scroll');
+  }
+
+  if (isTabLink) {
+    const targetId = el.target.closest('[menu-accordion-id]').getAttribute('menu-accordion-id');
+    const tabContent = document.querySelector(`#${targetId}`);
+
+    [...tabContent.parentElement.querySelectorAll(`.${blockClass}__accordion-container`)].forEach((item) => {
+      if (item !== tabContent) {
+        item.setAttribute('data-active', 'false');
+      }
+    });
+
+    tabContent.setAttribute('data-active', 'true');
+  }
+};
+
+const buildMenuContent = (menuData, navEl) => {
   const menus = transformMenuData(menuData);
   const navLinks = [...navEl.querySelectorAll(`.${blockClass}__main-nav-link`)];
 
@@ -210,41 +272,29 @@ const buildMenuContent = (menuData, navEl) => {
     const navLink = navLinks.find((el) => el.textContent.trim() === tabName.textContent.trim());
     const accordionContentWrapper = navLink?.closest(`.${blockClass}__main-nav-item`).querySelector(`.${blockClass}__accordion-content-wrapper`);
 
-    const onAccordionItemClick = (el) => {
-      // on desktop only main nav links works as accordions
-      // if (desktopMQ.matches && !el.target.classList.contains(`${blockClass}__main-nav-link`)) {
-      //   return;
-      // }
-
-      el.preventDefault();
-      const menuEl = el.target.parentElement;
-      menuEl.classList.toggle(`${blockClass}__menu-open`);
-      const isExpanded = menuEl.classList.contains(`${blockClass}__menu-open`);
-      el.target.setAttribute('aria-expanded', isExpanded);
-      // const targetId = el.target.getAttribute('menu-accordion-id');
-      // document.querySelector(`#${targetId}`).setAttribute()
-
-      // closing other open menus - on desktop
-      if (desktopMQ.matches && menuEl.classList.contains(`${blockClass}__main-nav-item`)) {
-        const openMenus = document.querySelectorAll(`.${blockClass}__menu-open`);
-
-        [...openMenus].filter((menu) => menu !== menuEl).forEach((menu) => {
-          menu.classList.remove(`${blockClass}__menu-open`);
-          menu.querySelector(':scope > a').setAttribute('aria-expanded', false);
-        });
-      }
-
-      // disabling scroll when menu is open
-      document.body.classList[isExpanded ? 'add' : 'remove']('disable-scroll');
-    };
-
     accordionContentWrapper.append(createBackButton(navLink.textContent));
 
     categories.forEach((cat) => {
       const title = cat.querySelector(':scope > a');
       const list = cat.querySelector(':scope > ul');
+      let extraClass = '';
 
       title?.classList.add(`${blockClass}__link`, `${blockClass}__link-accordion`, `${blockClass}__menu-heading`);
+
+      if (cat.classList.contains(tabsVarinats.TAB_WITH_CARDS)
+        || cat.classList.contains(tabsVarinats.TAB)
+      ) {
+        title?.classList.add(`${blockClass}__tab-link`);
+      }
+
+      if (cat.classList.contains(tabsVarinats.TAB_WITH_CARDS)) {
+        extraClass = `${blockClass}__main-link-wrapper--${tabsVarinats.TAB_WITH_CARDS}`;
+      }
+
+      if (cat.classList.contains(tabsVarinats.TAB)) {
+        extraClass = `${blockClass}__main-link-wrapper--${tabsVarinats.TAB}`;
+      }
+
       list.classList.add(`${blockClass}__category-items`);
       [...list.querySelectorAll('li')].forEach(rebuildCategoryItem);
       [...list.querySelectorAll('a')].forEach((el) => el.classList.add(`${blockClass}__link`));
@@ -273,6 +323,9 @@ const buildMenuContent = (menuData, navEl) => {
 
       menuContent.querySelector(`.${blockClass}__link-accordion`)?.addEventListener('click', onAccordionItemClick);
       accordionContentWrapper.append(menuContent);
+      if (extraClass) {
+        accordionContentWrapper.parentElement.classList.add(extraClass);
+      }
     });
 
     navLink?.addEventListener('click', onAccordionItemClick);
@@ -327,8 +380,6 @@ export default async function decorate(block) {
       ${createActions(actionsContainer).outerHTML}
     </div>
   `);
-
-  decorateIcons(navContent);
 
   const setAriaForMenu = (isMenuVisible) => {
     nav.querySelectorAll(`.${blockClass}__close-menu, .${blockClass}__hamburger-menu`).forEach((control) => {
@@ -431,4 +482,5 @@ export default async function decorate(block) {
   });
 
   swapMenuMountPoint(desktopMQ.matches);
+  decorateIcons(block);
 }
