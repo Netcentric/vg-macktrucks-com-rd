@@ -1,4 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-  <path d="M29.05 10.95C29.67 12.52 30 14.22 30 16C30 23.73 23.73 30 16 30C8.27 30 2 23.73 2 16C2 8.27 8.27 2 16 2C20.38 2 24.28 4.01 26.84 7.16" stroke="var(--color-icon, #000)" stroke-miterlimit="10"/>
-  <path d="M16 24L8 16L11 13L16 18L28 6L31 9L16 24Z" stroke="var(--color-icon-accent, #B3976B)" stroke-miterlimit="10"/>
-</svg>
