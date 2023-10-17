@@ -26,7 +26,7 @@
 
 .v2-testimonial__heading {
   color: var(--c-primary-white);
-  font: var(--headline-1-font-size)/var(--headline-1-line-height) var(--ff-headline-medium);
+  font: var(--headline-2-font-size)/var(--headline-2-line-height) var(--ff-headline-medium);
   letter-spacing: -0.64px;
   margin: 24px 0;
 }
@@ -132,7 +132,7 @@
   .v2-testimonial {
     margin: 0 auto;
     max-width: 1440px;
-    padding-bottom: 100px;
+    padding-bottom: 60px;
   }
 
   .v2-testimonial__image-row {
