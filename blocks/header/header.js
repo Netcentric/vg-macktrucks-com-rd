@@ -11,18 +11,6 @@ const tabsVarinats = {
   TAB: 'tabs',
 };
 
-const createBackButton = (text) => {
-  const backButton = document.createRange().createContextualFragment(`
-    <button
-      class="${blockClass}__back-button"
-    >
-      ${text}
-    </button>
-  `);
-
-  return backButton.children[0];
-};
-
 const createLogo = (logoWrapper) => {
   const logoImage = logoWrapper.querySelector('span.icon');
 
@@ -272,8 +260,6 @@ const buildMenuContent = (menuData, navEl) => {
     const navLink = navLinks.find((el) => el.textContent.trim() === tabName.textContent.trim());
     const accordionContentWrapper = navLink?.closest(`.${blockClass}__main-nav-item`).querySelector(`.${blockClass}__accordion-content-wrapper`);
 
-    accordionContentWrapper.append(createBackButton(navLink.textContent));
-
     categories.forEach((cat) => {
       const title = cat.querySelector(':scope > a');
       const list = cat.querySelector(':scope > ul');
@@ -313,7 +299,6 @@ const buildMenuContent = (menuData, navEl) => {
           ${title.outerHTML}
           <div class="${blockClass}__category-content ${blockClass}__accordion-container">
             <div class="${blockClass}__accordion-content-wrapper">
-              ${createBackButton(title.textContent).outerHTML}
               ${list.outerHTML}
             </div>
           </div>
@@ -329,14 +314,6 @@ const buildMenuContent = (menuData, navEl) => {
     });
 
     navLink?.addEventListener('click', onAccordionItemClick);
-  });
-
-  [...navEl.querySelectorAll(`.${blockClass}__back-button`)].forEach((backButton) => {
-    backButton.addEventListener('click', (event) => {
-      const closestOpenMenu = event.target.closest('.header__menu-open');
-
-      closestOpenMenu.classList.remove('header__menu-open');
-    });
   });
 };
 
