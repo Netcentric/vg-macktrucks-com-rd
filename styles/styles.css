@@ -1037,9 +1037,11 @@ main .section.responsive-title h1 {
   content: '';
   display: block;
   height: 60%;
+  height: round(60%, 24px);
+  width: 40%;
+  width: round(40%, 24px);;
   position: absolute;
   right: 0;
-  width: 40%;
   z-index: 1;
 }
 
@@ -1170,7 +1172,9 @@ main .section.responsive-title h1 {
 @media (min-width: 744px) {
   .section--background-with-dots::after {
     height: 75%;
+    height: round(75%, 24px);
     width: 55%;
+    width: round(55%, 24px);
     background-position: top right;
   }
 
