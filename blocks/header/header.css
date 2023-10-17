@@ -337,6 +337,7 @@
   margin: 0;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .header__category-item h3 a {
   font-family: var(--ff-body);
   font-size: 16px;
@@ -345,15 +346,16 @@
 /* truck/segment item styles start */
 
 .header__main-link-wrapper--tabs-with-cards .header__category-item img {
-  height: 160px;
+  height: auto;
   aspect-ratio: 16/9;
-  width: auto;
+  width: 100%;
 }
 
 .header__main-link-wrapper--tabs-with-cards .header__category-item ul {
   padding: 0;
   margin: 7px 0;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .header__main-link-wrapper--tabs-with-cards .header__category-item ul li {
@@ -461,7 +463,7 @@
     flex-direction: column;
     gap: 0;
     padding: 0;
-    width: 284px;
+    width: 213px;
     position: relative;
   }
 
@@ -521,6 +523,7 @@
     overflow-y: auto;
     max-height: calc(100vh - 2 * var(--nav-height));
     display: none;
+    padding: 0;
   }
 
   .header__main-nav-item.header__menu-open > .header__accordion-container {
@@ -653,6 +656,7 @@
   .desktop-wrapper .header__accordion-container {
     min-width: 100%;
     max-width: 100%;
+    padding: 0;
   }
 
   .header__category-item > * {
