@@ -33,12 +33,18 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 100%;
 }
 
 .header__menu-overlay {
   display: none;
+}
+
+.header__logo-image-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .header__logo-image {
@@ -298,7 +304,6 @@
 .header__menu-open > .header__category-content > .header__category-items {
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
 }
 
 .header__accordion-container {

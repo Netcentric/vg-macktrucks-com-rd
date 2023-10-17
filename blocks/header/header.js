@@ -13,10 +13,12 @@ const tabsVarinats = {
 
 const createLogo = (logoWrapper) => {
   const logoImage = logoWrapper.querySelector('span.icon');
+  const logoLink = logoImage.parentElement.tagName === 'A' ? logoImage.parentElement : null;
 
   logoImage.classList.add(`${blockClass}__logo-image`);
+  (logoLink || logoImage).classList.add(`${blockClass}__logo-image-wrapper`);
 
-  return logoImage;
+  return logoLink || logoImage;
 };
 
 const createMainLinks = (mainLinksWrapper) => {
