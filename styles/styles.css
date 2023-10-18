@@ -160,11 +160,11 @@
 
   /* nav sizes */
   --nav-height-m: 60px;
-  --nav-height-l: 85px;
+  --nav-height-l: 80px;
   --nav-height: var(--nav-height-m);
 }
 
-@media (min-width: 1140px) {
+@media (min-width: 1200px) {
   :root {
     --nav-height: var(--nav-height-l);
   }
@@ -911,7 +911,7 @@ main .section.responsive-title h1 {
 
 /* REDESIGN Buttons */
 /* stylelint-disable-next-line no-descending-specificity */
-.redesign-v2 a.button:any-link, 
+.redesign-v2 a.button:any-link,
 .redesign-v2 button {
   font-weight: normal;
 }

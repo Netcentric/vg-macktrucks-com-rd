@@ -2,6 +2,7 @@ import {
   createElement, generateId, getTextLabel,
 } from '../../scripts/common.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
+import { getAllElWithChildren } from '../../scripts/scripts.js';
 
 const blockClass = 'header';
 
@@ -164,6 +165,7 @@ const transformMenuData = (data) => {
   // for each tab
   data.forEach((menuData) => {
     const titles = menuData.querySelectorAll('.menu > div > div:first-child > a');
+
     // unwrapping the titles (.menu > div > div > a => .menu > a)
     titles.forEach((title) => title.parentElement.parentElement.replaceWith(title));
 
@@ -458,11 +460,14 @@ export default async function decorate(block) {
     const actionsLinks = document.querySelector('#header-actions-list');
     const actionsLinksDesktopMountPoint = document.querySelector('.header__actions');
     const headerMainNav = document.querySelector('.header__main-links'); // mobile actions links mount point
+    const buttonsWithoutIcons = getAllElWithChildren([...actionsLinks.querySelectorAll('a')], '.icon', true);
 
     if (isDesktop) {
       actionsLinksDesktopMountPoint.append(actionsLinks);
+      buttonsWithoutIcons.forEach((el) => el.classList.add('button', 'button--primary'));
     } else {
       headerMainNav.append(actionsLinks);
+      buttonsWithoutIcons.forEach((el) => el.classList.remove('button', 'button--primary'));
     }
   };
 
