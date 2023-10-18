@@ -45,6 +45,22 @@ const createMainLinks = (mainLinksWrapper) => {
     link.classList.add(`${blockClass}__main-nav-link`, `${blockClass}__link`, `${blockClass}__link-accordion`);
   });
 
+  const closeMenuLabel = getTextLabel('Close menu');
+  const closeIcon = document.createRange().createContextualFragment(`
+    <li class="${blockClass}__action-item ${blockClass}__action-item--close-menu">
+      <button
+        aria-label="${closeMenuLabel}"
+        class="${blockClass}__close-menu"
+        aria-expanded="false"
+        aria-controls="header-main-nav, header-actions-list"
+      >
+        <span class="icon icon-close" />
+      </button>
+    </li>
+  `);
+
+  list.prepend(closeIcon);
+
   return list;
 };
 
@@ -71,22 +87,6 @@ const createActions = (actionsWrapper) => {
         link.setAttribute('aria-label', textNode.textContent);
       });
   });
-
-  const closeMenuLabel = getTextLabel('Close menu');
-  const closeIcon = document.createRange().createContextualFragment(`
-    <li class="${blockClass}__action-item ${blockClass}__action-item--close-menu">
-      <button
-        aria-label="${closeMenuLabel}"
-        class="${blockClass}__close-menu"
-        aria-expanded="false"
-        aria-controls="header-main-nav, header-actions-list"
-      >
-        <span class="icon icon-close" />
-      </button>
-    </li>
-  `);
-
-  list.append(closeIcon);
 
   return list;
 };
@@ -454,12 +454,26 @@ export default async function decorate(block) {
     }
   };
 
+  const swapActionsLinks = (isDesktop) => {
+    const actionsLinks = document.querySelector('#header-actions-list');
+    const actionsLinksDesktopMountPoint = document.querySelector('.header__actions');
+    const headerMainNav = document.querySelector('.header__main-links'); // mobile actions links mount point
+
+    if (isDesktop) {
+      actionsLinksDesktopMountPoint.append(actionsLinks);
+    } else {
+      headerMainNav.append(actionsLinks);
+    }
+  };
+
   desktopMQ.addEventListener('change', (e) => {
     const isDesktop = e.matches;
 
     swapMenuMountPoint(isDesktop);
+    swapActionsLinks(isDesktop);
   });
 
   swapMenuMountPoint(desktopMQ.matches);
+  swapActionsLinks(desktopMQ.matches);
   decorateIcons(block);
 }
