@@ -1213,18 +1213,6 @@ main .section.responsive-title h1 {
     padding: var(--section-div-padding);
   }
 
-  .redesign-v2 div.section--gray-background-overlap {
-    position: relative;
-  }
-
-  .section--gray-background-overlap::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 auto;
-    height: 155px;
-    background: var(--c-secondary-silver);
-  }
-
   .section--with-background > picture:first-of-type img {
     display: block;
     height: 100%;

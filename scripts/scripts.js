@@ -277,7 +277,7 @@ export function decorateLinks(block) {
 }
 
 function decorateSectionBackgrounds(main) {
-  const variantClasses = ['black-background', 'gray-background', 'gray-background-overlap', 'background-with-dots'];
+  const variantClasses = ['black-background', 'gray-background', 'background-with-dots'];
 
   main.querySelectorAll(':scope > .section').forEach((section) => {
     // transform background color variants into BEM classnames
