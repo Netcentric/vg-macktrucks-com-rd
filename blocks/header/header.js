@@ -438,7 +438,11 @@ export default async function decorate(block) {
   });
 
   const swapMenuMountPoint = (isDesktop) => {
-    const menus = [...document.querySelectorAll('.header__category-content.header__accordion-container')];
+    const selector = `
+      .header__main-link-wrapper--tabs-with-cards .header__category-content.header__accordion-container,
+      .header__main-link-wrapper--tabs .header__category-content.header__accordion-container
+    `;
+    const menus = [...document.querySelectorAll(selector)];
 
     if (isDesktop) {
       menus.forEach((item) => {
