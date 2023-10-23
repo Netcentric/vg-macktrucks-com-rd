@@ -209,12 +209,26 @@ const transformMenuData = (data) => {
   return results.children[0];
 };
 
+const setTabActive = (tab) => {
+  const targetId = tab.closest('[menu-accordion-id]').getAttribute('menu-accordion-id');
+  const tabContent = document.querySelector(`#${targetId}`);
+
+  [...tabContent.parentElement.querySelectorAll(`.${blockClass}__accordion-container`)].forEach((item) => {
+    if (item !== tabContent) {
+      item.setAttribute('data-active', 'false');
+    }
+  });
+
+  tabContent.setAttribute('data-active', 'true');
+};
+
 const onAccordionItemClick = (el) => {
   const elClassList = el.target.classList;
   const isMainLink = elClassList.contains(`${blockClass}__main-nav-link`);
   const isTabLink = elClassList.contains(`${blockClass}__tab-link`);
+  const isDesktop = desktopMQ.matches;
 
-  if (desktopMQ.matches && (!isMainLink && !isTabLink)) {
+  if (isDesktop && (!isMainLink && !isTabLink)) {
     return;
   }
 
@@ -225,9 +239,9 @@ const onAccordionItemClick = (el) => {
   const isExpanded = menuEl.classList.contains(`${blockClass}__menu-open`);
   el.target.setAttribute('aria-expanded', isExpanded);
 
-  if (isMainLink) {
-    // closing other open menus - on desktop
-    if (desktopMQ.matches && menuEl.classList.contains(`${blockClass}__main-nav-item`)) {
+  if (isDesktop && isMainLink) {
+    // closing other open menus
+    if (isDesktop && menuEl.classList.contains(`${blockClass}__main-nav-item`)) {
       const openMenus = document.querySelectorAll(`.${blockClass}__menu-open`);
 
       [...openMenus].filter((menu) => menu !== menuEl).forEach((menu) => {
@@ -238,19 +252,14 @@ const onAccordionItemClick = (el) => {
 
     // disabling scroll when menu is open
     document.body.classList[isExpanded ? 'add' : 'remove']('disable-scroll');
+
+    // set first tab active
+    const firstTabLink = el.target.parentElement.querySelector('.header__main-link-wrapper a');
+    setTabActive(firstTabLink);
   }
 
-  if (isTabLink) {
-    const targetId = el.target.closest('[menu-accordion-id]').getAttribute('menu-accordion-id');
-    const tabContent = document.querySelector(`#${targetId}`);
-
-    [...tabContent.parentElement.querySelectorAll(`.${blockClass}__accordion-container`)].forEach((item) => {
-      if (item !== tabContent) {
-        item.setAttribute('data-active', 'false');
-      }
-    });
-
-    tabContent.setAttribute('data-active', 'true');
+  if (isDesktop && isTabLink) {
+    setTabActive(el.target);
   }
 };
 
