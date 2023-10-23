@@ -33,6 +33,7 @@ const createMainLinks = (mainLinksWrapper) => {
         <div class="${blockClass}__accordion-content-wrapper">
         </div>
         <div class="desktop-wrapper"></div>
+        <div class="desktop-wrapper-footer"></div>
       </div>
     `);
 
@@ -273,7 +274,7 @@ const buildMenuContent = (menuData, navEl) => {
     const navLink = navLinks.find((el) => el.textContent.trim() === tabName.textContent.trim());
     const accordionContentWrapper = navLink?.closest(`.${blockClass}__main-nav-item`).querySelector(`.${blockClass}__accordion-content-wrapper`);
 
-    categories.forEach((cat) => {
+    categories.filter((cat) => cat.classList.contains('menu')).forEach((cat) => {
       const title = cat.querySelector(':scope > a');
       const list = cat.querySelector(':scope > ul');
       let extraClass = '';
@@ -325,6 +326,16 @@ const buildMenuContent = (menuData, navEl) => {
         accordionContentWrapper.parentElement.classList.add(extraClass);
       }
     });
+
+    const menuFooter = categories.find((el) => el.classList.contains('menu-footer'));
+
+    if (menuFooter) {
+      [...menuFooter.querySelectorAll('a')].forEach((link, index) => {
+        link.classList.add('button', index ? 'standalone-link' : 'button--primary');
+      });
+
+      navLink.parentElement.querySelector('.desktop-wrapper-footer').append(menuFooter);
+    }
 
     navLink?.addEventListener('click', onAccordionItemClick);
   });
