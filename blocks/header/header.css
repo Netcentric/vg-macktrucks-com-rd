@@ -819,6 +819,13 @@
   }
 
   .header__main-link-wrapper--tabs-with-cards
+    > .header__accordion-content-wrapper
+    .header__menu-content
+    a[aria-expanded='true'] {
+    text-decoration: underline;
+  }
+
+  .header__main-link-wrapper--tabs-with-cards
     .header__accordion-content-wrapper
     .header__menu-content::after {
     display: none;

@@ -227,6 +227,18 @@ const setTabActive = (tab) => {
     const tabContentId = tab.getAttribute('aria-controls');
     document.querySelector(`#${tabContentId}`).scrollIntoView({ behavior: 'smooth' });
   }
+
+  // setting the aria-expanded for tabs and link's tab indexes
+  [...tab.closest('.header__accordion-content-wrapper').querySelectorAll('.header__tab-link')].forEach((tabLink) => {
+    const tId = tabLink.getAttribute('aria-controls');
+    const tContent = document.querySelector(`#${tId}`);
+
+    tabLink.setAttribute('aria-expanded', tabLink === tab ? 'true' : 'false');
+
+    [...tContent.querySelectorAll('a')].forEach((el) => {
+      el.setAttribute('tabindex', tabLink === tab ? '0' : '-1');
+    });
+  });
 };
 
 const onAccordionItemClick = (el) => {
