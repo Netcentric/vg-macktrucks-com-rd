@@ -831,11 +831,16 @@
     display: none;
   }
 
+  .header__main-link-wrapper--tabs-with-cards .desktop-wrapper {
+    overflow-x: hidden;
+  }
+
   .header__main-link-wrapper--tabs-with-cards
     .desktop-wrapper
     .header__category-items {
     flex-direction: row;
     padding: 0 25px;
+    align-items: flex-start;
   }
 
   .header__main-link-wrapper--tabs-with-cards
@@ -959,16 +964,6 @@
     font-size: 14px;
     line-height: 150%;
     letter-spacing: 0.14px;
-  }
-
-  .header__main-link-wrapper--tabs-with-cards
-    .desktop-wrapper
-    > [data-active='false'],
-  .header__main-link-wrapper--tabs-with-cards
-    .desktop-wrapper
-    > :not([data-active]) {
-    position: relative;
-    display: none;
   }
 
   /* tabs with cards - END */

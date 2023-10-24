@@ -221,6 +221,12 @@ const setTabActive = (tab) => {
   });
 
   tabContent.setAttribute('data-active', 'true');
+
+  // scroll to proper tab content for tabs with cards
+  if (tab.closest('.header__main-link-wrapper--tabs-with-cards')) {
+    const tabContentId = tab.getAttribute('aria-controls');
+    document.querySelector(`#${tabContentId}`).scrollIntoView({ behavior: 'smooth' });
+  }
 };
 
 const onAccordionItemClick = (el) => {
