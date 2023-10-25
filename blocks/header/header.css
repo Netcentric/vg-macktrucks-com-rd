@@ -148,6 +148,7 @@
 .header__actions {
   display: flex;
   gap: 24px;
+  width: 100%;
 }
 
 .header__main-links {
@@ -215,6 +216,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 8px 0;
+  text-wrap: nowrap;
 
   --icon-color: var(--c-primary-black);
 }
@@ -235,6 +237,8 @@
 .header__mobile-actions {
   display: flex;
   gap: 16px;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .header__link-description {
@@ -365,6 +369,10 @@
 
   .header__link:any-link:active {
     border-bottom: solid 2px var(--c-primary-black);
+  }
+
+  .header__actions {
+    width: auto;
   }
 
   .header__action-link.header__hamburger-menu {
