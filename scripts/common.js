@@ -138,6 +138,20 @@ export const removeEmptyTags = (block) => {
   });
 };
 
+export const unwrapDivs = (element) => {
+  Array.from(element.children).forEach((node) => {
+    if (node.tagName === 'DIV' && node.attributes.length === 0) {
+      while (node.firstChild) {
+        element.insertBefore(node.firstChild, node);
+      }
+      node.remove();
+      unwrapDivs(element);
+    } else {
+      unwrapDivs(node);
+    }
+  });
+};
+
 export const variantsClassesToBEM = (blockClasses, expectedVariantsNames, blockName) => {
   expectedVariantsNames.forEach((variant) => {
     if (blockClasses.contains(variant)) {
@@ -199,4 +213,25 @@ let idValue = 0;
 export const generateId = (prefix = 'id') => {
   idValue += 1;
   return `${prefix}-${idValue}`;
+};
+
+export const adjustPretitle = (element) => {
+  const headingSelector = 'h1, h2, h3, h4, h5, h6';
+
+  [...element.querySelectorAll(headingSelector)].forEach((heading) => {
+    const isNextElHeading = heading.nextElementSibling?.matches(headingSelector);
+    if (!isNextElHeading) {
+      return;
+    }
+
+    const currentLevel = Number(heading.tagName[1]);
+    const nextElLevel = Number(heading.nextElementSibling.tagName[1]);
+
+    if (currentLevel > nextElLevel) {
+      const pretitle = createElement('span', { classes: ['pretitle'] });
+      pretitle.append(...heading.childNodes);
+
+      heading.replaceWith(pretitle);
+    }
+  });
 };
