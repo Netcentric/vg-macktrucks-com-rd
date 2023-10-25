@@ -12,6 +12,12 @@ const tabsVarinats = {
   TAB: 'tabs',
 };
 
+const setTabIndexForLinks = (el, tabIndexValue) => {
+  [...el.querySelectorAll('a, button')].forEach((link) => {
+    link.setAttribute('tabindex', tabIndexValue);
+  });
+};
+
 const createLogo = (logoWrapper) => {
   const logoImage = logoWrapper.querySelector('span.icon');
   const logoLink = logoImage.parentElement.tagName === 'A' ? logoImage.parentElement : null;
@@ -235,9 +241,7 @@ const setTabActive = (tab) => {
 
     tabLink.setAttribute('aria-expanded', tabLink === tab ? 'true' : 'false');
 
-    [...tContent.querySelectorAll('a')].forEach((el) => {
-      el.setAttribute('tabindex', tabLink === tab ? '0' : '-1');
-    });
+    setTabIndexForLinks(tContent, tabLink === tab ? '0' : '-1');
   });
 };
 
@@ -266,7 +270,10 @@ const onAccordionItemClick = (el) => {
       [...openMenus].filter((menu) => menu !== menuEl).forEach((menu) => {
         menu.classList.remove(`${blockClass}__menu-open`);
         menu.querySelector(':scope > a').setAttribute('aria-expanded', false);
+        setTabIndexForLinks(menu, '-1');
       });
+
+      setTabIndexForLinks(menuEl, '0');
     }
 
     // disabling scroll when menu is open
@@ -403,6 +410,18 @@ export default async function decorate(block) {
   const setAriaForMenu = (isMenuVisible) => {
     nav.querySelectorAll(`.${blockClass}__close-menu, .${blockClass}__hamburger-menu`).forEach((control) => {
       control.setAttribute('aria-expanded', isMenuVisible);
+
+      document.querySelectorAll('.header__main-nav-link').forEach((el) => {
+        el.setAttribute('tabindex', isMenuVisible ? '0' : '-1');
+      });
+
+      document.querySelectorAll('.header__action-item').forEach((el) => {
+        setTabIndexForLinks(el, isMenuVisible ? '0' : '-1');
+      });
+
+      if (isMenuVisible) {
+        document.querySelector('.header__close-menu')?.focus();
+      }
     });
     nav.querySelectorAll('#header-main-nav, #header-actions-list').forEach((item) => {
       item.setAttribute('aria-hidden', !isMenuVisible);
@@ -513,13 +532,33 @@ export default async function decorate(block) {
     }
   };
 
+  const setupAriaAndTabIndexs = (isDesktop) => {
+    if (!isDesktop) {
+      const mainLinksEl = document.querySelector('.header__main-links');
+      const actionsEl = document.querySelector('.header__actions-list');
+
+      setTabIndexForLinks(mainLinksEl, '-1');
+      setTabIndexForLinks(actionsEl, '-1');
+
+      [...mainLinksEl.querySelectorAll('[aria-expanded="true"]')].forEach((el) => {
+        el.setAttribute('aria-expanded', 'false');
+      });
+    } else {
+      const mainNav = document.querySelector('.header__main-nav');
+
+      setTabIndexForLinks(mainNav);
+    }
+  };
+
   desktopMQ.addEventListener('change', (e) => {
     const isDesktop = e.matches;
 
+    setupAriaAndTabIndexs(isDesktop);
     swapMenuMountPoint(isDesktop);
     swapActionsLinks(isDesktop);
   });
 
+  setupAriaAndTabIndexs(desktopMQ.matches);
   swapMenuMountPoint(desktopMQ.matches);
   swapActionsLinks(desktopMQ.matches);
   decorateIcons(block);
