@@ -140,7 +140,7 @@
   width: 24px;
   height: 24px;
   background-repeat: no-repeat;
-  transition: transform 300ms ease-in-out;
+  transition: transform 160ms ease-in-out;
   background-position: center;
   transform: rotate(-90deg);
 }
@@ -326,6 +326,7 @@
 .header__category-item h3 {
   display: flex;
   margin: 0;
+  font-weight: normal;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -409,6 +410,11 @@
     width: auto;
     max-width: unset;
     overflow: initial;
+  }
+
+  .header__main-nav-link.header__link {
+    font-family: var(--ff-subheadings-medium);
+    color: var(--c-primary-black);
   }
 
   .header__main-nav-link[aria-expanded='true'] {
@@ -666,6 +672,7 @@
     color: var(--c-primary-black);
     margin: 0;
     text-transform: initial;
+    width: max-content;
   }
 
   .header .button.button--primary {

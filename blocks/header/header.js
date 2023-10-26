@@ -25,6 +25,13 @@ const createLogo = (logoWrapper) => {
   logoImage.classList.add(`${blockClass}__logo-image`);
   (logoLink || logoImage).classList.add(`${blockClass}__logo-image-wrapper`);
 
+  if (logoLink) {
+    const logoLinkText = createElement('span', { classes: ['screenreader'] });
+    logoLinkText.append('Go to Mack Trucks homepage');
+
+    logoLink.append(logoLinkText);
+  }
+
   return logoLink || logoImage;
 };
 
