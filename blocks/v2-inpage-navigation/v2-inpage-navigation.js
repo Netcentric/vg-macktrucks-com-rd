@@ -190,5 +190,10 @@ export default async function decorate(block) {
     } else {
       updateActive();
     }
+
+    // detecting if the element inpage nav sticks to navigation
+    const navHeight = Number.parseInt(getComputedStyle(block).getPropertyValue('--nav-height'), 10);
+    const isStucked = block.getBoundingClientRect().top <= navHeight;
+    block.classList[isStucked ? 'add' : 'remove']('v2-inpage-navigation--stucked');
   }));
 }
