@@ -26,7 +26,6 @@
   right: 0;
   color: var(--c-primary-black);
   z-index: 1;
-  border-bottom: 1px solid var(--c-primary-black);
 }
 
 .header__nav {
@@ -54,6 +53,7 @@
 
 .header__logo-image.icon svg {
   height: 30px;
+  width: 30px;
 }
 
 .header__link:any-link {
@@ -350,6 +350,11 @@
     width: 100%;
     padding: 0;
     justify-content: center;
+    border-bottom: 1px solid var(--c-primary-white);
+  }
+
+  .header--expanded {
+    border-bottom-color: var(--c-primary-black);
   }
 
   .header__nav {

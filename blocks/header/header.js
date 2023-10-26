@@ -252,6 +252,13 @@ const setTabActive = (tab) => {
   });
 };
 
+const onNavExpandChange = (isExpanded) => {
+  // disabling scroll when menu is open
+  document.body.classList[isExpanded ? 'add' : 'remove']('disable-scroll');
+
+  document.querySelector('.header.block').classList[isExpanded ? 'add' : 'remove']('header--expanded');
+};
+
 const onAccordionItemClick = (el) => {
   const elClassList = el.target.classList;
   const isMainLink = elClassList.contains(`${blockClass}__main-nav-link`);
@@ -283,8 +290,7 @@ const onAccordionItemClick = (el) => {
       setTabIndexForLinks(menuEl, '0');
     }
 
-    // disabling scroll when menu is open
-    document.body.classList[isExpanded ? 'add' : 'remove']('disable-scroll');
+    onNavExpandChange(isExpanded);
 
     // set first tab active
     const firstTabLink = el.target.parentElement.querySelector('.header__main-link-wrapper a');
@@ -452,7 +458,7 @@ export default async function decorate(block) {
 
   const closeHamburgerMenu = () => {
     block.classList.remove(`${blockClass}--hamburger-open`);
-    document.body.classList.remove('disable-scroll');
+    onNavExpandChange(false);
 
     block.querySelectorAll(`.${blockClass}__menu-open`).forEach((el) => {
       el.classList.remove(`${blockClass}__menu-open`);
@@ -470,8 +476,7 @@ export default async function decorate(block) {
   // add action for hamburger
   navContent.querySelector(`.${blockClass}__hamburger-menu`).addEventListener('click', () => {
     block.classList.add(`${blockClass}--hamburger-open`);
-    document.body.classList.add('disable-scroll');
-
+    onNavExpandChange(true);
     setAriaForMenu(true);
   });
 
@@ -497,7 +502,7 @@ export default async function decorate(block) {
     if (isTargetOutsideMenu && openMenu) {
       openMenu.classList.remove(`${blockClass}__menu-open`);
       openMenu.setAttribute('aria-expanded', false);
-      document.body.classList.remove('disable-scroll');
+      onNavExpandChange(false);
     }
   });
 
