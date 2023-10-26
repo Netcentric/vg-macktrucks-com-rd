@@ -21,7 +21,7 @@
   transition: border-top-color 160ms ease-in-out;
 }
 
-.v2-inpage-navigation--stucked .v2-inpage-navigation__wrapper {
+.v2-inpage-navigation--stuck .v2-inpage-navigation__wrapper {
   border-top-color: var(--c-secondary-silver);
 }
 
