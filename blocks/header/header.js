@@ -23,6 +23,7 @@ const createLogo = (logoWrapper) => {
   const logoLink = logoImage.parentElement.tagName === 'A' ? logoImage.parentElement : null;
 
   logoImage.classList.add(`${blockClass}__logo-image`);
+  logoImage.setAttribute('aria-hidden', 'true');
   (logoLink || logoImage).classList.add(`${blockClass}__logo-image-wrapper`);
 
   if (logoLink) {
@@ -108,24 +109,24 @@ const createActions = (actionsWrapper) => {
 
 const mobileActions = () => {
   const mobileActionsEl = createElement('div', { classes: [`${blockClass}__mobile-actions`] });
-  const searchLable = getTextLabel('Search');
-  const openMenuLable = getTextLabel('Open menu');
+  const searchLabel = getTextLabel('Search');
+  const openMenuLabel = getTextLabel('Open menu');
 
   const actions = document.createRange().createContextualFragment(`
     <a
       href="#"
-      aria-label="${searchLable}"
+      aria-label="${searchLabel}"
       class="${blockClass}__search-button ${blockClass}__action-link ${blockClass}__link"
     >
-      <span class="icon icon-search"></span>
+      <span class="icon icon-search" aria-hidden="true"></span>
     </a>
     <button
-      aria-label="${openMenuLable}"
+      aria-label="${openMenuLabel}"
       class="${blockClass}__hamburger-menu ${blockClass}__action-link ${blockClass}__link"
       aria-expanded="false"
       aria-controls="header-main-nav, header-actions-list"
     >
-      <span class="icon icon-hamburger"></span>
+      <span class="icon icon-hamburger" aria-hidden="true"></span>
     </button>
   `);
 
@@ -149,9 +150,9 @@ const rebuildCategoryItem = (item) => {
 
       [...el.querySelectorAll('a')].forEach((button, index) => {
         if (!index) {
-          button.classList.add('button', 'button--primary');
+          button.classList.add('button', 'button--small', 'button--primary');
         } else {
-          button.classList.add('button', 'button--secondary');
+          button.classList.add('button', 'button--small', 'button--secondary');
         }
       });
     }
@@ -369,7 +370,8 @@ const buildMenuContent = (menuData, navEl) => {
 
     if (menuFooter) {
       [...menuFooter.querySelectorAll('a')].forEach((link, index) => {
-        link.classList.add('button', index ? 'standalone-link' : 'button--primary');
+        const classes = index ? ['standalone-link'] : ['button', 'button--primary', 'button--small'];
+        link.classList.add(...classes);
       });
 
       navLink.parentElement.querySelector('.desktop-wrapper-footer').append(menuFooter);
