@@ -710,6 +710,7 @@
   .header.block .button.button--secondary:focus {
     background-color: #F1F1F1;
     border-color: var(--button-tertiary-white-hover);
+    color: var(--c-primary-black);
   }
 
   .header.block .button.button--secondary:active {
@@ -1008,6 +1009,11 @@
     line-height: 130%;
     letter-spacing: 0.48px;
     font-weight: normal;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .header__main-link-wrapper--tabs-with-cards .header__category-item a:active {
+    border: transparent;
   }
 
   .header__main-link-wrapper--tabs-with-cards .header__category-item img {
