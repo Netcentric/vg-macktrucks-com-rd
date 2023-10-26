@@ -36,7 +36,7 @@
   position: relative;
   max-width: var(--wrapper-width);
   padding: 0;
-  border-top: solid 1px #dfdfdf;
+  border-top: solid 1px var(--c-secondary-silver);
 }
 
 .sub-nav-container > .icon {
