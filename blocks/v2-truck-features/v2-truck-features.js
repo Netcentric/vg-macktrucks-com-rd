@@ -1,7 +1,7 @@
 import { createElement, unwrapDivs } from '../../scripts/common.js';
 import { getAllElWithChildren } from '../../scripts/scripts.js';
 
-const blockClass = 'v2-truck-features';
+const blockName = 'v2-truck-features';
 const desktopMQ = window.matchMedia('(min-width: 1200px)');
 
 const onWheel = (e, settings) => {
@@ -47,24 +47,25 @@ const selectImagesList = (slide) => {
   const selectedImagesListIndex = desktopMQ.matches ? '-1' : '0';
 
   imagesLists.at(selectedImagesListIndex).style.display = 'block';
-  imagesLists.at(selectedImagesListIndex).classList.add(`${blockClass}__images`);
+  imagesLists.at(selectedImagesListIndex).classList.add(`${blockName}__images`);
 };
 
 export default async function decorate(block) {
-  const activeSlideClass = `${blockClass}__slide--active`;
-  const activeSlideImageClass = `${blockClass}__slide-image--active`;
+  const activeSlideClass = `${blockName}__slide--active`;
+  const activeSlideImageClass = `${blockName}__slide-image--active`;
 
   [...block.querySelectorAll(':scope > div')].forEach(unwrapDivs);
 
   const heading = block.querySelector(':scope > div > :is(h1, h2, h3, h4, h5, h6)');
   const rows = [...block.querySelectorAll(':scope > div')].slice(1);
-  const list = createElement('ul', { classes: `${blockClass}__slides` });
+  const list = createElement('ul', { classes: `${blockName}__slides` });
 
   heading.parentElement.replaceWith(heading);
+  heading.classList.add(`${blockName}__heading`);
 
   // moving the rows to list
   rows.forEach((el) => {
-    const newEl = createElement('li', { classes: `${blockClass}__slide` });
+    const newEl = createElement('li', { classes: `${blockName}__slide` });
     newEl.innerHTML = el.innerHTML;
     el.remove();
     list.append(newEl);
