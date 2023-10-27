@@ -4,11 +4,16 @@ import { getAllElWithChildren } from '../../scripts/scripts.js';
 const blockName = 'v2-truck-features';
 const desktopMQ = window.matchMedia('(min-width: 1200px)');
 
-const onWheel = (e, settings) => {
-  if ((e.deltaY > 0 && settings.hasNextSlide) || (e.deltaY < 0 && settings.hasPrevSlide)) {
-    e.preventDefault();
+const preventEventWhenSlideExists = (deltaY, settings, event) => {
+  // preventing scolling only when there is
+  // next (when scrolling down) / prev (when scrolling up) slide
+  if ((deltaY > 0 && settings.hasNextSlide) || (deltaY < 0 && settings.hasPrevSlide)) {
+    event.preventDefault();
+    event.stopPropagation();
   }
+};
 
+const onWheel = (e, settings) => {
   if (settings.isSlideChangeBlocked) {
     return;
   }
@@ -150,11 +155,31 @@ export default async function decorate(block) {
     showPrevSlide,
   };
 
+  // adding wheel events
   const wheelEvents = ['wheel', 'mousewheel']; // mousewhell - for Safari on iOS
 
   wheelEvents.forEach((eventName) => {
     block.addEventListener(eventName, (e) => {
+      preventEventWhenSlideExists(e.deltaY, settings, e);
+
       onWheel(e, settings);
     }, { passive: false });
+  });
+
+  // adding touch events
+  let touchStartPosition = 0;
+
+  block.addEventListener('touchstart', (e) => {
+    touchStartPosition = e.changedTouches[0].pageY;
+  });
+  block.addEventListener('touchend', (e) => {
+    const deltaY = touchStartPosition - e.changedTouches[0].pageY;
+
+    onWheel({ deltaY }, settings);
+  });
+  block.addEventListener('touchmove', (e) => {
+    const deltaY = touchStartPosition - e.changedTouches[0].pageY;
+
+    preventEventWhenSlideExists(deltaY, settings, e);
   });
 }
