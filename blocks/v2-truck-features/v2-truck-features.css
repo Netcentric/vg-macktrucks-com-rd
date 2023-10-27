@@ -1,0 +1,31 @@
+.v2-truck-features {
+  height: calc(100vh - var(--nav-height));
+  background: yellow;
+}
+
+.v2-truck-features__slides {
+  position: relative;
+  padding-top: 400px;
+}
+
+.v2-truck-features ul ul:first-of-type {
+  display: none;
+}
+
+.v2-truck-features .v2-truck-features__images li {
+  display: none;
+}
+
+.v2-truck-features
+  .v2-truck-features__images
+  li.v2-truck-features__slide-image--active {
+  position: absolute;
+  top: 0;
+  height: 400px;
+  width: auto;
+  display: flex;
+}
+
+.v2-truck-features__slide-image--active picture {
+  display: flex;
+}
