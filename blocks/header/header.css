@@ -330,14 +330,19 @@
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-.header__category-item h3 a.header__link {
+.header__category-item h3 a.header__link:any-link {
   font-family: var(--ff-body);
   font-size: 16px;
   color: var(--c-primary-black);
+  display: inline;
 }
 
 .menu-footer {
   display: none;
+}
+
+.header sup {
+  font-size: .6em;
 }
 
 @media (min-width: 744px) {
