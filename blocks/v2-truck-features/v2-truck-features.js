@@ -52,7 +52,7 @@ const selectImagesList = (slide) => {
   const selectedImagesListIndex = desktopMQ.matches ? '-1' : '0';
 
   imagesLists.at(selectedImagesListIndex).style.display = 'block';
-  imagesLists.at(selectedImagesListIndex).classList.add(`${blockName}__images`);
+  imagesLists.at(selectedImagesListIndex).classList.add(`${blockName}__images-list`);
 };
 
 export default async function decorate(block) {
@@ -83,7 +83,7 @@ export default async function decorate(block) {
   let activeSlide = list.children[0];
   activeSlide.classList.add(activeSlideClass);
   // setting the first image in the first slide active
-  let activePicListItem = activeSlide.querySelector('.v2-truck-features__images li');
+  let activePicListItem = activeSlide.querySelector('.v2-truck-features__images-list li');
   activePicListItem.classList.add(activeSlideImageClass);
 
   const showNextSlide = () => {
@@ -105,7 +105,7 @@ export default async function decorate(block) {
         activeSlide = nextSlide;
 
         activePicListItem.classList.remove(activeSlideImageClass);
-        activePicListItem = nextSlide.querySelector('.v2-truck-features__images li');
+        activePicListItem = nextSlide.querySelector('.v2-truck-features__images-list li');
         activePicListItem.classList.add(activeSlideImageClass);
       } else {
         hasNextSlide = false;
@@ -134,7 +134,7 @@ export default async function decorate(block) {
         activeSlide = prevSlide;
 
         activePicListItem.classList.remove(activeSlideImageClass);
-        activePicListItem = prevSlide.querySelector('.v2-truck-features__images li:last-of-type');
+        activePicListItem = prevSlide.querySelector('.v2-truck-features__images-list li:last-of-type');
         activePicListItem.classList.add(activeSlideImageClass);
       } else {
         hasPrevSlide = false;
