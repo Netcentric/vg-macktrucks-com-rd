@@ -69,8 +69,7 @@
   margin: 0;
 }
 
-.v2-truck-features
-.v2-truck-features__slide--active  h4::before {
+.v2-truck-features .v2-truck-features__slide--active h4::before {
   background: var(--c-accent-red);
 }
 
@@ -92,6 +91,12 @@
   position: relative;
   align-self: flex-start;
   padding: 24px 16px 24px 40px;
+}
+
+.v2-truck-features__text-wrapper a:any-link {
+  color: currentcolor;
+  text-decoration: underline;
+  text-decoration-color: var(--link-color);
 }
 
 @media (min-width: 768px) {
@@ -139,7 +144,11 @@
     display: block;
     height: 100%;
     position: absolute;
-    background: radial-gradient(52.65% 52.65% at 50% 56%, #fff0 31.16%, #DFDFDF 89.49%);
+    background: radial-gradient(
+      52.65% 52.65% at 50% 56%,
+      #fff0 31.16%,
+      #dfdfdf 89.49%
+    );
     width: 50vw;
     max-width: 720px;
   }
