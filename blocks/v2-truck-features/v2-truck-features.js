@@ -71,7 +71,16 @@ export default async function decorate(block) {
   // moving the rows to list
   rows.forEach((el) => {
     const newEl = createElement('li', { classes: `${blockName}__slide` });
+    const textWrapper = createElement('div', { classes: `${blockName}__text-wrapper` });
+
     newEl.innerHTML = el.innerHTML;
+
+    const descriptionHeading = newEl.querySelector(':scope > :is(h1, h2, h3, h4, h5, h6)');
+    const description = newEl.querySelector(':scope > p');
+
+    descriptionHeading.replaceWith(textWrapper);
+    textWrapper.append(descriptionHeading, description);
+
     el.remove();
     list.append(newEl);
     selectImagesList(newEl);
@@ -146,7 +155,7 @@ export default async function decorate(block) {
 
   const settings = {
     currentDelta: 0,
-    scrollThreshold: 40,
+    scrollThreshold: 60,
     slideChangeTime: 300,
     isSlideChangeBlocked: false,
     hasNextSlide: true,
