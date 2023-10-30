@@ -158,7 +158,7 @@ export default async function decorate(block) {
   const settings = {
     currentDelta: 0,
     scrollThreshold: 60,
-    slideChangeTime: 300,
+    slideChangeTime: 500,
     isSlideChangeBlocked: false,
     hasNextSlide: true,
     hasPreviousSlide: false,
