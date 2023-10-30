@@ -1,4 +1,4 @@
-import { createElement, unwrapDivs } from '../../scripts/common.js';
+import { createElement, unwrapDivs, variantsClassesToBEM } from '../../scripts/common.js';
 import { getAllElWithChildren } from '../../scripts/scripts.js';
 
 const blockName = 'v2-truck-features';
@@ -58,6 +58,8 @@ const selectImagesList = (slide) => {
 export default async function decorate(block) {
   const activeSlideClass = `${blockName}__slide--active`;
   const activeSlideImageClass = `${blockName}__slide-image--active`;
+  const variantClasses = ['image-left'];
+  variantsClassesToBEM(block.classList, variantClasses, blockName);
 
   [...block.querySelectorAll(':scope > div')].forEach(unwrapDivs);
 
