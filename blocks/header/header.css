@@ -744,8 +744,7 @@
     background: transparent;
   }
 
-  .header.block a.standalone-link:active,
-  .header.block a.standalone-link:visited {
+  .header.block a.standalone-link:active {
     color: var(--c-tertiary-cool-gray);
   }
 

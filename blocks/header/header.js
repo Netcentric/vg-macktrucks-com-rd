@@ -337,6 +337,7 @@ const buildMenuContent = (menuData, navEl) => {
       list.classList.add(`${blockClass}__category-items`);
       [...list.querySelectorAll('li')].forEach(rebuildCategoryItem);
       [...list.querySelectorAll('a')].forEach((el) => el.classList.add(`${blockClass}__link`));
+      [...list.querySelectorAll('li > a:not(.button):not(:only-child)')].forEach((el) => el.classList.add('standalone-link'));
 
       let menuContent;
 
