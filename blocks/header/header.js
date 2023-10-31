@@ -114,7 +114,7 @@ const mobileActions = () => {
 
   const actions = document.createRange().createContextualFragment(`
     <a
-      href="#"
+      href="/search"
       aria-label="${searchLabel}"
       class="${blockClass}__search-button ${blockClass}__action-link ${blockClass}__link"
     >
@@ -472,7 +472,7 @@ export default async function decorate(block) {
 
   // add actions for search
   navContent.querySelector(`.${blockClass}__search-button`).addEventListener('click', () => {
-    window.location.href = '/search-results';
+    window.location.href = '/search';
   });
 
   // add action for hamburger
