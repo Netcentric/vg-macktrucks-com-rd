@@ -963,10 +963,14 @@
   .header__main-link-wrapper--tabs-with-cards
     .desktop-wrapper
     .header__category-items {
-    flex-direction: row;
+    margin: 0 auto;
     padding: 0 25px;
     align-items: flex-start;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(264px, 290px));
+    width: 100%;
+    max-width: 1350px;
+    justify-content: space-between;
   }
 
   .header__main-link-wrapper--tabs-with-cards
@@ -988,7 +992,6 @@
     > div
     > ul
     > .header__category-item {
-    width: clamp(264px, 22.5vw, 290px);
     padding: 20px 0;
   }
 
