@@ -348,14 +348,13 @@
 
 @media (min-width: 744px) {
   .header {
-    padding: 0 32px;
+    padding: 0 clamp(32px, 2.8vw, 40px);
   }
 }
 
 @media (min-width: 1200px) {
   .header {
     width: 100%;
-    padding: 0;
     justify-content: center;
     border-bottom: 1px solid var(--c-primary-white);
   }
@@ -365,7 +364,8 @@
   }
 
   .header__nav {
-    max-width: var(--wrapper-width);
+    width: 100vw;
+    max-width: 1440px;
     justify-content: space-between;
   }
 
