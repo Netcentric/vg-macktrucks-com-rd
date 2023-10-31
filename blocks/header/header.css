@@ -859,7 +859,8 @@
   /* tabs with cards - START */
   .header__main-nav-item.header__menu-open
     > .header__main-link-wrapper--tabs-with-cards {
-    width: 1170px;
+    width: 100vw;
+    max-width: 1440px;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -966,6 +967,7 @@
     flex-direction: row;
     padding: 0 25px;
     align-items: flex-start;
+    justify-content: space-around;
   }
 
   .header__main-link-wrapper--tabs-with-cards
@@ -987,7 +989,7 @@
     > div
     > ul
     > .header__category-item {
-    width: 264px;
+    width: clamp(264px, 22.5vw, 290px);
     padding: 20px 0;
   }
 
