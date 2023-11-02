@@ -7,7 +7,7 @@ import { getAllElWithChildren } from '../../scripts/scripts.js';
 const blockClass = 'header';
 
 const desktopMQ = window.matchMedia('(min-width: 1200px)');
-const tabsVarinats = {
+const tabsVariants = {
   TAB_WITH_CARDS: 'tabs-with-cards',
   TAB: 'tabs',
 };
@@ -190,7 +190,7 @@ const transformMenuData = (data) => {
     // for each menu tab sub items
     menusContentList.forEach((menuItem) => {
       // for tracks menu only
-      if (menuItem.classList.contains(tabsVarinats.TAB_WITH_CARDS)) {
+      if (menuItem.classList.contains(tabsVariants.TAB_WITH_CARDS)) {
         // changing the structure to list
         const item = menuItem.querySelectorAll(':scope > div > div');
         const listEl = createElement('ul');
@@ -205,7 +205,7 @@ const transformMenuData = (data) => {
         menuItem.append(listEl);
       } else {
         // for other manu types,
-        // unwrapp the list:
+        // unwrap the list:
         // .menu > div > div > ul => .menu > ul
         const listEl = menuItem.querySelector('ul');
         menuItem.children[1].replaceWith(listEl);
@@ -320,18 +320,18 @@ const buildMenuContent = (menuData, navEl) => {
 
       title?.classList.add(`${blockClass}__link`, `${blockClass}__link-accordion`, `${blockClass}__menu-heading`);
 
-      if (cat.classList.contains(tabsVarinats.TAB_WITH_CARDS)
-        || cat.classList.contains(tabsVarinats.TAB)
+      if (cat.classList.contains(tabsVariants.TAB_WITH_CARDS)
+        || cat.classList.contains(tabsVariants.TAB)
       ) {
         title?.classList.add(`${blockClass}__tab-link`);
       }
 
-      if (cat.classList.contains(tabsVarinats.TAB_WITH_CARDS)) {
-        extraClass = `${blockClass}__main-link-wrapper--${tabsVarinats.TAB_WITH_CARDS}`;
+      if (cat.classList.contains(tabsVariants.TAB_WITH_CARDS)) {
+        extraClass = `${blockClass}__main-link-wrapper--${tabsVariants.TAB_WITH_CARDS}`;
       }
 
-      if (cat.classList.contains(tabsVarinats.TAB)) {
-        extraClass = `${blockClass}__main-link-wrapper--${tabsVarinats.TAB}`;
+      if (cat.classList.contains(tabsVariants.TAB)) {
+        extraClass = `${blockClass}__main-link-wrapper--${tabsVariants.TAB}`;
       }
 
       list.classList.add(`${blockClass}__category-items`);
@@ -547,7 +547,7 @@ export default async function decorate(block) {
     }
   };
 
-  const setupAriaAndTabIndexs = (isDesktop) => {
+  const setupAriaAndTabIndexes = (isDesktop) => {
     if (!isDesktop) {
       const mainLinksEl = document.querySelector('.header__main-links');
       const actionsEl = document.querySelector('.header__actions-list');
@@ -568,12 +568,12 @@ export default async function decorate(block) {
   desktopMQ.addEventListener('change', (e) => {
     const isDesktop = e.matches;
 
-    setupAriaAndTabIndexs(isDesktop);
+    setupAriaAndTabIndexes(isDesktop);
     swapMenuMountPoint(isDesktop);
     swapActionsLinks(isDesktop);
   });
 
-  setupAriaAndTabIndexs(desktopMQ.matches);
+  setupAriaAndTabIndexes(desktopMQ.matches);
   swapMenuMountPoint(desktopMQ.matches);
   swapActionsLinks(desktopMQ.matches);
   decorateIcons(block);
