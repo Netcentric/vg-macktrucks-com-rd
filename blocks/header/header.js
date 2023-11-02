@@ -261,7 +261,7 @@ const onNavExpandChange = (isExpanded) => {
 };
 
 const onAccordionItemClick = (el) => {
-  const elClassList = el.target.classList;
+  const elClassList = el.currentTarget.classList;
   const isMainLink = elClassList.contains(`${blockClass}__main-nav-link`);
   const isTabLink = elClassList.contains(`${blockClass}__tab-link`);
   const isDesktop = desktopMQ.matches;
@@ -272,10 +272,10 @@ const onAccordionItemClick = (el) => {
 
   el.preventDefault();
 
-  const menuEl = el.target.parentElement;
+  const menuEl = el.currentTarget.parentElement;
   menuEl.classList.toggle(`${blockClass}__menu-open`);
   const isExpanded = menuEl.classList.contains(`${blockClass}__menu-open`);
-  el.target.setAttribute('aria-expanded', isExpanded);
+  el.currentTarget.setAttribute('aria-expanded', isExpanded);
 
   if (isDesktop && isMainLink) {
     // closing other open menus
@@ -299,7 +299,7 @@ const onAccordionItemClick = (el) => {
   }
 
   if (isDesktop && isTabLink) {
-    setTabActive(el.target);
+    setTabActive(el.currentTarget);
   }
 };
 
