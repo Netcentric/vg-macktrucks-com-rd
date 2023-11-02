@@ -1040,6 +1040,25 @@
     opacity: 1;
   }
 
+  .header__main-link-wrapper--tabs-with-cards
+    .header__category-item
+    .button,
+  .header__main-link-wrapper--tabs-with-cards
+    .header__category-item
+    .standalone-link {
+    opacity: 0;
+    transition: opacity 0.2s linear;
+  }
+
+  .header__main-link-wrapper--tabs-with-cards
+    .header__category-item:hover
+    .button,
+  .header__main-link-wrapper--tabs-with-cards
+    .header__category-item:hover
+    .standalone-link {
+    opacity: 1;
+  }
+
   .header__main-link-wrapper--tabs-with-cards .header__category-item h3 {
     margin: 10px 0 5px;
   }
