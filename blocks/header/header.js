@@ -319,6 +319,7 @@ const buildMenuContent = (menuData, navEl) => {
       let extraClass = '';
 
       title?.classList.add(`${blockClass}__link`, `${blockClass}__link-accordion`, `${blockClass}__menu-heading`);
+      title?.removeAttribute('href');
 
       if (cat.classList.contains(tabsVariants.TAB_WITH_CARDS)
         || cat.classList.contains(tabsVariants.TAB)

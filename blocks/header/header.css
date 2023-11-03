@@ -57,7 +57,7 @@
   width: 30px;
 }
 
-.header__link:any-link {
+a.header__link {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -379,15 +379,6 @@
     width: 51px;
   }
 
-  .header__link:hover,
-  .header__link:focus {
-    border-bottom: solid 2px var(--c-tertiary-cool-gray);
-  }
-
-  .header__link:any-link:active {
-    border-bottom: solid 2px var(--c-primary-black);
-  }
-
   .header__actions {
     width: auto;
   }
@@ -545,7 +536,7 @@
     letter-spacing: 0.16px;
   }
 
-  .header__link.header__link-accordion:any-link {
+  .header__link.header__link-accordion {
     padding: 12px 0;
     border-bottom: none;
   }
@@ -812,6 +803,7 @@
     background: var(--c-tertiary-light-cool-gray);
     border: solid 1px rgb(167 171 175 / 50%);
     border-left: none;
+    cursor: pointer;
   }
 
   .header
@@ -909,6 +901,7 @@
     position: absolute;
     left: 50%;
     width: max-content;
+    cursor: pointer;
   }
 
   .header__menu-open
