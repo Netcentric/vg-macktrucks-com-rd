@@ -195,7 +195,7 @@ ul.v2-truck-lineup__navigation {
   --color-icon: var(--c-secondary-steel);
 
   background: 0 0;
-  border: none;
+  border: 2px solid transparent;
   color: var(--c-secondary-steel);
   display: flex;
   font-family: var(--ff-subheadings-medium);
@@ -216,12 +216,13 @@ ul.v2-truck-lineup__navigation {
   color: var(--c-primary-black);
 }
 
-.v2-truck-lineup__navigation-item button:focus {
+.v2-truck-lineup__navigation-item button:focus,
+.v2-truck-lineup__navigation-item button:focus-visible {
   outline: 0;
 }
 
 .v2-truck-lineup__navigation-item button:focus-visible {
-  outline: 1px solid;
+  border-color: var(--border-focus);
 }
 
 .v2-truck-lineup__navigation-item:first-child button {
