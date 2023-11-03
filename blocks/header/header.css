@@ -853,7 +853,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: min-content;
+    grid-auto-rows: min-content;
     gap: 16px 48px;
     align-items: flex-start;
   }
