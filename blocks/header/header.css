@@ -61,7 +61,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  color: var(--c-tertiary-cool-gray);
+  color: var(--c-primary-black);
   font-feature-settings: 'clig' off, 'liga' off;
   font-family: var(--ff-body);
   font-size: 16px;
