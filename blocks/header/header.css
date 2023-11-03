@@ -607,6 +607,10 @@
     padding: 0 0 16px;
   }
 
+  .header .header__menu-content .header__menu-heading:hover {
+    text-decoration: none;
+  }
+
   .header .header__menu-content .header__menu-heading .icon {
     display: block;
   }
