@@ -9,9 +9,9 @@
 
 .v2-truck-features__content {
   width: 100%;
-  height: calc(100vh - var(--nav-height));
+  height: calc(100vh - var(--nav-height) - var(--inpage-navigation-height));
   position: sticky;
-  top: var(--nav-height);
+  top: calc(var(--nav-height) + var(--inpage-navigation-height));
   display: flex;
   flex-direction: column;
   align-items: flex-start;

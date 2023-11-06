@@ -26,8 +26,11 @@ const selectImagesList = (slide) => {
 const setContentWrapperHeight = (wrapper, slidesCount) => {
   const navHeight = getComputedStyle(document.documentElement).getPropertyValue('--nav-height');
   const navHeightInPx = Number.parseInt(navHeight, 10); // assuming that the --nav-height is in px
+  const inPageNav = getComputedStyle(document.documentElement).getPropertyValue('--inpage-navigation-height');
+  // assuming that the --inpage-navigation-height is in px
+  const inPageNavInPx = Number.parseInt(inPageNav, 10);
   const windowHeightInPx = window.innerHeight;
-  const slideHeightInPx = windowHeightInPx - navHeightInPx;
+  const slideHeightInPx = windowHeightInPx - navHeightInPx - inPageNavInPx;
 
   wrapper.style.height = `${slideHeightInPx * slidesCount}px`;
 };
@@ -142,8 +145,11 @@ export default async function decorate(block) {
   window.addEventListener('scroll', debounce(() => {
     const navHeight = getComputedStyle(document.documentElement).getPropertyValue('--nav-height');
     const navHeightInPx = Number.parseInt(navHeight, 10); // assuming that the --nav-height is in px
+    const inPageNav = getComputedStyle(document.documentElement).getPropertyValue('--inpage-navigation-height');
+    // assuming that the --inpage-navigation-height is in px
+    const inPageNavInPx = Number.parseInt(inPageNav, 10);
     const windowHeightInPx = window.innerHeight;
-    const slideHeightInPx = windowHeightInPx - navHeightInPx;
+    const slideHeightInPx = windowHeightInPx - navHeightInPx - inPageNavInPx;
     const blockTopPosition = block.getBoundingClientRect().top;
     let offset = blockTopPosition;
 
