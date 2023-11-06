@@ -32,7 +32,7 @@ const setContentWrapperHeight = (wrapper, slidesCount) => {
   const windowHeightInPx = window.innerHeight;
   const slideHeightInPx = windowHeightInPx - navHeightInPx - inPageNavInPx;
 
-  wrapper.style.height = `${slideHeightInPx * slidesCount}px`;
+  wrapper.style.height = `${slideHeightInPx * (slidesCount + 1)}px`;
 };
 
 export default async function decorate(block) {
@@ -150,18 +150,22 @@ export default async function decorate(block) {
     const inPageNavInPx = Number.parseInt(inPageNav, 10);
     const windowHeightInPx = window.innerHeight;
     const slideHeightInPx = windowHeightInPx - navHeightInPx - inPageNavInPx;
-    const blockTopPosition = block.getBoundingClientRect().top;
-    let offset = blockTopPosition;
+    const { top: blockTopPosition, bottom: blockBottomPosition } = block.getBoundingClientRect();
+    let topOffset = blockTopPosition;
 
-    if (blockTopPosition < navHeightInPx) {
+    // eslint-disable-next-line max-len
+    if (blockTopPosition < (navHeightInPx + inPageNavInPx) && blockBottomPosition >= windowHeightInPx) {
       if (blockTopPosition < 0) {
-        offset = navHeightInPx + Math.abs(blockTopPosition);
+        topOffset = navHeightInPx + inPageNavInPx + Math.abs(blockTopPosition);
       }
-      const newSlideIndex = Math.floor(offset / slideHeightInPx);
+
+      const newSlideIndex = Math.floor(topOffset / slideHeightInPx);
 
       if (newSlideIndex > slideIndex) {
         showNextSlide();
-      } if (newSlideIndex < slideIndex) {
+      }
+
+      if (newSlideIndex < slideIndex) {
         showPrevSlide();
       }
 
