@@ -1,42 +1,10 @@
-import { createElement, unwrapDivs, variantsClassesToBEM } from '../../scripts/common.js';
+import {
+  createElement, debounce, unwrapDivs, variantsClassesToBEM,
+} from '../../scripts/common.js';
 import { getAllElWithChildren } from '../../scripts/scripts.js';
 
 const blockName = 'v2-truck-features';
 const desktopMQ = window.matchMedia('(min-width: 1200px)');
-
-const preventEventWhenSlideExists = (deltaY, settings, event) => {
-  // preventing scolling only when there is
-  // next (when scrolling down) / prev (when scrolling up) slide
-  if ((deltaY > 0 && settings.hasNextSlide) || (deltaY < 0 && settings.hasPrevSlide)) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-};
-
-const onWheel = (e, settings) => {
-  if (settings.isSlideChangeBlocked) {
-    return;
-  }
-
-  settings.currentDelta += e.deltaY;
-
-  if (Math.abs(settings.currentDelta) > settings.scrollThreshold) {
-    if (settings.currentDelta > 0) {
-      settings.hasNextSlide = settings.showNextSlide();
-      settings.hasPrevSlide = true;
-    } else {
-      settings.hasPrevSlide = settings.showPrevSlide();
-      settings.hasNextSlide = true;
-    }
-
-    settings.currentDelta = 0;
-    settings.isSlideChangeBlocked = true;
-
-    setTimeout(() => {
-      settings.isSlideChangeBlocked = false;
-    }, settings.slideChangeTime);
-  }
-};
 
 const selectImagesList = (slide) => {
   const imagesLists = [...getAllElWithChildren(slide.querySelectorAll('ul'), ':scope > li > picture')];
@@ -55,6 +23,15 @@ const selectImagesList = (slide) => {
   imagesLists.at(selectedImagesListIndex).classList.add(`${blockName}__images-list`);
 };
 
+const setContentWrapperHeight = (wrapper, slidesCount) => {
+  const navHeight = getComputedStyle(document.documentElement).getPropertyValue('--nav-height');
+  const navHeightInPx = Number.parseInt(navHeight, 10); // assuming that the --nav-height is in px
+  const windowHeightInPx = window.innerHeight;
+  const slideHeightInPx = windowHeightInPx - navHeightInPx;
+
+  wrapper.style.height = `${slideHeightInPx * slidesCount}px`;
+};
+
 export default async function decorate(block) {
   const activeSlideClass = `${blockName}__slide--active`;
   const activeSlideImageClass = `${blockName}__slide-image--active`;
@@ -66,9 +43,13 @@ export default async function decorate(block) {
   const heading = block.querySelector(':scope > div > :is(h1, h2, h3, h4, h5, h6)');
   const rows = [...block.querySelectorAll(':scope > div')].slice(1);
   const list = createElement('ul', { classes: `${blockName}__slides` });
+  const contentEl = createElement('div', { classes: `${blockName}__content` });
 
   heading.parentElement.replaceWith(heading);
   heading.classList.add(`${blockName}__heading`);
+
+  contentEl.append(heading, list);
+  block.append(contentEl);
 
   // moving the rows to list
   rows.forEach((el) => {
@@ -88,7 +69,8 @@ export default async function decorate(block) {
     selectImagesList(newEl);
   });
 
-  block.append(list);
+  const slidesCount = list.querySelectorAll('.v2-truck-features__images-list picture').length;
+  setContentWrapperHeight(block, slidesCount);
 
   // setting the first slide as active
   let activeSlide = list.children[0];
@@ -155,42 +137,29 @@ export default async function decorate(block) {
     return hasPrevSlide;
   };
 
-  const settings = {
-    currentDelta: 0,
-    scrollThreshold: 60,
-    slideChangeTime: 500,
-    isSlideChangeBlocked: false,
-    hasNextSlide: true,
-    hasPreviousSlide: false,
-    showNextSlide,
-    showPrevSlide,
-  };
+  let slideIndex = 0;
 
-  // adding wheel events
-  const wheelEvents = ['wheel', 'mousewheel']; // mousewhell - for Safari on iOS
+  window.addEventListener('scroll', debounce(() => {
+    const navHeight = getComputedStyle(document.documentElement).getPropertyValue('--nav-height');
+    const navHeightInPx = Number.parseInt(navHeight, 10); // assuming that the --nav-height is in px
+    const windowHeightInPx = window.innerHeight;
+    const slideHeightInPx = windowHeightInPx - navHeightInPx;
+    const blockTopPosition = block.getBoundingClientRect().top;
+    let offset = blockTopPosition;
 
-  wheelEvents.forEach((eventName) => {
-    block.addEventListener(eventName, (e) => {
-      preventEventWhenSlideExists(e.deltaY, settings, e);
+    if (blockTopPosition < navHeightInPx) {
+      if (blockTopPosition < 0) {
+        offset = navHeightInPx + Math.abs(blockTopPosition);
+      }
+      const newSlideIndex = Math.floor(offset / slideHeightInPx);
 
-      onWheel(e, settings);
-    }, { passive: false });
-  });
+      if (newSlideIndex > slideIndex) {
+        showNextSlide();
+      } if (newSlideIndex < slideIndex) {
+        showPrevSlide();
+      }
 
-  // adding touch events
-  let touchStartPosition = 0;
-
-  block.addEventListener('touchstart', (e) => {
-    touchStartPosition = e.changedTouches[0].pageY;
-  });
-  block.addEventListener('touchend', (e) => {
-    const deltaY = touchStartPosition - e.changedTouches[0].pageY;
-
-    onWheel({ deltaY }, settings);
-  });
-  block.addEventListener('touchmove', (e) => {
-    const deltaY = touchStartPosition - e.changedTouches[0].pageY;
-
-    preventEventWhenSlideExists(deltaY, settings, e);
-  });
+      slideIndex = newSlideIndex;
+    }
+  }, 10));
 }
