@@ -92,7 +92,7 @@
 .v2-truck-features__slide-image--active picture,
 .v2-truck-features__slide-image--active img {
   display: flex;
-  height: 280px;
+  height: 275px;
   aspect-ratio: 375/275;
 }
 
