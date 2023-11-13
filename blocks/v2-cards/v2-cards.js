@@ -30,8 +30,22 @@ export default async function decorate(block) {
   buttons.forEach((el) => {
     el.classList.add(`${blockName}__button-container`);
     [...el.querySelectorAll('a')].forEach((link) => {
-      link.classList.add('standalone-link', `${blockName}__button`);
-      link.classList.remove('button', 'button--primary');
+      const up = link.parentElement;
+      if (
+        up.childNodes.length === 1
+        && up.tagName === 'STRONG'
+      ) {
+        link.className = 'button button--small button--primary';
+      }
+      if (
+        up.childNodes.length === 1
+        && up.tagName === 'EM'
+      ) {
+        link.className = 'button button--small button--secondary';
+      } else {
+        link.classList.add('standalone-link', `${blockName}__button`);
+        link.classList.remove('button', 'button--primary');
+      }
     });
   });
 }
