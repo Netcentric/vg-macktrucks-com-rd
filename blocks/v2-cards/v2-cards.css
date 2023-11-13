@@ -43,6 +43,10 @@
   object-fit: cover;
 }
 
+.v2-cards--image-aspect-ratio-7-5 .v2-cards__image {
+  aspect-ratio: 7/5;
+}
+
 .v2-cards__heading {
   font-family: var(--ff-subheadings-medium);
   font-size: var(--headline-5-font-size);
