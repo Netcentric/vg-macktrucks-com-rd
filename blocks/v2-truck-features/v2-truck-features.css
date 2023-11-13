@@ -182,26 +182,30 @@
 }
 
 @media (min-width: 1200px) {
+  .v2-truck-features {
+    --image-margin: calc((min(1440px, 100vw) - 1040px) / -2)
+  }
+
   .v2-truck-features .v2-truck-features__slide {
     padding-left: 36px;
   }
 
   .v2-truck-features__slide-image--active::after {
-    margin-right: calc((min(1440px, 100vw) - 1040px) / -2);
+    margin-right: var(--image-margin);
   }
 
   .v2-truck-features .v2-truck-features__slide-image--active picture {
-    margin-right: calc((min(1440px, 100vw) - 1040px) / -2);
+    margin-right: var(--image-margin);
   }
 
   .v2-truck-features.v2-truck-features--image-left picture {
-    margin-left: calc((min(1440px, 100vw) - 1040px) / -2);
+    margin-left: var(--image-margin);
     margin-right: unset;
   }
 
   .v2-truck-features--image-left
     .v2-truck-features__slide-image--active::after {
-    margin-left: calc((min(1440px, 100vw) - 1040px) / -2);
+    margin-left: var(--image-margin);
     margin-right: unset;
   }
 }
