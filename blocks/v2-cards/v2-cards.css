@@ -54,6 +54,11 @@
   margin: 0 0 7px;
 }
 
+.v2-cards--large-heading .v2-cards__heading {
+  font-size: var(--headline-4-font-size);
+  line-height: var(--headline-4-line-height);
+}
+
 .v2-cards__text-wrapper p {
   margin: 0;
   color: var(--c-primary-black);
