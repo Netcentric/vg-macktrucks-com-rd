@@ -5,6 +5,7 @@ import { getAllElWithChildren } from '../../scripts/scripts.js';
 
 const blockName = 'v2-truck-features';
 const desktopMQ = window.matchMedia('(min-width: 1200px)');
+const SLIDE_SCROLL_PADDING_IN_PX = 100;
 
 const selectImagesList = (slide) => {
   const imagesLists = [...getAllElWithChildren(slide.querySelectorAll('ul'), ':scope > li > picture')];
@@ -30,9 +31,11 @@ const setContentWrapperHeight = (wrapper, slidesCount) => {
   // assuming that the --inpage-navigation-height is in px
   const inPageNavInPx = Number.parseInt(inPageNav, 10);
   const windowHeightInPx = window.innerHeight;
-  const slideHeightInPx = windowHeightInPx - navHeightInPx - inPageNavInPx;
-
-  wrapper.style.height = `${slideHeightInPx * (slidesCount + 1)}px`;
+  const availableViewportInPx = windowHeightInPx - navHeightInPx - inPageNavInPx;
+  // wrapper height is the viewport height without navigations
+  // (to make sure that the slide will fit inside the block) + scroll padding for every slide
+  const wrapperHeight = SLIDE_SCROLL_PADDING_IN_PX * slidesCount + availableViewportInPx;
+  wrapper.style.height = `${wrapperHeight}px`;
 };
 
 export default async function decorate(block) {
@@ -148,18 +151,18 @@ export default async function decorate(block) {
     const inPageNav = getComputedStyle(document.documentElement).getPropertyValue('--inpage-navigation-height');
     // assuming that the --inpage-navigation-height is in px
     const inPageNavInPx = Number.parseInt(inPageNav, 10);
-    const windowHeightInPx = window.innerHeight;
-    const slideHeightInPx = windowHeightInPx - navHeightInPx - inPageNavInPx;
     const { top: blockTopPosition, bottom: blockBottomPosition } = block.getBoundingClientRect();
-    let topOffset = blockTopPosition;
 
-    // eslint-disable-next-line max-len
-    if (blockTopPosition < (navHeightInPx + inPageNavInPx) && blockBottomPosition >= windowHeightInPx) {
-      if (blockTopPosition < 0) {
-        topOffset = navHeightInPx + inPageNavInPx + Math.abs(blockTopPosition);
+    if (
+      blockTopPosition < navHeightInPx + inPageNavInPx
+      && blockBottomPosition > navHeightInPx + inPageNavInPx
+    ) {
+      const blockScrollInPx = Math.abs(blockTopPosition - navHeightInPx - inPageNavInPx);
+      const newSlideIndex = Math.floor(blockScrollInPx / SLIDE_SCROLL_PADDING_IN_PX);
+
+      if (newSlideIndex > slidesCount) {
+        return;
       }
-
-      const newSlideIndex = Math.floor(topOffset / slideHeightInPx);
 
       if (newSlideIndex > slideIndex) {
         showNextSlide();
