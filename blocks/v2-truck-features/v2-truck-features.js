@@ -5,7 +5,7 @@ import { getAllElWithChildren } from '../../scripts/scripts.js';
 
 const blockName = 'v2-truck-features';
 const desktopMQ = window.matchMedia('(min-width: 1200px)');
-const SLIDE_SCROLL_PADDING_IN_PX = 100;
+const SLIDE_SCROLL_PADDING_IN_PX = 200;
 
 const selectImagesList = (slide) => {
   const imagesLists = [...getAllElWithChildren(slide.querySelectorAll('ul'), ':scope > li > picture')];

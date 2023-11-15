@@ -93,7 +93,7 @@
 .v2-truck-features__slide-image--active img {
   display: flex;
   height: 275px;
-  aspect-ratio: 375/275;
+  aspect-ratio: 800/740;
 }
 
 .v2-truck-features__text-wrapper {
@@ -160,13 +160,13 @@
       #dfdfdf 89.49%
     );
     width: 50vw;
-    max-width: 720px;
+    max-width: 800px;
   }
 
   .v2-truck-features__slide-image--active picture,
   .v2-truck-features__slide-image--active img {
     width: 50vw;
-    max-width: 720px;
+    max-width: 800px;
     height: auto;
   }
 
