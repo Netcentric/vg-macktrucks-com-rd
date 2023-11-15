@@ -5,7 +5,13 @@ import { getAllElWithChildren } from '../../scripts/scripts.js';
 
 const blockName = 'v2-truck-features';
 const desktopMQ = window.matchMedia('(min-width: 1200px)');
-const SLIDE_SCROLL_PADDING_IN_PX = 200;
+const DESKTOP_SCROLL_PADDING = 200;
+const MOBILE_SCROLL_PADDING = 400;
+let slideScrollPaddingInPx = desktopMQ.matches ? DESKTOP_SCROLL_PADDING : MOBILE_SCROLL_PADDING;
+
+desktopMQ.addEventListener('change', (event) => {
+  slideScrollPaddingInPx = event.matches ? DESKTOP_SCROLL_PADDING : MOBILE_SCROLL_PADDING;
+});
 
 const selectImagesList = (slide) => {
   const imagesLists = [...getAllElWithChildren(slide.querySelectorAll('ul'), ':scope > li > picture')];
@@ -34,7 +40,7 @@ const setContentWrapperHeight = (wrapper, slidesCount) => {
   const availableViewportInPx = windowHeightInPx - navHeightInPx - inPageNavInPx;
   // wrapper height is the viewport height without navigations
   // (to make sure that the slide will fit inside the block) + scroll padding for every slide
-  const wrapperHeight = SLIDE_SCROLL_PADDING_IN_PX * slidesCount + availableViewportInPx;
+  const wrapperHeight = slideScrollPaddingInPx * slidesCount + availableViewportInPx;
   wrapper.style.height = `${wrapperHeight}px`;
 };
 
@@ -158,7 +164,7 @@ export default async function decorate(block) {
       && blockBottomPosition > navHeightInPx + inPageNavInPx
     ) {
       const blockScrollInPx = Math.abs(blockTopPosition - navHeightInPx - inPageNavInPx);
-      const newSlideIndex = Math.floor(blockScrollInPx / SLIDE_SCROLL_PADDING_IN_PX);
+      const newSlideIndex = Math.floor(blockScrollInPx / slideScrollPaddingInPx);
 
       if (newSlideIndex > slidesCount) {
         return;

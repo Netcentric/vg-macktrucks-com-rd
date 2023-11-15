@@ -87,6 +87,21 @@
   li.v2-truck-features__slide-image--active {
   display: flex;
   justify-content: center;
+  position: relative;
+}
+
+.v2-truck-features__slide-image--active::after {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  background: radial-gradient(
+    52.65% 52.65% at 50% 56%,
+    #fff0 31.16%,
+    #dfdfdf 89.49%
+  );
+  width: 298px;
+  max-width: 800px;
 }
 
 .v2-truck-features__slide-image--active picture,
@@ -150,17 +165,7 @@
   }
 
   .v2-truck-features__slide-image--active::after {
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    background: radial-gradient(
-      52.65% 52.65% at 50% 56%,
-      #fff0 31.16%,
-      #dfdfdf 89.49%
-    );
-    width: 50vw;
-    max-width: 800px;
+    width: 51vw;
   }
 
   .v2-truck-features__slide-image--active picture,
