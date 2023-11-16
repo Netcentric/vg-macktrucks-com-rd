@@ -214,3 +214,10 @@
     margin-right: unset;
   }
 }
+
+@media (min-width: 1440px) {
+  .v2-truck-features__slide-image--active picture, .v2-truck-features__slide-image--active img,
+  .v2-truck-features__slide-image--active::after  {
+    min-width: 800px;
+  }
+}
