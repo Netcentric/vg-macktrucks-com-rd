@@ -15,6 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
 .v2-truck-features__heading {
@@ -29,6 +30,7 @@
   margin: 0;
   list-style: none;
   padding: 0;
+  flex-grow: 1;
 }
 
 .v2-truck-features ul ul:first-of-type {
@@ -49,6 +51,8 @@
   display: none;
   flex-direction: column;
   gap: 8px;
+  height: 100%;
+  justify-content: space-evenly;
 }
 
 .v2-truck-features .v2-truck-features__slide.v2-truck-features__slide--active {
@@ -123,7 +127,7 @@
   text-decoration-color: var(--link-color);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 744px) {
   .v2-truck-features .v2-truck-features__heading {
     width: 368px;
     padding: 100px 0 0 32px;
@@ -132,11 +136,13 @@
   .v2-truck-features .v2-truck-features__slides {
     margin: 22px 0;
     width: 368px;
+    flex-grow: 0;
   }
 
   .v2-truck-features .v2-truck-features__slide {
     padding: 12px 0 12px 48px;
     display: flex;
+    height: auto;
   }
 
   .v2-truck-features .v2-truck-features__slide h4::before {
@@ -175,6 +181,10 @@
     height: auto;
   }
 
+  .v2-truck-features__content {
+    justify-content: flex-start;
+  }
+
   .v2-truck-features.v2-truck-features--image-left .v2-truck-features__content {
     align-items: flex-end;
   }
@@ -188,7 +198,7 @@
 
 @media (min-width: 1200px) {
   .v2-truck-features {
-    --image-margin: calc((min(1440px, 100vw) - 1040px) / -2)
+    --image-margin: calc((min(1440px, 100vw) - 1040px) / -2);
   }
 
   .v2-truck-features .v2-truck-features__slide {
@@ -216,8 +226,9 @@
 }
 
 @media (min-width: 1440px) {
-  .v2-truck-features__slide-image--active picture, .v2-truck-features__slide-image--active img,
-  .v2-truck-features__slide-image--active::after  {
+  .v2-truck-features__slide-image--active picture,
+  .v2-truck-features__slide-image--active img,
+  .v2-truck-features__slide-image--active::after {
     min-width: 800px;
   }
 }
