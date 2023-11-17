@@ -18,6 +18,12 @@
   justify-content: space-between;
 }
 
+@supports (height: 1svh) {
+  .v2-truck-features__content {
+    height: calc(100svh - var(--nav-height) - var(--inpage-navigation-height));
+  }
+}
+
 .v2-truck-features__heading {
   font-family: var(--ff-subheadings-medium);
   font-size: 32px;
