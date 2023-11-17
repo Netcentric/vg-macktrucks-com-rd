@@ -1,5 +1,5 @@
 import {
-  createElement, debounce, unwrapDivs, variantsClassesToBEM,
+  createElement, unwrapDivs, variantsClassesToBEM,
 } from '../../scripts/common.js';
 import { getAllElWithChildren } from '../../scripts/scripts.js';
 
@@ -151,7 +151,7 @@ export default async function decorate(block) {
 
   let slideIndex = 0;
 
-  window.addEventListener('scroll', debounce(() => {
+  window.addEventListener('scroll', () => {
     const navHeight = getComputedStyle(document.documentElement).getPropertyValue('--nav-height');
     const navHeightInPx = Number.parseInt(navHeight, 10); // assuming that the --nav-height is in px
     const inPageNav = getComputedStyle(document.documentElement).getPropertyValue('--inpage-navigation-height');
@@ -180,5 +180,5 @@ export default async function decorate(block) {
 
       slideIndex = newSlideIndex;
     }
-  }, 10));
+  });
 }
