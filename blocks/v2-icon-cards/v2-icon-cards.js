@@ -1,9 +1,7 @@
-import { createElement, variantsClassesToBEM } from '../../scripts/common.js';
+import { createElement } from '../../scripts/common.js';
 
 export default async function decorate(block) {
   const blockName = 'v2-icon-cards';
-  const variantClasses = ['info'];
-  variantsClassesToBEM(block.classList, variantClasses, blockName);
 
   const rows = [...block.querySelectorAll(':scope > div')];
   const columns = [...block.querySelectorAll(':scope > div > div')];
@@ -12,13 +10,12 @@ export default async function decorate(block) {
     row.classList.add(`${blockName}__row`);
   });
 
-  const hasExtraColumn = columns.length === 4;
-
-  if (hasExtraColumn) block.classList.add(`${blockName}--4-cols`);
+  // const hasExtraColumn = columns.length === 4;
+  if (columns.length === 4) block.classList.add(`${blockName}--4-cols`);
 
   columns.forEach((col, idx) => {
-    col.classList.add(`${blockName}__column`, `${blockName}__column--with-text`);
-    if (idx === 3) col.classList.add(`${blockName}__column--4-col`);
+    col.classList.add(`${blockName}__column`);
+    if (idx === 3) col.classList.add(`${blockName}__column--extra-col`);
 
     const allTextElmts = col.querySelectorAll('p');
     const bodyElmts = [];
