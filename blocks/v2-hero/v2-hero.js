@@ -1,25 +1,45 @@
 import {
-  processImagesToOptimizedPicture,
+  getImageURLs,
+  createResponsivePicture,
 } from '../../scripts/common.js';
 
 export default async function decorate(block) {
   const blockName = 'v2-hero';
-  const BREAKPOINTS = {
-    0: '(min-width: 400px)',
-    1: '(min-width: 1200px)',
-  };
-  const images = block.querySelectorAll('p > picture');
+  const images = [...block.querySelectorAll('p > picture')];
+  const imageURLs = getImageURLs(images);
+  const imageData = imageURLs.map((src) => ({ src, breakpoints: [] }));
 
-  processImagesToOptimizedPicture(images, true, BREAKPOINTS, (newPicture) => {
-    // Remove the original containers of the images
-    images.forEach((image) => image.parentNode.remove());
+  if (imageData.length === 1) {
+    imageData[0].breakpoints = [
+      { media: '(min-width: 600px)', width: 600 },
+      { media: '(min-width: 1200px)', width: 1200 },
+      { media: '(min-width: 1440px)', width: 1440 },
+      { media: '(min-width: 1920px)', width: 1920 },
+      { width: 750 },
+    ];
+  }
 
-    const img = newPicture.querySelector('img');
-    img.classList.add(`${blockName}__image`);
+  if (imageData.length > 1) {
+    imageData[0].breakpoints = [
+      { media: '(min-width: 600px)', width: 600 },
+      { width: 750 },
+    ];
 
-    // Prepend the new picture element to the tab
-    block.prepend(newPicture);
-  });
+    imageData[1].breakpoints = [
+      { media: '(min-width: 1200px)', width: 1200 },
+      { media: '(min-width: 1440px)', width: 1440 },
+      { media: '(min-width: 1920px)', width: 1920 },
+    ];
+  }
+
+  const altText = [...block.querySelectorAll('p > picture img.alt')];
+  const newPicture = createResponsivePicture(imageData, true, altText);
+  images.forEach((image) => image.parentNode.remove());
+
+  const img = newPicture.querySelector('img');
+  img.classList.add(`${blockName}__image`);
+
+  block.prepend(newPicture);
 
   const contentWrapper = block.querySelector(':scope > div');
   contentWrapper.classList.add(`${blockName}__content-wrapper`);
