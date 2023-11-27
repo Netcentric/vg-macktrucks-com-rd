@@ -10,12 +10,13 @@ export default async function decorate(block) {
     row.classList.add(`${blockName}__row`);
   });
 
-  // const hasExtraColumn = columns.length === 4;
-  if (columns.length === 4) block.classList.add(`${blockName}--4-cols`);
+  const hasExtraColumn = columns.length === 4;
+  if (hasExtraColumn) block.classList.add(`${blockName}--4-cols`);
 
   columns.forEach((col, idx) => {
+    const isExtraColumn = idx === 3;
     col.classList.add(`${blockName}__column`);
-    if (idx === 3) col.classList.add(`${blockName}__column--extra-col`);
+    if (isExtraColumn) col.classList.add(`${blockName}__column--extra-col`);
 
     const allTextElmts = col.querySelectorAll('p');
     const bodyElmts = [];

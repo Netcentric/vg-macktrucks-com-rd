@@ -1,3 +1,11 @@
+.redesign-v2 .section .v2-icon-cards-wrapper {
+  padding: 0;
+}
+
+.v2-icon-cards:not(.v2-icon-cards--4-cols) {
+  padding: var(--section-div-padding);
+}
+
 .v2-icon-cards__row {
   flex-direction: column;
   display: flex;
@@ -110,4 +118,42 @@
     padding: 20px 40px;
     background: var(--c-primary-white);
   }
+}
+
+.v2-icon-cards--4-cols .v2-icon-cards__column {
+  max-width: unset;
+  width: 100%;
+  gap: 0;
+  padding: 20px 40px;
+}
+
+.v2-icon-cards--4-cols .v2-icon-cards__row {
+  gap: 0;
+}
+
+.v2-icon-cards--4-cols .icon {
+  margin-bottom: 16px;
+}
+
+.v2-icon-cards--4-cols .v2-icon-cards__heading {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.v2-icon-cards--4-cols .v2-icon-cards__body {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.v2-icon-cards__column--extra-col .v2-icon-cards__body {
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--c-accent-copper);
+}
+
+.v2-icon-cards--4-cols .v2-icon-cards__body:last-of-type {
+  margin-bottom: 0;
+}
+
+.v2-icon-cards--4-cols .v2-icon-cards__column--extra-col {
+  background-color: var(--c-primary-gold);
 }
