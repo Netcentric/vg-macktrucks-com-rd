@@ -214,6 +214,8 @@
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
+.v2-icon-cards__column--extra-col a.button:active,
+.v2-icon-cards__column--extra-col a.button:focus,
 .v2-icon-cards__column--extra-col a.button:hover {
   background-color: unset;
 }
