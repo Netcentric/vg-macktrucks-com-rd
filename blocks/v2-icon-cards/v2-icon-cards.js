@@ -1,3 +1,4 @@
+import { isVideoLink } from '../../scripts/video-helper.js';
 import { createElement } from '../../scripts/common.js';
 
 export default async function decorate(block) {
@@ -10,13 +11,16 @@ export default async function decorate(block) {
     row.classList.add(`${blockName}__row`);
   });
 
+  const parentSection = block.parentElement.parentElement;
+  const hasHeader = parentSection.classList.contains('header-with-mark');
   const hasExtraColumn = columns.length === 4;
+
   if (hasExtraColumn) block.classList.add(`${blockName}--4-cols`);
+  if (hasExtraColumn && hasHeader) parentSection.querySelector('.default-content-wrapper').classList.add(`${blockName}--4-cols`);
 
   columns.forEach((col, idx) => {
     const isExtraColumn = idx === 3;
     col.classList.add(`${blockName}__column`);
-    if (isExtraColumn) col.classList.add(`${blockName}__column--extra-col`);
 
     const allTextElmts = col.querySelectorAll('p');
     const bodyElmts = [];
@@ -39,6 +43,29 @@ export default async function decorate(block) {
         btn.parentElement.replaceWith(btn);
       }
     });
+
+    if (isExtraColumn) {
+      col.classList.add(`${blockName}__column--extra-col`);
+      const link = col.querySelector('a');
+      const isVideo = isVideoLink(link);
+
+      if (isVideo) {
+        const playIcon = document.createRange().createContextualFragment(`
+        <a class="${blockName}__videoBtn" href="${link.href}">
+        ${link.title}
+        <span class="icon icon-play">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <path stroke="var(--color-icon, #000)" d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/>
+        <path stroke="var(--color-icon, #000)" stroke-linecap="round" stroke-linejoin="round" d="m10 8 6 4-6 4V8Z"/>
+        </svg>
+        </span>
+        </a>`);
+
+        link.append(...playIcon.children);
+        link.classList.add(`${blockName}__video-icon`);
+        col.append(link);
+      }
+    }
 
     const headings = [...col.querySelectorAll('h1, h2, h3, h4, h5, h6')];
     headings.forEach((heading) => heading.classList.add(`${blockName}__heading`, 'h2'));
