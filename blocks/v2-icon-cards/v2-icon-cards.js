@@ -16,7 +16,7 @@ export default async function decorate(block) {
   const hasExtraColumn = columns.length === 4;
 
   if (hasExtraColumn) block.classList.add(`${blockName}--4-cols`);
-  if (hasExtraColumn && hasHeader) parentSection.querySelector('.default-content-wrapper').classList.add(`${blockName}--4-cols`);
+  if (hasExtraColumn && hasHeader) parentSection.querySelector('.default-content-wrapper').classList.add(`${blockName}--4-cols-header`);
 
   columns.forEach((col, idx) => {
     const isExtraColumn = idx === 3;
