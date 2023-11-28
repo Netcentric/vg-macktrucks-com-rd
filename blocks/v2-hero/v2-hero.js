@@ -33,11 +33,8 @@ export default async function decorate(block) {
   }
 
   const altText = [...block.querySelectorAll('p > picture img.alt')];
-  const newPicture = createResponsivePicture(imageData, true, altText);
+  const newPicture = createResponsivePicture(imageData, true, altText, `${blockName}__image`);
   images.forEach((image) => image.parentNode.remove());
-
-  const img = newPicture.querySelector('img');
-  img.classList.add(`${blockName}__image`);
 
   block.prepend(newPicture);
 

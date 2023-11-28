@@ -271,9 +271,10 @@ export function getImageURLs(pictures) {
  * @param {Array} images - Array of objects defining image data and breakpoints
  * @param {boolean} eager - Whether to load images eagerly
  * @param {string} alt - Alt text for the image
+ * @param {string[]|string} imageClass - Class for the image
  * @returns {HTMLElement} The created picture element
  */
-export function createResponsivePicture(images, eager, alt) {
+export function createResponsivePicture(images, eager, alt, imageClass) {
   const picture = document.createElement('picture');
   let fallbackWidth = '';
   let fallbackSrc = '';
@@ -292,15 +293,21 @@ export function createResponsivePicture(images, eager, alt) {
       const srcsetWebp = constructSrcset(image.src, bp.width, 'webp');
       const srcsetOriginal = constructSrcset(image.src, bp.width, originalFormat);
 
-      const webpSource = document.createElement('source');
-      webpSource.setAttribute('type', 'image/webp');
-      webpSource.setAttribute('srcset', srcsetWebp);
-      if (bp.media) webpSource.setAttribute('media', bp.media);
+      const webpSource = createElement('source', {
+        props: {
+          type: 'image/webp',
+          srcset: srcsetWebp,
+          media: bp.media,
+        },
+      });
 
-      const originalSource = document.createElement('source');
-      originalSource.setAttribute('type', `image/${originalFormat}`);
-      originalSource.setAttribute('srcset', srcsetOriginal);
-      if (bp.media) originalSource.setAttribute('media', bp.media);
+      const originalSource = createElement('source', {
+        props: {
+          type: `image/${originalFormat}`,
+          srcset: srcsetOriginal,
+          media: bp.media,
+        },
+      });
 
       picture.insertBefore(originalSource, picture.firstChild);
       picture.insertBefore(webpSource, originalSource);
@@ -313,11 +320,16 @@ export function createResponsivePicture(images, eager, alt) {
     }
   });
 
-  const img = document.createElement('img');
-  img.src = fallbackSrc;
-  img.alt = alt;
-  img.setAttribute('loading', eager ? 'eager' : 'lazy');
-  img.setAttribute('width', fallbackWidth);
+  const img = createElement('img', {
+    classes: imageClass,
+    props: {
+      src: fallbackSrc,
+      alt,
+      loading: eager ? 'eager' : 'lazy',
+      width: fallbackWidth,
+    },
+  });
+
   picture.appendChild(img);
 
   return picture;
