@@ -1,4 +1,3 @@
-import { isVideoLink } from '../../scripts/video-helper.js';
 import { createElement } from '../../scripts/common.js';
 
 export default async function decorate(block) {
@@ -46,34 +45,17 @@ export default async function decorate(block) {
 
     if (isExtraColumn) {
       col.classList.add(`${blockName}__column--extra-col`);
-      const link = col.querySelector('a');
-      const isVideo = isVideoLink(link);
-
-      if (isVideo) {
-        const playIcon = document.createRange().createContextualFragment(`
-        <a class="${blockName}__videoBtn" href="${link.href}">
-        ${link.title}
-        <span class="icon icon-play">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <path stroke="var(--color-icon, #000)" d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/>
-        <path stroke="var(--color-icon, #000)" stroke-linecap="round" stroke-linejoin="round" d="m10 8 6 4-6 4V8Z"/>
-        </svg>
-        </span>
-        </a>`);
-
-        link.append(...playIcon.children);
-        link.classList.add(`${blockName}__video-icon`);
-        col.append(link);
-      }
+      col.dataset.theme = 'gold';
     }
 
     const headings = [...col.querySelectorAll('h1, h2, h3, h4, h5, h6')];
     headings.forEach((heading) => heading.classList.add(`${blockName}__heading`, 'h2'));
 
     // icons
-    [...col.querySelectorAll('.icon')].forEach((icon) => {
+    [...col.querySelectorAll('.icon')].forEach((icon, index) => {
       const iconParentEl = icon.parentElement;
-      if (iconParentEl.children.length === 1) {
+      if (iconParentEl.children.length === 1 && index === 0) {
+        icon.classList.add('top-icon');
         iconParentEl.replaceWith(icon);
       }
     });
