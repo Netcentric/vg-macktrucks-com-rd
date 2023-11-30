@@ -219,8 +219,9 @@
 }
 
 .v2-icon-cards__column--extra-col a.button--secondary {
-  margin: 4px 0;
   font-style: normal;
+  border: none;
+  margin: 4px 0;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
