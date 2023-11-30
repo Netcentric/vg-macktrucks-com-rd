@@ -36,8 +36,6 @@ export default async function decorate(block) {
 
     const buttons = [...col.querySelectorAll('.button-container a')];
     buttons.forEach((btn) => {
-      btn.classList.add('button', 'button--large', 'button--primary');
-
       if (btn.parentElement.classList.contains('button-container')) {
         btn.parentElement.replaceWith(btn);
       }
