@@ -1,6 +1,6 @@
 import { loadCSS } from '../../scripts/lib-franklin.js';
 // eslint-disable-next-line import/no-cycle
-import {createIframe, isLowResolutionVideoUrl} from '../../scripts/video-helper.js';
+import { createIframe, isLowResolutionVideoUrl } from '../../scripts/video-helper.js';
 import { createElement } from '../../scripts/common.js';
 
 const styles$ = new Promise((r) => {
@@ -77,11 +77,11 @@ const createModal = () => {
       modalContent.append(newContent);
       modalContent.appendChild(closeButton);
     } else if (newContent) {
-
       clearModalContent();
       let videoOrIframe = null;
       if (isLowResolutionVideoUrl(newContent)) {
-      // Leverage the <video> HTML tag to improve video display. This implementation addresses video height inconsistencies observed in Safari when using an iframe.      
+        // Leverage the <video> HTML tag to improve video display
+        // This implementation addresses video height inconsistencies in Safari when using an iframe
         videoOrIframe = document.createElement('video');
         videoOrIframe.setAttribute('src', newContent);
         videoOrIframe.setAttribute('controls', '');
