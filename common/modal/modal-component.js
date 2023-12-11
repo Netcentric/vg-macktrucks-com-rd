@@ -86,6 +86,7 @@ const createModal = () => {
         videoOrIframe.setAttribute('src', newContent);
         videoOrIframe.setAttribute('controls', '');
         videoOrIframe.setAttribute('autoplay', '');
+        videoOrIframe.setAttribute('playsinline', '');
         videoOrIframe.classList.add('modal-video');
         modalContent.append(videoOrIframe);
       } else {
