@@ -98,6 +98,10 @@
   .v2-columns__column--with-text .v2-columns__body {
     margin: 0 0 14px;
   }
+
+  .v2-columns__column--with-text ul.v2-columns__body {
+    margin: 0;
+  }
 }
 
 /* TRUCKS VARIATIONS STYLING */
@@ -126,13 +130,6 @@
 }
 
 .v2-columns.v2-columns--trucks .v2-columns__heading::before {
-  content: '';
-  margin: 0;
-  height: 0;
-  width: 45px;
-  border-bottom: 4px solid var(--c-accent-red);
-  display: block;
-  position: relative;
   top: -28px;
 }
 
@@ -142,22 +139,6 @@
 
 .v2-columns.v2-columns--trucks .v2-columns__column p.no-header {
   margin-top: 24px;
-}
-
-.v2-columns.v2-columns--trucks .v2-columns__column ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.v2-columns.v2-columns--trucks .v2-columns__column li {
-  line-height: 150%;
-  margin-bottom: 8px;
-}
-
-.v2-columns.v2-columns--trucks .v2-columns__column li::before {
-  content: '-';
-  margin-right: 5px;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */

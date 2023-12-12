@@ -59,7 +59,7 @@ export default async function decorate(block) {
       if (hasHeader) {
         const defaultContent = blockParent.querySelector('.default-content-wrapper');
         const header = [...defaultContent.querySelectorAll('h1, h2, h3, h4, h5, h6')];
-        header[0].classList.add(`${blockName}__body-header`);
+        header[0].classList.add(`${blockName}__body-header`, 'with-marker');
         bodyElmts[0].insertAdjacentElement('beforebegin', header[0]);
         defaultContent.remove();
       }
