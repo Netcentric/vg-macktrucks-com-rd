@@ -1205,7 +1205,7 @@ main .section.responsive-title h1 {
   margin-bottom: 0;
 }
 
-.redesign-v2  li::before {
+.redesign-v2 .li--hyphen::before {
   content: '-';
   margin-right: 5px;
 }
