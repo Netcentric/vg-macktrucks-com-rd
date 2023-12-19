@@ -1,3 +1,7 @@
+.v2-columns-container.section--with-background {
+  position: relative;
+}
+
 .v2-columns__row {
   flex-direction: column;
   display: flex;
@@ -111,14 +115,9 @@
   width: 100%;
 }
 
-.redesign-v2 .section--with-background.v2-columns__trucks > picture {
-  overflow: hidden;
-}
-
 .redesign-v2 .section--with-background.v2-columns__trucks > picture img {
-  height: 250%;
   position: relative;
-  bottom: 60%;
+  aspect-ratio: 1/1;
 }
 
 .v2-columns__trucks .v2-columns__column--with-text {
@@ -154,28 +153,14 @@
   gap: 16px;
 }
 
-@media (min-width: 520px) {
-  .redesign-v2 .section--with-background.v2-columns__trucks > picture img {
-    height: 200%;
-    position: relative;
-    bottom: 40%;
-  }
-}
-
-
 @media (min-width: 744px) {
-  .redesign-v2 .section--with-background.v2-columns__trucks > picture {
-    overflow: hidden;
-    height: 200%;
-  }
-
   .redesign-v2 .v2-columns__trucks .v2-columns-wrapper {
     background-color: var(--c-primary-white);
     position: absolute;
     top: calc(200% * 0.125);
     max-width: 485px;
     padding: 40px;
-    left: 10%;
+    margin-left: 72px;
   }
 
   .v2-columns.v2-columns--trucks .v2-columns__heading {
@@ -200,13 +185,10 @@
 @media (min-width: 1200px) {
   .redesign-v2 .v2-columns__trucks .v2-columns-wrapper {
     left: calc(calc(100% - var(--wrapper-width)) / 2);
-  }
-
-  .redesign-v2 .section--with-background.v2-columns__trucks > picture {
-    height: 150%;
+    margin-left: 56px;
   }
 
   .redesign-v2 .section--with-background.v2-columns__trucks > picture img {
-    top: -40%;
+    aspect-ratio: 240 / 139;
   }
 }
