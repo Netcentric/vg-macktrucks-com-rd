@@ -15,7 +15,7 @@ const scrollLeft = (el, leftPadding) => {
       left: leftPadding,
       behavior: 'smooth',
     });
-  }, 1);
+  }, 3000);
 };
 
 const udpateArrowsState = (activeSlideIndex, itemsCount) => {
