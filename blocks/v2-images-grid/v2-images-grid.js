@@ -34,13 +34,14 @@ const udpateArrowsState = (activeSlideIndex, itemsCount) => {
   }
 };
 
-const setActiveSlide = (activeSlideIndex, carouselItemsList, carouselImagesList, modalContent) => {
+// eslint-disable-next-line max-len
+const setActiveSlide = (activeSlideIndex, carouselItemsList, carouselImagesList, modalContent, behavior) => {
   const itemWidth = carouselItemsList.getBoundingClientRect().width;
 
   udpateArrowsState(activeSlideIndex, carouselItemsList.children.length, modalContent);
 
-  scrollLeft(carouselImagesList, activeSlideIndex * 90);
-  scrollLeft(carouselItemsList, activeSlideIndex * itemWidth);
+  scrollLeft(carouselImagesList, activeSlideIndex * 90, behavior);
+  scrollLeft(carouselItemsList, activeSlideIndex * itemWidth, behavior);
 };
 
 const createModalContent = (content) => {
@@ -78,7 +79,7 @@ const createModalContent = (content) => {
     buttonWithImage.addEventListener('click', () => {
       const itemWidth = carouselItemsList.getBoundingClientRect().width;
 
-      scrollLeft(carouselItemsList, index * itemWidth, 'instant');
+      scrollLeft(carouselItemsList, index * itemWidth);
     });
 
     buttonWithImage.append(carouselImage);
@@ -208,7 +209,7 @@ export default function decorate(block) {
     const carouselImagesList = modalContent.querySelector(`.${blockClassName}__carousel-preview-list`);
 
     await showImagesGridModal(modalContent);
-    setActiveSlide(0, carouselItemsList, carouselImagesList, modalContent);
+    setActiveSlide(0, carouselItemsList, carouselImagesList, modalContent, 'instant');
   });
 
   block.append(button);
