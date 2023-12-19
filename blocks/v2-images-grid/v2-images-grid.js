@@ -8,12 +8,12 @@ import { showModal } from '../../common/modal/modal-component.js';
 const blockClassName = 'v2-images-grid';
 
 const scrollLeft = (el, leftPadding) => {
-  console.log(leftPadding, el.getBoundingClientRect().width);
-
-  el.scrollTo({
-    left: leftPadding,
-    behavior: 'smooth',
-  });
+  setTimeout(() => {
+    el.scrollTo({
+      left: leftPadding,
+      behavior: 'smooth',
+    });
+  }, 100);
 };
 
 const udpateArrowsState = (activeSlideIndex, itemsCount) => {
