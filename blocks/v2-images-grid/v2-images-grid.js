@@ -10,10 +10,12 @@ const blockClassName = 'v2-images-grid';
 const scrollLeft = (el, leftPadding) => {
   console.log(leftPadding);
 
-  el.scrollTo({
-    left: leftPadding,
-    behavior: 'smooth',
-  });
+  setTimeout(() => {
+    el.scrollTo({
+      left: leftPadding,
+      behavior: 'smooth',
+    });
+  }, 1);
 };
 
 const udpateArrowsState = (activeSlideIndex, itemsCount) => {
