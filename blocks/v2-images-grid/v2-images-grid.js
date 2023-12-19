@@ -8,6 +8,8 @@ import { showModal } from '../../common/modal/modal-component.js';
 const blockClassName = 'v2-images-grid';
 
 const scrollLeft = (el, leftPadding) => {
+  console.log(leftPadding);
+
   el.scrollTo({
     left: leftPadding,
     behavior: 'smooth',
@@ -41,9 +43,6 @@ const setActiveSlide = (activeSlideIndex, carouselItemsList, carouselImagesList,
 
   scrollLeft(carouselImagesList, activeSlideIndex * 90);
   scrollLeft(carouselItemsList, activeSlideIndex * itemWidth);
-
-  // eslint-disable-next-line no-debugger
-  debugger;
 };
 
 const createModalContent = (content) => {
