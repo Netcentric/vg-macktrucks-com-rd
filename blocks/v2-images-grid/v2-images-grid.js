@@ -194,7 +194,7 @@ export default function decorate(block) {
         const carouselImagesList = modalContent.querySelector(`.${blockClassName}__carousel-preview-list`);
 
         await showImagesGridModal(modalContent);
-        setActiveSlide(idx, carouselItemsList, carouselImagesList, modalContent);
+        setActiveSlide(idx, carouselItemsList, carouselImagesList, modalContent, 'instant');
       });
 
       return;
@@ -211,7 +211,7 @@ export default function decorate(block) {
     const carouselImagesList = modalContent.querySelector(`.${blockClassName}__carousel-preview-list`);
 
     await showImagesGridModal(modalContent);
-    setActiveSlide(0, carouselItemsList, carouselImagesList, modalContent, 'instant');
+    setActiveSlide(0, carouselItemsList, carouselImagesList, modalContent);
   });
 
   block.append(button);
