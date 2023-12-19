@@ -8,7 +8,7 @@ import { showModal } from '../../common/modal/modal-component.js';
 const blockClassName = 'v2-images-grid';
 
 const scrollLeft = (el, leftPadding) => {
-  console.log(leftPadding);
+  console.log(leftPadding, el.getBoundingClientRect().width);
 
   el.scrollTo({
     left: leftPadding,
