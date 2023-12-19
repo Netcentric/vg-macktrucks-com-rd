@@ -41,6 +41,9 @@ const setActiveSlide = (activeSlideIndex, carouselItemsList, carouselImagesList,
 
   scrollLeft(carouselImagesList, activeSlideIndex * 90);
   scrollLeft(carouselItemsList, activeSlideIndex * itemWidth);
+
+  // eslint-disable-next-line no-debugger
+  debugger;
 };
 
 const createModalContent = (content) => {
