@@ -7,13 +7,11 @@ import { showModal } from '../../common/modal/modal-component.js';
 
 const blockClassName = 'v2-images-grid';
 
-const scrollLeft = (el, leftPadding) => {
-  setTimeout(() => {
-    el.scrollTo({
-      left: leftPadding,
-      behavior: 'smooth',
-    });
-  }, 100);
+const scrollLeft = (el, leftPadding, behavior = 'smooth') => {
+  el.scrollTo({
+    left: leftPadding,
+    behavior,
+  });
 };
 
 const udpateArrowsState = (activeSlideIndex, itemsCount) => {
@@ -80,7 +78,7 @@ const createModalContent = (content) => {
     buttonWithImage.addEventListener('click', () => {
       const itemWidth = carouselItemsList.getBoundingClientRect().width;
 
-      scrollLeft(carouselItemsList, index * itemWidth);
+      scrollLeft(carouselItemsList, index * itemWidth, 'instant');
     });
 
     buttonWithImage.append(carouselImage);
