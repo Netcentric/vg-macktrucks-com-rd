@@ -128,7 +128,7 @@
   margin: 28px 0 10px;
 }
 
-.v2-columns.v2-columns--trucks .v2-columns__heading::before {
+.v2-columns.v2-columns--trucks .v2-columns__heading.with-marker::before {
   top: -28px;
 }
 
