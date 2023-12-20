@@ -4,10 +4,10 @@ export default async function decorate(block) {
   const blockParent = block.parentElement.parentElement;
   const blockName = 'v2-columns';
 
-  const variantClasses = ['trucks'];
+  const variantClasses = ['with-background-image'];
   variantsClassesToBEM(block.classList, variantClasses, blockName);
 
-  const isTruckVariant = block.classList.contains(`${blockName}--trucks`);
+  const isBackgroundImageVariant = block.classList.contains(`${blockName}--with-background-image`);
   const hasHeader = blockParent.classList.contains('header-with-mark');
 
   const rows = [...block.querySelectorAll(':scope > div')];
@@ -43,22 +43,18 @@ export default async function decorate(block) {
     block.querySelectorAll(`ul.${blockName}__body li`).forEach((item) => {
       item.classList.add('li--hyphen');
     });
-
     const buttons = [...col.querySelectorAll('.button-container a')];
 
-    if (isTruckVariant) {
-      if (!hasHeader) bodyElmts[0].classList.add('no-header');
-      blockParent.classList.add(`${blockName}__trucks`);
-
+    if (isBackgroundImageVariant) {
+      blockParent.classList.add(`${blockName}-container--with-background-image`);
       const btnSection = createElement('div', { classes: `${blockName}__btn-section` });
-      const lastbodyElmt = bodyElmts[bodyElmts.length - 1];
-      lastbodyElmt.insertAdjacentElement('afterend', btnSection);
 
       buttons.forEach((btn) => {
         const btnContainer = btn.closest('.button-container');
         btnContainer.replaceWith(btn);
         btnSection.append(btn);
       });
+      if (!picture) col.append(btnSection);
 
       if (hasHeader) {
         const defaultContent = blockParent.querySelector('.default-content-wrapper');
@@ -70,8 +66,6 @@ export default async function decorate(block) {
     } else {
       buttons.forEach((btn) => {
         btn.classList.add('button--large');
-        const btnContainer = btn.closest('.button-container');
-        btnContainer.replaceWith(btn);
       });
     }
 
