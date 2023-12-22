@@ -25,6 +25,17 @@
 
 .v2-pencil-promo__content a {
   color: var(--c-primary-white);
+  text-decoration: underline;
+  text-decoration-color: var(--c-accent-red);
+  text-underline-offset: 8px;
+}
+
+.v2-pencil-promo__promo-banner a {
+  display: none;
+}
+
+.v2-pencil-promo__content a:hover {
+  text-decoration-color: var(--c-primary-white);
 }
 
 .v2-pencil-promo__image {
@@ -59,6 +70,14 @@
   background: var(--c-accent-copper);
 }
 
+.v2-pencil-promo--pencil-banner-copper .v2-pencil-promo__content a {
+  text-decoration-color: var(--c-primary-white);
+}
+
+.v2-pencil-promo--pencil-banner-copper .v2-pencil-promo__content a:hover {
+  text-decoration-color: var(--c-accent-red);
+}
+
 /* Promo banner styles */
 .v2-pencil-promo__promo-banner .v2-pencil-promo__content-wrapper {
   width: 100%;
@@ -84,10 +103,6 @@
   font: var(--headline-5-font-size)/var(--headline-5-line-height) var(--ff-body);
   max-width: 343px;
   float: right;
-}
-
-.v2-pencil-promo__promo-banner a {
-  display: none;
 }
 
 /* stylelint-disable-next-line selector-not-notation */
