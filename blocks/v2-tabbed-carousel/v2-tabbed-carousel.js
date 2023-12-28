@@ -1,7 +1,8 @@
-import { createElement, unwrapDivs } from '../../scripts/common.js';
+import { createElement, unwrapDivs, variantsClassesToBEM } from '../../scripts/common.js';
 import { setCarouselPosition, listenScroll } from '../../scripts/carousel-helper.js';
 
 const blockName = 'v2-tabbed-carousel';
+const variantClasses = ['fade-in', 'small-tabs'];
 
 const moveNavigationLine = (navigationLine, activeTab, tabNavigation) => {
   const { x: navigationX } = tabNavigation.getBoundingClientRect();
@@ -43,6 +44,7 @@ const updateActiveItem = (elements, entry) => {
 };
 
 export default function decorate(block) {
+  variantsClassesToBEM(block.classList, variantClasses, blockName);
   const carouselContainer = createElement('div', { classes: `${blockName}__container` });
   const carouselItems = createElement('ul', { classes: `${blockName}__items` });
   carouselContainer.append(carouselItems);
@@ -63,7 +65,7 @@ export default function decorate(block) {
 
     button.addEventListener('mouseout', () => {
       timeout = setTimeout(() => {
-        const activeItem = document.querySelector(`.${blockName}__navigation-item.active`);
+        const activeItem = block.querySelector(`.${blockName}__navigation-item.active`);
         moveNavigationLine(navigationLine, activeItem, tabNavigation);
       }, 600);
     });
@@ -76,29 +78,38 @@ export default function decorate(block) {
 
   const tabItems = block.querySelectorAll(':scope > div');
   tabItems.forEach((tabItem, index) => {
-    const liItem = createElement('li', { classes: `${blockName}__item` });
-    const figure = createElement('figure', { classes: `${blockName}__figure` });
-    const tabContent = tabItem.querySelector('p');
+    const picture = tabItem.querySelector('picture');
+    if (picture) {
+      const liItem = createElement('li', { classes: `${blockName}__item` });
+      const figure = createElement('figure', { classes: `${blockName}__figure` });
+      const tabContent = tabItem.querySelector('p');
 
-    figure.append(tabContent.querySelector('picture'));
+      figure.append(tabContent.querySelector('picture'));
 
-    const figureCaption = createElement('figcaption');
-    const lastItems = [...tabContent.childNodes].at(-1);
-    if (lastItems.nodeType === Node.TEXT_NODE) {
-      figureCaption.append(lastItems);
-      figure.append(figureCaption);
+      const figureCaption = createElement('figcaption');
+      const lastItems = [...tabContent.childNodes].at(-1);
+      if (lastItems.nodeType === Node.TEXT_NODE) {
+        figureCaption.append(lastItems);
+        figure.append(figureCaption);
+      }
+
+      figure.appendChild(figureCaption);
+      liItem.append(figure);
+      carouselItems.appendChild(liItem);
+
+      // navigation item
+      const tabTitle = tabItem.querySelector('h3');
+      const navItem = buildTabNavigation(tabTitle.innerHTML, index);
+      tabNavigation.append(navItem);
+      tabTitle.remove();
+      tabItem.innerHTML = '';
+    } else {
+      const carouselTitle = tabItem.querySelector('h2');
+      carouselTitle?.classList.add(`${blockName}__title`);
+      const carouselText = tabItem.querySelector('p');
+      carouselText?.classList.add(`${blockName}__text`);
+      tabItem.classList.add(`${blockName}__heading-wrapper`);
     }
-
-    figure.appendChild(figureCaption);
-    liItem.append(figure);
-    carouselItems.appendChild(liItem);
-
-    // navigation item
-    const tabTitle = tabItem.querySelector('h3');
-    const navItem = buildTabNavigation(tabTitle.innerHTML, index);
-    tabNavigation.append(navItem);
-    tabTitle.remove();
-    tabItem.innerHTML = '';
   });
 
   tabNavigation.append(navigationLine);
