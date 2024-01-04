@@ -70,7 +70,8 @@ const jumpToCarouselItem = (carousel, index, navigation) => {
 };
 
 export default function decorate(block) {
-  const currentVariant = variantClasses.find((variant) => block.classList.contains(variant)) || null;
+  const currentVariant = variantClasses.find((variant) => block.classList.contains(variant))
+    || null;
   variantsClassesToBEM(block.classList, variantClasses, blockName);
   const carouselContainer = createElement('div', { classes: `${blockName}__container` });
   const carouselItems = createElement('ul', { classes: `${blockName}__items` });
