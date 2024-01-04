@@ -233,18 +233,26 @@ main .section.v2-tabbed-carousel-container {
 /* small-tabs variant css ends here */
 
 /* fade-in variant css starts here */
+.v2-tabbed-carousel--fade-in .v2-tabbed-carousel__container {
+  overflow: hidden;
+}
+
+.v2-tabbed-carousel--fade-in .v2-tabbed-carousel__items {
+  overflow: unset;
+  scroll-behavior: unset;
+  scroll-snap-type: unset;
+}
 
 .v2-tabbed-carousel--fade-in .v2-tabbed-carousel__item {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 1200ms ease-out,
-    visibility 1200ms ease-out;
-  will-change: opacity, visibility;
+  transition: opacity 0s;
 }
 
 .v2-tabbed-carousel--fade-in .v2-tabbed-carousel__item.active {
   opacity: 1;
   visibility: visible;
+  transition: opacity 1200ms ease-out;
 }
 
 /* fade-in variant css ends here */
