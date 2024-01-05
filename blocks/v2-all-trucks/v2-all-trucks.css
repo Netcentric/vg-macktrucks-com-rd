@@ -285,7 +285,6 @@
 
   .v2-all-trucks .v2-all-trucks__truck .v2-all-trucks__truck-image picture:last-child {
     display: flex;
-    align-items: center;
     justify-content: center;
     overflow: hidden;
     width: 100%;
