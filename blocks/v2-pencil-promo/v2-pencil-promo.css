@@ -59,6 +59,7 @@
   background: var(--c-accent-copper);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .v2-pencil-promo--pencil-banner-copper .v2-pencil-promo__content a {
   text-decoration-color: var(--c-primary-white);
 }
