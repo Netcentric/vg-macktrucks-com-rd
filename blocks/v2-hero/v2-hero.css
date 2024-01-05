@@ -292,7 +292,7 @@
 
 .v2-hero__content.with-text .v2-hero__text {
   word-wrap: break-word;
-  letter-spacing: .16px;
+  letter-spacing: .01rem;
   margin: 0;
 }
 
@@ -319,10 +319,6 @@
 }
 
 @media (min-width: 1200px) {
-  .v2-hero__content.with-text .v2-hero__text {
-    width: 42%;
-  }
-
   .v2-hero.no-image .v2-hero__content {
     padding-bottom: 40px;
   }
