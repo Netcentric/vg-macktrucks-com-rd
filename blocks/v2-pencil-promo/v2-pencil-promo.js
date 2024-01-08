@@ -2,6 +2,7 @@ import {
   getImageURLs,
   createResponsivePicture,
   variantsClassesToBEM,
+  createElement,
 } from '../../scripts/common.js';
 
 export default async function decorate(block) {
@@ -55,6 +56,13 @@ export default async function decorate(block) {
 
   const content = block.querySelector(':scope > div > div');
   content.classList.add(`${blockName}__content`);
+  if (content.querySelectorAll('p').length === 0) {
+    const p = createElement('p');
+    while (content.firstChild) {
+      p.appendChild(content.firstChild);
+    }
+    content.appendChild(p);
+  }
 
   const ctaButtons = content.querySelectorAll('.button-container > a');
   [...ctaButtons].forEach((b) => {
