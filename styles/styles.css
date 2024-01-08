@@ -35,7 +35,8 @@
 
   /* Applied colors */
   --background-color: var(--c-primary-white);
-  --text-color: var(--c-primary-black);
+  --text-color-black: var(--c-primary-black);
+  --text-color-white: var(--c-primary-white);
   --link-color: var(--c-accent-red);
   --link-hover-color: var(--c-primary-black);
   --header-color: var(--c-primary-white);
