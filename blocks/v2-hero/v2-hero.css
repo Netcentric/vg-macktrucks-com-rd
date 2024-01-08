@@ -1,4 +1,6 @@
 .v2-hero {
+  --text-color: var(--c-primary-white);
+  
   /* height of the hero block is set in main style to prevent CLS */
   position: relative;
   overflow: hidden;
@@ -21,7 +23,7 @@
 }
 
 .v2-hero__content {
-  color: var(--text-color-white);
+  color: var(--text-color);
   padding: 40px 16px;
   display: flex;
   flex-direction: column;
@@ -35,7 +37,6 @@
 
 .v2-hero__heading {
   margin: 24px 0;
-  color: var(--text-color-white);
   font-family: var(--ff-headline-medium);
   font-size: 28px;
   font-style: normal;
@@ -53,7 +54,7 @@
   height: 48px;
   display: inline-flex;
   align-items: center;
-  color: var(--text-color-white);
+  color: var(--text-color);
   text-align: center;
   font-family: var(--ff-subheadings-medium);
   font-size: 14px;
@@ -116,7 +117,7 @@
   justify-content: space-between;
   background-color: rgb(29 29 29 / 85%);
   list-style-type: none;
-  color: var(--text-color-white);
+  color: var(--text-color);
   margin: 0;
   padding: 35px 40px 40px;
   text-align: center;
@@ -270,16 +271,8 @@
 }
 
 /* Dark and Light Variants */
-/* stylelint-disable-next-line no-descending-specificity */
-.v2-hero--dark .v2-hero__content,
-.v2-hero--dark .v2-hero__heading {
-  color: var(--text-color-white);
-}
-
-/* stylelint-disable-next-line no-descending-specificity */
-.v2-hero--light .v2-hero__content,
-.v2-hero--light .v2-hero__heading {
-  color: var(--text-color-black);
+.v2-hero--light {
+  --text-color: var(--c-primary-black);
 }
 
 .v2-hero--dark .v2-hero__content-wrapper {
@@ -306,12 +299,10 @@
 .v2-hero.no-image .v2-hero__content-wrapper,
 .v2-hero.no-image.v2-hero--dark .v2-hero__content-wrapper {
   background-color: var(--c-primary-black);
-  color: var(--text-color-black);
 }
 
 .v2-hero.no-image.v2-hero--light .v2-hero__content-wrapper {
   background-color: var(--c-primary-white);
-  color: var(--text-color-white);
 }
 
 @media (min-width: 1200px) {
