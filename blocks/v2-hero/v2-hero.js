@@ -69,7 +69,7 @@ export default async function decorate(block) {
 
   const ctaButtons = content.querySelectorAll('.button-container > a');
   [...ctaButtons].forEach((b) => {
-    b.classList.add(`${blockName}__cta`, 'button--cta');
+    b.classList.add('button--cta', 'button--large');
     b.classList.remove('button--primary');
     b.parentElement.classList.add(`${blockName}__cta-wrapper`);
   });
