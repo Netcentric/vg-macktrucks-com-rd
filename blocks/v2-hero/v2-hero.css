@@ -54,7 +54,7 @@
   height: 48px;
   display: inline-flex;
   align-items: center;
-  color: var(--text-color);
+  color: var(--c-primary-white);
   text-align: center;
   font-family: var(--ff-subheadings-medium);
   font-size: 14px;
