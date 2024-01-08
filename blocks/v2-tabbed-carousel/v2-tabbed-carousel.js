@@ -86,7 +86,7 @@ export default function decorate(block) {
     const button = createElement('button');
     const moveCarousel = !currentVariant || currentVariant !== variants.fadeIn
       ? () => setCarouselPosition(carouselItems, index)
-      : () => jumpToCarouselItem(carouselItems, index, tabNavigation);
+      : () => jumpToCarouselItem(carouselItems, (index - 1), tabNavigation);
     button.addEventListener('click', moveCarousel);
     button.addEventListener('mouseover', (e) => {
       clearTimeout(timeout);
