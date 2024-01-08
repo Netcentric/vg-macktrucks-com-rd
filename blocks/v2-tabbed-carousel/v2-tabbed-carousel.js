@@ -116,14 +116,13 @@ export default function decorate(block) {
 
       figure.append(tabContent.querySelector('picture'));
 
-      const figureCaption = createElement('figcaption');
       const lastItems = [...tabContent.childNodes].at(-1);
-      if (lastItems.nodeType === Node.TEXT_NODE) {
+      if (lastItems.nodeType === Node.TEXT_NODE && lastItems.textContent.trim() !== '') {
+        const figureCaption = createElement('figcaption');
         figureCaption.append(lastItems);
         figure.append(figureCaption);
       }
 
-      figure.appendChild(figureCaption);
       liItem.append(figure);
       carouselItems.appendChild(liItem);
 

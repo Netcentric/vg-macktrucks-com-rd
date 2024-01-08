@@ -7,7 +7,7 @@
   --caption-text-color: var(--c-primary-white);
   --navigation-color: #8D8D8D;
   --navigation-active-color: var(--c-primary-white);
-  --navigation-line-default-color: #8D8D8D;
+  --navigation-line-default-color: #393939;
   --navigation-line-active-color: var(--c-accent-red);
   --navigation-padding: 24px 16px;
   --navigation-line-top: 21px;
@@ -208,7 +208,7 @@ main .section.v2-tabbed-carousel-container {
     flex-direction: row;
     align-items: center;
   }
-  
+
   .v2-tabbed-carousel__text {
     font-size: var(--body-1-font-size);
     letter-spacing: 0.16px;
@@ -220,7 +220,7 @@ main .section.v2-tabbed-carousel-container {
 .v2-tabbed-carousel--small-tabs .v2-tabbed-carousel__navigation-item button {
   max-width: 80px;
   min-width: 100%;
-  padding: 20px 8px 10px;
+  padding: 20px 20px 10px;
   text-wrap: balance;
 }
 
