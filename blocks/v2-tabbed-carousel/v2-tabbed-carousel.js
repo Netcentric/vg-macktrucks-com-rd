@@ -85,7 +85,7 @@ export default function decorate(block) {
     const listItem = createElement('li', { classes: `${blockName}__navigation-item` });
     const button = createElement('button');
     const moveCarousel = !currentVariant || currentVariant !== variants.fadeIn
-      ? () => setCarouselPosition(carouselItems, index)
+      ? () => setCarouselPosition(carouselItems, (index - 1))
       : () => jumpToCarouselItem(carouselItems, (index - 1), tabNavigation);
     button.addEventListener('click', moveCarousel);
     button.addEventListener('mouseover', (e) => {

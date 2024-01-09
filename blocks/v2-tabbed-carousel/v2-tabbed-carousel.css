@@ -41,6 +41,7 @@ main .section.v2-tabbed-carousel-container {
   scroll-snap-align: center;
   text-align: center;
   width: 100%;
+  list-style: none;
 }
 
 .v2-tabbed-carousel__item img {
