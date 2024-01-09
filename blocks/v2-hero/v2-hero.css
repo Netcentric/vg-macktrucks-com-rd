@@ -31,7 +31,7 @@
   width: 100%;
 }
 
-.v2-hero__content * {
+.v2-hero-container:not([data-page='pdp']) .v2-hero__content * {
   max-width: 600px;
 }
 
@@ -42,6 +42,22 @@
   font-style: normal;
   line-height: 120%;
   letter-spacing: -0.56px;
+}
+
+.v2-hero .v2-hero__cta:any-link {
+  margin: 0;
+  padding: 2px 20px 0;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--c-primary-white);
+  text-align: center;
+  font-family: var(--ff-subheadings-medium);
+  font-size: 14px;
+  font-style: normal;
+  line-height: 18px;
+  letter-spacing: 1.12px;
+  border-radius: 2px;
 }
 
 .v2-hero__cta-wrapper {

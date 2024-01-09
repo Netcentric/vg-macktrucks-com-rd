@@ -9,6 +9,8 @@ const blockName = 'v2-hero';
 
 export default async function decorate(block) {
   variantsClassesToBEM(block.classList, variantClasses, blockName);
+  const blockContainer = block.parentElement.parentElement;
+  const isPdp = blockContainer.dataset.page === 'pdp';
 
   const images = [...block.querySelectorAll('p > picture')];
   const imageURLs = getImageURLs(images);
@@ -69,7 +71,7 @@ export default async function decorate(block) {
 
   const ctaButtons = content.querySelectorAll('.button-container > a');
   [...ctaButtons].forEach((b) => {
-    b.classList.add('button--cta', 'button--large');
+    b.classList.add((isPdp ? `${blockName}__cta` : 'button--large'), 'button--cta');
     b.classList.remove('button--primary');
     b.parentElement.classList.add(`${blockName}__cta-wrapper`);
   });
