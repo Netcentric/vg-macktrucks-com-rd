@@ -30,7 +30,7 @@
   display: none;
 }
 
-.v2-pencil-promo__content-wrapper:hover .v2-pencil-promo__content a {
+.v2-pencil-promo__pencil-banner:hover .v2-pencil-promo__content a {
   text-decoration-color: var(--text-color);
 }
 
@@ -79,7 +79,7 @@
   text-decoration-color: var(--text-color);
 }
 
-.v2-pencil-promo--pencil-banner-copper .v2-pencil-promo__content-wrapper:hover .v2-pencil-promo__content a {
+.v2-pencil-promo--pencil-banner-copper:hover .v2-pencil-promo__content a {
   text-decoration-color: var(--c-primary-black);
 }
 
