@@ -12,7 +12,7 @@ function handleSlider(block) {
   clippingSlider.addEventListener('input', (event) => {
     const newValue = `${event.target.value}%`;
     clippedImage.style.setProperty('--exposure', newValue);
-    dividerLine.style.setProperty('--position', newValue);
+    dividerLine.style.setProperty('--exposure', newValue);
   });
 }
 
@@ -58,6 +58,7 @@ export default async function decorate(block) {
     });
 
     const divider = createElement('div', { classes: [`${blockName}__image-divider`, 'image-divider'] });
+    divider.style.setProperty('--exposure', '50%');
     const label = createElement('label', { classes: [`${blockName}__label`, 'image-compare-label'] });
     const input = createElement('input', { classes: [`${blockName}__input`, 'image-compare-input'] });
     input.type = 'range';
