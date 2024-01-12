@@ -83,10 +83,23 @@
   padding: 0;
   position: absolute;
   inset: 0;
+  height: 100%;
 }
 
 .v2-slider__input:hover {
   border: none;
+}
+
+.v2-slider__input::-moz-range-thumb {
+  border: none;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  background-color: var(--c-primary-gold);
+  cursor: pointer;
+  border-radius: 0;
+  margin-top: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"><path fill="black" d="M10.293 23.328a.918.918 0 0 0 0 1.344l6.364 6.05c.39.37 1.023.37 1.414 0a.918.918 0 0 0 0-1.345L12.414 24l5.657-5.377a.918.918 0 0 0 0-1.345 1.037 1.037 0 0 0-1.414 0l-6.364 6.05Zm27.414 1.344a.918.918 0 0 0 0-1.344l-6.364-6.05a1.037 1.037 0 0 0-1.414 0 .918.918 0 0 0 0 1.345L35.586 24l-5.657 5.377a.918.918 0 0 0 0 1.345c.39.37 1.024.37 1.414 0l6.364-6.05ZM11 25h26v-2H11v2Z"/></svg>');
+  box-shadow: 0 8px 16px rgb(0 0 0 / 30%);
 }
 
 .v2-slider__input::-webkit-slider-thumb {
