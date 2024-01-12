@@ -26,6 +26,8 @@ export default async function decorate(block) {
   const images = [...content.querySelectorAll('p > picture')];
   const has2Images = images.length === 2;
 
+  if (has2Images) block.classList.add('two-images');
+
   const header = createElement('div', { classes: `${blockName}__header` });
   const heading = [...content.querySelectorAll('h1, h2, h3, h4, h5, h6')][0];
   heading.classList.add(`${blockName}__title`, 'with-marker');
@@ -52,17 +54,10 @@ export default async function decorate(block) {
         model.classList.add('model', `model-${idx + 1}`);
         models.appendChild(model);
       }
-
-      if (idx === 0) {
-        slider.appendChild(img);
-      } else {
-        const imgWrapper = createElement('span', { classes: [`${blockName}__image-wrapper`, `image-${idx + 1}-wrapper`] });
-        const divider = createElement('div', { classes: [`${blockName}__image-divider`, 'image-divider'] });
-        imgWrapper.append(divider, img);
-        slider.appendChild(imgWrapper);
-      }
+      slider.appendChild(img);
     });
 
+    const divider = createElement('div', { classes: [`${blockName}__image-divider`, 'image-divider'] });
     const label = createElement('label', { classes: [`${blockName}__label`, 'image-compare-label'] });
     const input = createElement('input', { classes: [`${blockName}__input`, 'image-compare-input'] });
     input.type = 'range';
@@ -70,7 +65,9 @@ export default async function decorate(block) {
     input.max = '100';
     input.value = '50';
     label.appendChild(input);
-    content.append(slider, label, models);
+    slider.append(label, divider);
+
+    content.append(slider, models);
 
     handleSlider(block);
   } else {
