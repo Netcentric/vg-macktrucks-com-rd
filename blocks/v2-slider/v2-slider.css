@@ -52,7 +52,6 @@
   position: absolute;
   top: 0;
   width: 100%;
-  filter: drop-shadow(-4px 0 0 var(--c-primary-gold));
 }
 
 .bg-light-gray .v2-slider__images {
@@ -99,6 +98,17 @@
   margin-top: 0;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none"><path transform="translate(-18, -12)" d="M49.2887 31.9605C49.4567 31.7925 49.4567 31.52 49.2887 31.352L46.55 28.6133C46.382 28.4453 46.1095 28.4453 45.9415 28.6133C45.7734 28.7814 45.7734 29.0539 45.9415 29.2219L48.3758 31.6562L45.9415 34.0906C45.7734 34.2586 45.7734 34.5311 45.9415 34.6992C46.1095 34.8672 46.382 34.8672 46.55 34.6992L49.2887 31.9605ZM28.0241 31.352C27.8561 31.52 27.8561 31.7925 28.0241 31.9605L30.7627 34.6992C30.9308 34.8672 31.2033 34.8672 31.3713 34.6992C31.5394 34.5311 31.5394 34.2586 31.3713 34.0906L28.937 31.6563L31.3713 29.2219C31.5394 29.0539 31.5394 28.7814 31.3713 28.6133C31.2033 28.4453 30.9308 28.4453 30.7627 28.6133L28.0241 31.352ZM48.9844 31.2259L28.3284 31.2259V32.0866L48.9844 32.0866V31.2259Z" fill="black"/></svg>');
   box-shadow: 0 8px 16px rgb(0 0 0 / 20%);
+}
+
+.v2-slider__image-divider {
+  --position: 50%;
+
+  background-color: var(--c-primary-gold);
+  width: 4px;
+  height: 100%;
+  position: absolute;
+  left: calc(var(--position) - 2px);
+  z-index: 1;
 }
 
 .v2-slider-container[data-image-background='Light-gray'] {

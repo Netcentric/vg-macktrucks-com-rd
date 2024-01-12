@@ -1,21 +1,22 @@
 import {
   createElement,
-  removeEmptyTags,
 } from '../../scripts/common.js';
+
+const blockName = 'v2-slider';
 
 function handleSlider(block) {
   const clippedImage = block.querySelector('.image-2');
   const clippingSlider = block.querySelector('.image-compare-input');
+  const dividerLine = block.querySelector('.image-divider');
 
   clippingSlider.addEventListener('input', (event) => {
     const newValue = `${event.target.value}%`;
     clippedImage.style.setProperty('--exposure', newValue);
+    dividerLine.style.setProperty('--position', newValue);
   });
 }
 
 export default async function decorate(block) {
-  const blockName = 'v2-slider';
-
   const contentWrapper = block.querySelector(':scope > div');
   contentWrapper.classList.add(`${blockName}__content-wrapper`);
 
@@ -56,8 +57,8 @@ export default async function decorate(block) {
         slider.appendChild(img);
       } else {
         const imgWrapper = createElement('span', { classes: [`${blockName}__image-wrapper`, `image-${idx + 1}-wrapper`] });
-        img.style.setProperty('clip-path', '');
-        imgWrapper.appendChild(img);
+        const divider = createElement('div', { classes: [`${blockName}__image-divider`, 'image-divider'] });
+        imgWrapper.append(divider, img);
         slider.appendChild(imgWrapper);
       }
     });
@@ -79,6 +80,4 @@ export default async function decorate(block) {
 
   const buttons = [...content.querySelectorAll('p.button-container')];
   if (buttons.length > 0) buttons.forEach((btn) => content.appendChild(btn));
-
-  removeEmptyTags(content);
 }
