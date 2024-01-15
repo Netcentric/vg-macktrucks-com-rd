@@ -47,9 +47,10 @@ export default async function decorate(block) {
 
     if (isBackgroundImageVariant) {
       blockParent.classList.add(`${blockName}-container--with-background-image`);
-      const btnSection = createElement('div', { classes: `${blockName}__btn-section` });
+      const btnSection = createElement('div', { classes: 'button-container' });
 
       buttons.forEach((btn) => {
+        btn.classList.add('button--large');
         const btnContainer = btn.closest('.button-container');
         btnContainer.replaceWith(btn);
         btnSection.append(btn);

@@ -69,13 +69,15 @@
 }
 
 .v2-columns__column--with-text .button-container {
-  margin: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
 }
 
 .v2-columns__column--with-text a.button {
-  width: fit-content;
-  margin-top: 20px;
-  margin-bottom: 0;
+  min-width: auto;
+  margin: 0;
 }
 
 .v2-columns-container:not(.v2-columns-container--with-background-image) .v2-columns__column--with-text a.button:not(a.button:first-of-type) {
@@ -112,10 +114,6 @@
   .v2-columns__column--with-text ul.v2-columns__body {
     margin: 0;
   }
-
-  .v2-columns__column--with-text a.button {
-    margin-top: 12px;
-  }
 }
 
 /* TRUCKS VARIATIONS STYLING */
@@ -127,7 +125,7 @@
 
 .redesign-v2 .section--with-background.v2-columns-container--with-background-image > picture img {
   position: relative;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1;
 }
 
 .v2-columns-container--with-background-image .v2-columns__column--with-text {
@@ -140,18 +138,16 @@
 
 
 /* stylelint-disable-next-line no-descending-specificity */
-.v2-columns.v2-columns--with-background-image .v2-columns__btn-section a.button,
-.v2-columns.v2-columns--with-background-image .v2-columns__btn-section a.button:not(a.button:first-of-type) {
+.v2-columns.v2-columns--with-background-image .button-container a.button,
+.v2-columns.v2-columns--with-background-image .button-container a.button:not(a.button:first-of-type) {
   width: 100%;
 }
 
-.v2-columns.v2-columns--with-background-image .v2-columns__btn-section {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-}
-
 @media (min-width: 744px) {
+  .v2-columns__column--with-text .button-container {
+    margin: 20px 0 0;
+  }
+
   .redesign-v2 .v2-columns-container--with-background-image .v2-columns-wrapper {
     background-color: var(--c-primary-white);
     position: absolute;
@@ -160,9 +156,9 @@
     padding: 40px;
     margin-left: 72px;
   }
-  
-  .v2-columns.v2-columns--with-background-image .v2-columns__btn-section a.button,
-  .v2-columns.v2-columns--with-background-image .v2-columns__btn-section a.button:not(a.button:first-of-type) {
+
+  .v2-columns.v2-columns--with-background-image .button-container a.button,
+  .v2-columns.v2-columns--with-background-image .button-container a.button:not(a.button:first-of-type) {
     max-width: 140px;
   }
 }
@@ -174,6 +170,6 @@
   }
 
   .redesign-v2 .section--with-background.v2-columns-container--with-background-image > picture img {
-    aspect-ratio: 240 / 139;
+    aspect-ratio: 12 / 7;
   }
 }

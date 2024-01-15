@@ -1205,9 +1205,15 @@ main .section.responsive-title h1 {
   margin-bottom: 0;
 }
 
+.redesign-v2 .li--hyphen {
+  padding-left: 20px;
+  position: relative;
+}
+
 .redesign-v2 .li--hyphen::before {
   content: '-';
-  margin-right: 5px;
+  position: absolute;
+  left: 5px;
 }
 
 @media (min-width: 1040px) {
