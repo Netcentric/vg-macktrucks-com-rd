@@ -5,6 +5,7 @@
 
 .v2-slider {
   --exposure: 50%;
+  --thumb-size: 48px;
 
   padding: 68px 0 40px;
 }
@@ -14,7 +15,6 @@
 }
 
 .v2-slider .button-container,
-.v2-slider__models,
 .v2-slider__header {
   padding: 0 16px;
 }
@@ -68,9 +68,7 @@
   z-index: 2;
 }
 
-.v2-slider__input {
-  --thumb-size: 48px;
-  
+.v2-slider__input { 
   margin: 0 calc(var(--thumb-size) / -2);
   width: calc(100% + var(--thumb-size));
   cursor: col-resize;
@@ -88,12 +86,30 @@
   border: none;
 }
 
+.v2-slider__input:focus,
+.v2-slider__input:focus-visible {
+  outline: 0;
+}
+
+.v2-slider__input:focus-visible::before {
+  --outline-size: calc((var(--thumb-size) + 4px));  
+
+  content: '';
+  height: var(--outline-size);
+  width: var(--outline-size);
+  position: absolute;
+  left: calc(var(--exposure) - calc(var(--outline-size) * 0.5));
+  bottom: calc(50% - calc(var(--outline-size) * 0.5));
+  outline: 2px solid var(--border-focus);
+  border-radius: 2px;
+}
+
 .v2-slider__input::-moz-range-thumb {
   border: none;
   width: var(--thumb-size);
   height: var(--thumb-size);
   background-color: var(--c-primary-gold);
-  cursor: pointer;
+  cursor: col-resize;
   border-radius: 0;
   margin-top: 0;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"><path fill="black" d="M10.293 23.328a.918.918 0 0 0 0 1.344l6.364 6.05c.39.37 1.023.37 1.414 0a.918.918 0 0 0 0-1.345L12.414 24l5.657-5.377a.918.918 0 0 0 0-1.345 1.037 1.037 0 0 0-1.414 0l-6.364 6.05Zm27.414 1.344a.918.918 0 0 0 0-1.344l-6.364-6.05a1.037 1.037 0 0 0-1.414 0 .918.918 0 0 0 0 1.345L35.586 24l-5.657 5.377a.918.918 0 0 0 0 1.345c.39.37 1.024.37 1.414 0l6.364-6.05ZM11 25h26v-2H11v2Z"/></svg>');
@@ -107,7 +123,7 @@
   width: var(--thumb-size);
   height: var(--thumb-size);
   background-color: var(--c-primary-gold);
-  cursor: pointer;
+  cursor: col-resize;
   margin-top: 0;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"><path fill="black" d="M10.293 23.328a.918.918 0 0 0 0 1.344l6.364 6.05c.39.37 1.023.37 1.414 0a.918.918 0 0 0 0-1.345L12.414 24l5.657-5.377a.918.918 0 0 0 0-1.345 1.037 1.037 0 0 0-1.414 0l-6.364 6.05Zm27.414 1.344a.918.918 0 0 0 0-1.344l-6.364-6.05a1.037 1.037 0 0 0-1.414 0 .918.918 0 0 0 0 1.345L35.586 24l-5.657 5.377a.918.918 0 0 0 0 1.345c.39.37 1.024.37 1.414 0l6.364-6.05ZM11 25h26v-2H11v2Z"/></svg>');
   box-shadow: 0 8px 16px rgb(0 0 0 / 30%);
