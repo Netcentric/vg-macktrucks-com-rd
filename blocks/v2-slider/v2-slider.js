@@ -5,14 +5,11 @@ import {
 const blockName = 'v2-slider';
 
 function handleSlider(block) {
-  const clippedImage = block.querySelector('.image-2');
-  const clippingSlider = block.querySelector('.image-compare-input');
-  const dividerLine = block.querySelector('.image-divider');
+  const clippingSlider = block.querySelector(`.${blockName}__input`);
 
   clippingSlider.addEventListener('input', (event) => {
     const newValue = `${event.target.value}%`;
-    clippedImage.style.setProperty('--exposure', newValue);
-    dividerLine.style.setProperty('--exposure', newValue);
+    block.style.setProperty('--exposure', newValue);
   });
 }
 
@@ -57,14 +54,12 @@ export default async function decorate(block) {
       slider.appendChild(img);
     });
 
-    const divider = createElement('div', { classes: [`${blockName}__image-divider`, 'image-divider'] });
-    divider.style.setProperty('--exposure', '50%');
-    const label = createElement('label', { classes: [`${blockName}__label`, 'image-compare-label'] });
-    const input = createElement('input', { classes: [`${blockName}__input`, 'image-compare-input'] });
+    const divider = createElement('div', { classes: `${blockName}__image-divider` });
+    const label = createElement('label', { classes: `${blockName}__label` });
+    const input = createElement('input', { classes: `${blockName}__input` });
     input.type = 'range';
     input.min = '0';
     input.max = '100';
-    input.value = '50';
     label.appendChild(input);
     slider.append(label, divider);
 

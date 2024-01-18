@@ -4,7 +4,7 @@
 }
 
 .v2-slider {
-  --text-color: var(--c-primary-black);
+  --exposure: 50%;
 
   padding: 68px 0 40px;
 }
@@ -46,9 +46,7 @@
   display: block;
 }
 
-.v2-slider__images .image-2 {
-  --exposure: 50%;
-  
+.v2-slider__images .image-2 { 
   display: block;
   clip-path: polygon(
     calc(var(--exposure) + 1px) 0,
@@ -146,7 +144,7 @@
 
 .v2-slider__models .model {
   color: var(--text-color);
-  font-family: var(--ff-subheadings-medium);
+  font-family: var(--ff-body-bold);
   font-size: 12px;
   font-style: normal;
   line-height: 16px; 
