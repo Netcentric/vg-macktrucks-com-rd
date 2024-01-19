@@ -138,10 +138,6 @@
   z-index: 1;
 }
 
-.v2-slider-container[data-image-background='Light-gray'] {
-  background-color: var(--c-tertiary-light-cool-gray);
-}
-
 .v2-slider .button-container,
 .v2-slider .button-container a {
   margin: 0;
