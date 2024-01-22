@@ -55,10 +55,8 @@ export default function decorate(block) {
     colBtnTitle.prepend(item.querySelector(`.${blockName}__item-title`), arrowEl);
     colBtnTitle.onclick = () => {
       const active = accordionContainer.querySelector('.active');
-      const gapEl = accordionContainer.querySelector(`.${blockName}__accordion-gap`);
       if (active && active !== item) active.classList.remove('active');
-      item.classList.toggle('active');
-      gapEl.classList.toggle('all-closed', !accordionContainer.querySelector('.active'));
+      item.classList.add('active');
     };
     item.prepend(colGap, colBtnTitle);
     itemsContainer.appendChild(item);
