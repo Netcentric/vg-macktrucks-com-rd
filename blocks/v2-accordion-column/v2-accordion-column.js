@@ -22,7 +22,6 @@ export default function decorate(block) {
   const header = block.querySelector(':scope > div:first-child > div > :first-child');
   const accordionItems = [...block.querySelectorAll(':scope > div:not(:first-child)')];
   const accordionContainer = createElement('div', { classes: `${blockName}__accordion-container` });
-  const colGap = createElement('div', { classes: `${blockName}__accordion-gap` });
   const itemsContainer = createElement('div', { classes: `${blockName}__items-container` });
   const hasLeftClass = block.classList.contains(left); // accordion at left side
   /** @type {boolean} */
@@ -30,6 +29,7 @@ export default function decorate(block) {
     || (!hasLeftClass && !!accordionItems[0].lastElementChild.querySelector('picture'));
   if (!hasLeftClass && isLeftVariant) block.classList.add(left);
   variantsClassesToBEM(block.classList, variants, blockName);
+  block.parentElement.classList.add('full-width');
   header.parentElement.classList.add(`${blockName}__header-wrapper`);
   header.parentElement.parentElement.classList.add(`${blockName}__header-container`);
 
@@ -58,11 +58,11 @@ export default function decorate(block) {
       if (active && active !== item) active.classList.remove('active');
       item.classList.add('active');
     };
-    item.prepend(colGap, colBtnTitle);
+    item.prepend(colBtnTitle);
     itemsContainer.appendChild(item);
   });
 
-  accordionContainer.append(colGap, itemsContainer);
+  accordionContainer.append(itemsContainer);
 
   block.appendChild(accordionContainer);
 }
