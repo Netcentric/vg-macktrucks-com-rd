@@ -105,6 +105,10 @@
   transition: translate ease-out 0.2s;
 }
 
+.v2-accordion-column__item-image {
+  background-color: var(--c-primary-gray);
+}
+
 .v2-accordion-column__item-image img {
   aspect-ratio: 16/10;
   width: 100%;
@@ -115,7 +119,6 @@
 /* Left variant */
 .v2-accordion-column--left .v2-accordion-column__item-image {
   order: 1;
-  background-color: var(--c-primary-gray);
 }
 
 .v2-accordion-column--left .v2-accordion-column__item-description {
