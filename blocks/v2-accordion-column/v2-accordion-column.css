@@ -29,7 +29,7 @@
 
 .v2-accordion-column__item-title {
   font-family: var(--ff-subheadings-medium);
-  font-size: var(--headline-1-font-size);
+  font-size: var(--body-font-size-xl);
   letter-spacing: var(--headline-1-letter-spacing);
   line-height: var(--headline-1-line-height);
   margin: 0;
@@ -68,7 +68,7 @@
 
 .v2-accordion-column__item {
   margin: 0 0 16px;
-  border-bottom: 2px solid var(--c-primary-black);
+  border-bottom: 1px solid var(--c-secondary-steel);
 }
 
 .v2-accordion-column__item.active {
@@ -174,10 +174,6 @@
     top: 6em;
     width: 50%;
     background-color: var(--c-primary-gray);
-  }
-
-  .v2-accordion-column__item-title {
-    font-size: var(--body-font-size-xl);
   }
 
   .v2-accordion-column__item-description > p:not(.button-container) {
