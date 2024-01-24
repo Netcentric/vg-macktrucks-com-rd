@@ -2,6 +2,10 @@
   padding: 0 16px;
 }
 
+.v2-accordion-column__items-container {
+  margin: 40px 0 0;
+}
+
 .v2-accordion-column__header-container h2 {
   font-family: var(--ff-headline-medium);
 }
@@ -152,6 +156,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin: 0;
   }
 
   .v2-accordion-column__item {
