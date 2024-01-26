@@ -29,7 +29,6 @@
 
 .v2-accordion-column__item-title {
   font-family: var(--ff-subheadings-medium);
-  font-size: var(--body-font-size-xl);
   letter-spacing: var(--headline-1-letter-spacing);
   line-height: var(--headline-1-line-height);
   margin: 0;
