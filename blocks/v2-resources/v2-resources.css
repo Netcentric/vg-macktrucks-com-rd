@@ -34,3 +34,26 @@ a.v2-resources__link:hover {
   color: var(--c-tertiary-cool-gray);
   border-color: var(--c-tertiary-cool-gray);
 }
+
+@media (min-width: 768px) {
+  .section.v2-resources-container {
+    padding: 0 0 80px;
+  }
+
+  .section.v2-resources-container .v2-resources-wrapper {
+    padding-bottom: 0;
+  }
+
+  .v2-resources__content-wrapper {
+    display: flex;
+    column-gap: 15vw;
+  }
+
+  .v2-resources__header {
+    width: 30%;
+  }
+  
+  .v2-resources__content .v2-resources__subtitle:first-of-type {
+    margin-top: 0;
+  }
+}
