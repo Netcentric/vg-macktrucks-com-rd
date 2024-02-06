@@ -35,6 +35,13 @@ a.v2-resources__link:hover {
   border-color: var(--c-tertiary-cool-gray);
 }
 
+.v2-resources-container.section--background-with-dots::after {
+  height: 15%;
+  width: 37%;
+  left: 0;
+  bottom: 0;
+}
+
 @media (min-width: 768px) {
   .section.v2-resources-container {
     padding: 0 0 80px;
@@ -55,5 +62,19 @@ a.v2-resources__link:hover {
   
   .v2-resources__content .v2-resources__subtitle:first-of-type {
     margin-top: 0;
+  }
+
+  .v2-resources-container.section--background-with-dots::after {
+    height: 28%;
+    width: 25%;
+    left: 2%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .v2-resources-container.section--background-with-dots::after {
+    height: 42%;
+    width: 17%;
+    left: 9%;
   }
 }
