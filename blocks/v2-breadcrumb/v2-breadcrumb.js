@@ -31,12 +31,6 @@ const getBlockWidth = (block) => {
 
 const areCrumbsFit = (block) => getCrumbsWidth(block) < getBlockWidth(block);
 
-const newSeparator = () => {
-  const separator = createElement('span', { classes: [`${blockName}__crumb-separator`] });
-  separator.textContent = '/';
-  return separator;
-};
-
 export default function decorate(block) {
   const cfg = readBlockConfig(block);
   const hasPath = cfg && Object.hasOwn(cfg, 'path');
@@ -56,7 +50,6 @@ export default function decorate(block) {
     }
     const crumb = createElement('a', { classes: crumbClasses, props: crumbProps });
     crumb.textContent = removePathDash(path[i]);
-    crumb.prepend(newSeparator());
     return crumb;
   });
   const homeEl = createElement('a', {
@@ -73,7 +66,7 @@ export default function decorate(block) {
 
   const CheckCrumbsFits = () => {
     // 1st check if home fits, if not it become an ellipsis
-    if (!areCrumbsFit(block)) homeEl.textContent = homeText.ellipsis;
+    if (!areCrumbsFit(block) && crumbs.length > 2) homeEl.textContent = homeText.ellipsis;
     // if still doesn't fit, remove active crumb
     if (!areCrumbsFit(block)) {
       crumbs.at(-1).textContent = '';
@@ -81,7 +74,7 @@ export default function decorate(block) {
     // if it still doesn't fit again, remove the crumbs from the middle
     if (!areCrumbsFit(block)) {
       let i = 1;
-      while (i < crumbs.length - 1 && !areCrumbsFit(block)) {
+      while (i < crumbs.length - 2 && !areCrumbsFit(block)) {
         crumbs[i].textContent = '';
         i += 1;
       }
@@ -90,16 +83,14 @@ export default function decorate(block) {
 
   const rObserver = new ResizeObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.contentBoxSize) {
-        // add again the content from each item and check if it fits again or not
-        homeEl.textContent = homeText.home;
-        crumbs.forEach((crumb, i) => {
-          if (i === 0) return;
-          crumb.textContent = crumb.dataset.content;
-          crumb.prepend(newSeparator());
-        });
-        CheckCrumbsFits();
-      }
+      if (!entry.contentBoxSize) return;
+      // add again the content from each item and check if it fits again or not
+      homeEl.textContent = homeText.home;
+      crumbs.forEach((crumb, i) => {
+        if (i === 0) return;
+        crumb.textContent = crumb.dataset.content;
+      });
+      CheckCrumbsFits();
     });
   });
 
@@ -110,7 +101,6 @@ export default function decorate(block) {
       const section = mutation.target;
       const status = section.getAttribute(sectionStatus);
       if (status !== 'loaded') return;
-      CheckCrumbsFits();
       rObserver.observe(block);
       mObserver.disconnect();
     });
