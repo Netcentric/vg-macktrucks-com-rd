@@ -14,6 +14,14 @@
   text-transform: capitalize;
   color: inherit;
   display: flex;
+  outline: none;
+}
+
+.v2-breadcrumb__crumb:focus,
+.v2-breadcrumb__crumb:focus-visible {
+  outline: 2px solid var(--border-focus);
+  border-radius: 2px;
+  outline-offset: 2px
 }
 
 .v2-breadcrumb__crumb:not(.v2-breadcrumb__crumb--home)::before {
