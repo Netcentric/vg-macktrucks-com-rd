@@ -8,15 +8,21 @@
 
 .v2-resources__heading {
   font-family: var(--ff-headline-medium);
+  margin: 0 0 8px;
+}
+
+.v2-resources__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.v2-resources__content p {
   margin: 0;
 }
 
 .v2-resources__subtitle {
-  margin: 40px 0 0;
-}
-
-.v2-resources__text {
-  margin: 8px 0 16px;
+  margin: 32px 0 0;
 }
 
 a.v2-resources__link {
@@ -29,6 +35,7 @@ a.v2-resources__link {
   letter-spacing: 1.12px;
   line-height: var(--button-line-height);
   border-bottom: 1px solid transparent;
+  margin-top: 8px;
 }
 
 a.v2-resources__link:hover {
@@ -44,7 +51,7 @@ a.v2-resources__link:hover {
   bottom: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 744px) {
   .section.v2-resources-container {
     padding: 0 0 80px;
   }
@@ -59,7 +66,11 @@ a.v2-resources__link:hover {
   }
 
   .v2-resources__header {
-    width: 40vw;
+    width: 40%;
+  }
+
+  .v2-resources__heading {
+    margin: 0;
   }
 
   .v2-resources__content .v2-resources__subtitle:first-of-type {
@@ -75,8 +86,8 @@ a.v2-resources__link:hover {
 @media (min-width: 1200px) {
   .v2-resources-container.section--background-with-dots::after {
     height: 42%;
-    width: 17%;
-    left: 9%;
+    width: 25vw;
+    left: 5%;
   }
 
   .section.v2-resources-container .v2-resources-wrapper {

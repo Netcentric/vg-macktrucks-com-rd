@@ -22,9 +22,7 @@ export default async function decorate(block) {
   contentElmts.forEach((el, idx) => {
     const tagName = el.tagName.toLowerCase();
     const isButton = [...el.classList].includes('button-container');
-    if (tagName === 'p' && !isButton) {
-      el.classList.add(`${blockName}__text`);
-    } else if (tagName === 'p' && isButton) {
+    if (tagName === 'p' && isButton) {
       const link = el.querySelector('a');
       link.classList.add(`${blockName}__link`);
       link.classList.remove('button--primary', 'button');
