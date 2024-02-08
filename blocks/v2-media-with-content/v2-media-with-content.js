@@ -18,12 +18,7 @@ export default async function decorate(block) {
     }
   });
 
-  const hasImageLeft = (content[0].firstElementChild.tagName === 'PICTURE');
-  if (hasImageLeft) {
-    contentWrapper.classList.add('image-left');
-  } else {
-    contentWrapper.classList.add('image-right');
-  }
+  if (content[1].firstElementChild.tagName === 'PICTURE') contentWrapper.classList.add(`${blockName}__content-wrapper--image-right`);
 
   const header = [...block.querySelectorAll('h1, h2, h3, h4, h5, h6')];
   header.forEach((h) => { h.classList.add(`${blockName}__title`); });
