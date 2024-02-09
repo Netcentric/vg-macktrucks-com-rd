@@ -54,3 +54,20 @@
 .v2-breadcrumb__crumb--active:hover {
   text-decoration: none;
 }
+
+
+@media (min-width: 1200px) {
+  .v2-breadcrumb {
+    padding: 16px 0;
+  }
+
+  .v2-breadcrumb__crumb-list {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .v2-breadcrumb__crumb-item + .v2-breadcrumb__crumb-item::before {
+    content: '';
+    margin: 0;
+  }
+}
