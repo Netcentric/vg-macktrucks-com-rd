@@ -87,8 +87,9 @@ a.v2-resources__link:hover {
 @media (min-width: 1200px) {
   .v2-resources-container.section--background-with-dots::after {
     height: 42%;
-    width: 25vw;
-    left: 5%;
+    width: 248px;
+    left: 50%;
+    transform: translateX(-644px);
   }
 
   .section.v2-resources-container .v2-resources-wrapper {
