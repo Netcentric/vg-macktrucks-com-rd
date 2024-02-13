@@ -83,17 +83,16 @@ li.v2-media-with-content__list-item {
     gap: 90px;
   }
 
-  .v2-media-with-content__column img {
-    width: 100%;
-    max-width: 800px;
-  }
-
   .v2-media-with-content__column.column-with-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: calc(45% + 90px);
     min-width: 350px;
+  }
+
+  .v2-media-with-content__column img {
+    max-width: 800px;
   }
   
   .v2-media-with-content__content-wrapper .v2-media-with-content__column.column-with-text {
